@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:">
+  <title>Unseencue · Settings</title>
+  <link rel="stylesheet" href="tokens.css">
+  <link rel="stylesheet" href="settings.css">
+</head>
+<body>
+<div class="layout">
+<aside class="panel">
+  <header class="top">
+    <div class="eyebrow"><svg class="icon" viewBox="0 0 24 24"><path d="M3 12s3.5-6 9-6c1.6 0 3 .5 4.2 1.2M21 12s-1.2 2-3.4 3.7M9.9 17.7c.7.2 1.4.3 2.1.3-5.5 0-9-6-9-6"/><path d="M4 20L20 4"/></svg>Unseencue</div>
+    <h1>Settings</h1>
+    <p>Changes apply instantly and show in the preview on the right.</p>
+  </header>
+
+  <section class="card">
+    <h2>See-through</h2>
+    <p class="hint">How much of your screen shows through the teleprompter.</p>
+    <div class="row"><label for="windowOpacity">Whole window</label><input id="windowOpacity" data-key="windowOpacity" type="range" min="0.15" max="1" step="0.01"><output data-pct></output></div>
+    <div class="row"><label for="opacity">Background only</label><input id="opacity" data-key="opacity" type="range" min="0" max="1" step="0.02"><output data-pct></output></div>
+  </section>
+
+  <section class="card">
+    <h2>Script text</h2>
+    <div class="row"><label for="font-select">Font</label><select id="font-select" class="field" aria-label="Script font"></select></div>
+    <div class="row" id="font-more-row" hidden><span></span><button class="pill" id="font-more">Show all fonts installed on this PC</button></div>
+
+    <div class="row"><label for="fontSize">Text size</label><input id="fontSize" data-key="fontSize" type="range" min="12" max="140"><output data-unit=" px"></output></div>
+
+    <div class="row"><label for="lineHeight">Line spacing</label><input id="lineHeight" data-key="lineHeight" type="range" min="1" max="2.2" step="0.05"><output></output></div>
+    <div class="row"><label for="columnWidth">Column width</label><input id="columnWidth" data-key="columnWidth" type="range" min="30" max="100"><output data-unit="%"></output></div>
+    <div class="row"><label for="edgePadding">Edge padding</label><input id="edgePadding" data-key="edgePadding" type="range" min="8" max="160"><output data-unit=" px"></output></div>
+    <p class="hint">Space kept clear on the left and right, even at 100% column width.</p>
+
+    <div class="stack"><div class="stack-head"><span>Text colour</span></div><div class="swatches" data-palette="text"><input type="color" data-key="textColor" aria-label="Custom text colour"></div></div>
+    <div class="stack"><div class="stack-head"><span>Background colour</span></div><div class="swatches" data-palette="bg"><input type="color" data-key="bgColor" aria-label="Custom background colour"></div></div>
+  </section>
+
+  <section class="card">
+    <h2>Headings</h2>
+    <p class="hint">Size, colour and an optional background for each level, so sections stand out while you read.</p>
+    <div class="heading-block">
+      <div class="hb-head"><span class="hname h1">#&nbsp; Heading 1</span></div>
+      <div class="row"><label for="h1size">Size</label><input id="h1size" data-key="headings.h1.size" type="range" min="60" max="250" step="5"><output data-unit="%"></output></div>
+      <div class="swatches" data-palette="text"><input type="color" data-key="headings.h1.color" aria-label="Custom heading 1 colour"></div>
+      <label class="mini"><input type="checkbox" class="switch sm" data-bg="h1"> Background</label>
+      <div class="swatches" data-palette="highlight" data-bg-row="h1"><input type="color" data-key="headings.h1.bg" aria-label="Custom heading 1 background"></div>
+    </div>
+    <div class="heading-block">
+      <div class="hb-head"><span class="hname h2">## Heading 2</span></div>
+      <div class="row"><label for="h2size">Size</label><input id="h2size" data-key="headings.h2.size" type="range" min="60" max="250" step="5"><output data-unit="%"></output></div>
+      <div class="swatches" data-palette="text"><input type="color" data-key="headings.h2.color" aria-label="Custom heading 2 colour"></div>
+      <label class="mini"><input type="checkbox" class="switch sm" data-bg="h2"> Background</label>
+      <div class="swatches" data-palette="highlight" data-bg-row="h2"><input type="color" data-key="headings.h2.bg" aria-label="Custom heading 2 background"></div>
+    </div>
+    <div class="heading-block">
+      <div class="hb-head"><span class="hname h3">### Heading 3</span></div>
+      <div class="row"><label for="h3size">Size</label><input id="h3size" data-key="headings.h3.size" type="range" min="40" max="200" step="5"><output data-unit="%"></output></div>
+      <div class="swatches" data-palette="text"><input type="color" data-key="headings.h3.color" aria-label="Custom heading 3 colour"></div>
+      <label class="mini"><input type="checkbox" class="switch sm" data-bg="h3"> Background</label>
+      <div class="swatches" data-palette="highlight" data-bg-row="h3"><input type="color" data-key="headings.h3.bg" aria-label="Custom heading 3 background"></div>
+    </div>
+    <div class="row"><label for="hbg">Background strength</label><input id="hbg" data-key="headingBgOpacity" type="range" min="0.05" max="1" step="0.01"><output data-pct></output></div>
+  </section>
+
+  <section class="card">
+    <h2>Reading marker</h2>
+    <div class="seg" role="radiogroup" aria-label="Marker style">
+      <label><input type="radio" name="marker.style" value="glow" data-key="marker.style"><span>Glow</span></label>
+      <label><input type="radio" name="marker.style" value="line" data-key="marker.style"><span>Line</span></label>
+      <label><input type="radio" name="marker.style" value="arrows" data-key="marker.style"><span>Arrows</span></label>
+      <label><input type="radio" name="marker.style" value="band" data-key="marker.style"><span>Band</span></label>
+      <label><input type="radio" name="marker.style" value="none" data-key="marker.style"><span>None</span></label>
+    </div>
+    <div class="stack"><div class="stack-head"><span>Colour</span></div><div class="swatches" data-palette="accent"><input type="color" data-key="marker.color" aria-label="Custom marker colour"></div></div>
+    <div class="row"><label for="mpos">Height from top</label><input id="mpos" data-key="marker.position" type="range" min="5" max="90"><output data-unit="%"></output></div>
+  </section>
+
+  <section class="card">
+    <h2>Playback</h2>
+    <div class="row"><label for="speed">Scroll speed</label><input id="speed" data-key="speed" type="range" min="5" max="200"><output></output></div>
+    <div class="row"><label for="countdown">Countdown</label><input id="countdown" data-key="countdown" type="range" min="0" max="30"><output data-unit=" s"></output></div>
+  </section>
+
+  <section class="card">
+    <div class="card-head"><h2>Voice follow</h2><input type="checkbox" class="switch" data-key="voice.enabled" aria-label="Voice follow on"></div>
+    <p class="hint">Scrolls while you talk and stops when you go quiet. It measures your room's background noise by itself. The violet line is the trigger: your voice has to rise above it.</p>
+    <div class="meter" aria-label="Microphone level">
+      <div class="meter-fill" id="meter-fill"></div>
+      <div class="meter-threshold" id="meter-th"></div>
+    </div>
+    <div class="meter-legend"><span id="meter-state">Turn voice follow on to see your mic level</span><span id="meter-db"></span></div>
+    <div class="row"><label for="vth">Louder than room by</label><input id="vth" data-key="voice.marginDb" type="range" min="4" max="30" step="1"><output data-unit=" dB"></output></div>
+    <p class="hint">Lower = picks up softer speech. Raise it if keyboard or fan noise keeps it scrolling.</p>
+    <div class="row"><label for="vsil">Stop after silence</label><input id="vsil" data-key="voice.silenceMs" type="range" min="200" max="3000" step="100"><output data-unit=" ms"></output></div>
+  </section>
+
+  <section class="card">
+    <div class="card-head"><h2>Head follow</h2><input type="checkbox" class="switch" data-key="head.enabled" aria-label="Head follow on"></div>
+    <p class="hint">Pauses when you look away and resumes when you look back. It calibrates during each countdown.</p>
+    <div class="row"><label for="cam">Camera</label><span class="cam-pick"><select id="cam" data-key="head.deviceId" class="field"></select><button class="pill icon-only" id="rescan" title="Refresh camera list" aria-label="Refresh camera list">↻</button></span></div>
+    <div class="row"><label for="hsens">Look-away tolerance</label><input id="hsens" data-key="head.sensitivity" type="range" min="0.04" max="0.3" step="0.01"><output></output></div>
+    <p class="hint">Windows usually gives a webcam to one app at a time. If your recorder or meeting app already has it, pick its virtual camera here (in OBS: Start Virtual Camera → "OBS Virtual Camera").</p>
+  </section>
+
+  <section class="card">
+    <h2>Position under your webcam</h2>
+    <p class="hint">Where the teleprompter opens every time. Pick where your webcam is, or drag the teleprompter exactly under it and save that spot.</p>
+    <div class="seg" role="radiogroup" aria-label="Webcam position">
+      <label><input type="radio" name="window.anchor" value="top-left" data-key="window.anchor"><span>Top left</span></label>
+      <label><input type="radio" name="window.anchor" value="top-center" data-key="window.anchor"><span>Top centre</span></label>
+      <label><input type="radio" name="window.anchor" value="top-right" data-key="window.anchor"><span>Top right</span></label>
+    </div>
+    <div class="buttons">
+      <button class="pill primary" id="set-home">Save current spot as home</button>
+      <button class="pill" id="reset-window">Move back home</button>
+    </div>
+    <p class="hint" id="home-state"></p>
+  </section>
+
+  <section class="card">
+    <h2>Hidden from recordings &amp; meetings</h2>
+    <p class="hint">The teleprompter and this window are left out of every screen capture and screen share on Windows 10 (2004 or later) and Windows 11: Zoom, Google Meet, Microsoft Teams, Webex, Slack, Discord, Skype, OBS, Streamlabs, Loom, Xbox Game Bar, Snipping Tool and PrintScreen. Your webcam video is separate and never shows the screen.</p>
+    <div class="buttons">
+      <button class="pill primary" id="test">Check it's hidden now</button>
+      <button class="pill" id="reset">Reset look to defaults</button>
+    </div>
+    <figure id="shot-box" hidden>
+      <img id="shot" alt="Screen capture of the area where the teleprompter sits">
+      <figcaption id="shot-msg"></figcaption>
+    </figure>
+    <p id="shot-wait" class="hint" hidden>Capturing the screen the way a recorder does…</p>
+  </section>
+
+</aside>
+
+<section class="preview-pane" aria-label="Live preview">
+  <div class="preview-head">
+    <span class="preview-title">Live preview</span>
+    <span class="preview-sub">Exactly how your teleprompter looks, at its real size and shape, over a sample desktop</span>
+  </div>
+  <div class="stage" id="stage">
+    <div class="screen-top"><span class="cam" title="Your webcam"></span></div>
+    <div class="frame-wrap" id="frame-wrap"><iframe id="preview" src="index.html?preview" title="Unseencue preview" tabindex="-1"></iframe></div>
+    <div class="fake-window w1"></div><div class="fake-window w2"></div>
+  </div>
+</section>
+</div>
+
+  <script type="module" src="tooltip.js"></script>
+  <script type="module" src="settings.js"></script>
+</body>
+</html>

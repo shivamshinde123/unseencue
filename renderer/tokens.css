@@ -1,0 +1,84 @@
+/* Design tokens. Based on the "Dimension" style reference: dusk-lit dark canvas, frosted panels,
+   pill controls, hairline borders, DM Sans + Geist, a violet wash as the only accent. */
+@import url('../node_modules/@fontsource/dm-sans/400.css');
+@import url('../node_modules/@fontsource/dm-sans/500.css');
+@import url('../node_modules/@fontsource/dm-sans/400-italic.css');
+@import url('../node_modules/@fontsource/dm-sans/700.css');
+@import url('../node_modules/@fontsource/geist/500.css');
+@import url('../node_modules/@fontsource/geist/600.css');
+
+:root {
+  --void: #0a0a0a;
+  --graphite: #161616;
+  --frost: rgba(212, 212, 212, 0.1);
+  --frost-strong: rgba(212, 212, 212, 0.16);
+  --snow: #ffffff;
+  --bone: #ededed;
+  --ash: #c2c2c2;
+  --smoke: #b2b2b2;
+  --slate: #686868;
+  --hairline: rgba(229, 229, 229, 0.14);
+  --hairline-strong: rgba(229, 229, 229, 0.28);
+  --violet: 107, 98, 242;
+  --wash: linear-gradient(90deg, transparent, rgba(var(--violet), 0.565) 50%, transparent);
+
+  --font-ui: 'DM Sans', ui-sans-serif, system-ui, 'Segoe UI', sans-serif;
+  --font-head: 'Geist', 'DM Sans', ui-sans-serif, system-ui, 'Segoe UI', sans-serif;
+
+  --r-icon: 4px;
+  --r-ui: 10px;
+  --r-card: 24px;
+  --r-pill: 9999px;
+
+  --ease: cubic-bezier(.2, .7, .2, 1);
+}
+
+[hidden] { display: none !important; }
+* { box-sizing: border-box; }
+
+.icon { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; flex: none; }
+
+/* Pills */
+.pill {
+  display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+  height: 32px; padding: 0 12px; border-radius: var(--r-pill);
+  border: 1px solid var(--hairline); background: transparent; color: rgba(255, 255, 255, .85);
+  font: 500 13px/1 var(--font-ui); letter-spacing: .025em; cursor: pointer; white-space: nowrap; flex: none;
+  transition: background .15s var(--ease), border-color .15s var(--ease), color .15s var(--ease);
+}
+.pill:hover { background: var(--frost); border-color: var(--hairline-strong); color: var(--snow); }
+.pill:focus-visible { outline: 2px solid rgba(var(--violet), .9); outline-offset: 2px; }
+.pill.icon-only { width: 32px; padding: 0; }
+.pill.primary { background: var(--snow); color: var(--graphite); border-color: var(--snow); }
+.pill.primary:hover { background: var(--bone); }
+.pill.on { background: rgba(255, 255, 255, .14); border-color: var(--hairline-strong); color: var(--snow); }
+.pill.err { border-color: rgba(255, 120, 120, .55); color: #ffb4b4; }
+
+/* Range slider */
+input[type=range] { -webkit-appearance: none; appearance: none; background: transparent; height: 18px; cursor: pointer; }
+input[type=range]::-webkit-slider-runnable-track { height: 2px; border-radius: 2px; background: var(--hairline-strong); }
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none; width: 14px; height: 14px; margin-top: -6px; border-radius: 50%;
+  background: var(--snow); border: 0; box-shadow: 0 0 0 4px rgba(255, 255, 255, .06);
+}
+input[type=range]:focus-visible { outline: none; }
+input[type=range]:focus-visible::-webkit-slider-thumb { box-shadow: 0 0 0 4px rgba(var(--violet), .55); }
+
+/* themed tooltip (renderer/tooltip.js), replaces the white Windows tooltip */
+.tooltip {
+  position: fixed; z-index: 1000; max-width: 260px; pointer-events: none;
+  padding: 7px 11px; border-radius: var(--r-ui);
+  background: rgba(22, 22, 22, .96); color: var(--bone);
+  box-shadow: inset 0 0 0 1px var(--hairline-strong), rgba(0, 0, 0, .35) 0 8px 20px;
+  font: 500 12px/1.4 var(--font-ui); letter-spacing: .02em; white-space: normal;
+  opacity: 0; transform: translateY(3px); transition: opacity .14s var(--ease), transform .14s var(--ease);
+}
+.tooltip[data-side="below"] { transform: translateY(-3px); }
+.tooltip.in { opacity: 1; transform: none; }
+.tooltip::after {
+  content: ''; position: absolute; left: var(--arrow-x, 50%); width: 8px; height: 8px; margin-left: -4px;
+  background: inherit; transform: rotate(45deg);
+}
+.tooltip[data-side="above"]::after { bottom: -4px; box-shadow: 1px 1px 0 0 var(--hairline-strong); }
+.tooltip[data-side="below"]::after { top: -4px; box-shadow: -1px -1px 0 0 var(--hairline-strong); }
+@media (prefers-reduced-motion: reduce) { .tooltip { transition: none; } }

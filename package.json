@@ -1,0 +1,42 @@
+{
+  "name": "unseencue",
+  "productName": "Unseencue",
+  "version": "0.2.0",
+  "description": "Unseencue: a teleprompter that sits under your webcam and stays hidden from recordings and screen shares",
+  "main": "main.js",
+  "private": true,
+  "scripts": {
+    "start": "electron .",
+    "selftest": "electron . --selftest",
+    "test": "node --test test/markdown.test.mjs test/voice.test.mjs",
+    "fetch-model": "node scripts/fetch-model.mjs",
+    "dist": "electron-builder --win portable"
+  },
+  "build": {
+    "appId": "local.unseencue",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "main.js",
+      "preload.js",
+      "renderer/**",
+      "models/**",
+      "package.json"
+    ],
+    "win": {
+      "target": "portable",
+      "signAndEditExecutable": false
+    }
+  },
+  "dependencies": {
+    "@fontsource/dm-sans": "^5.3.0",
+    "@fontsource/geist": "^5.3.0",
+    "@mediapipe/tasks-vision": "^0.10.21",
+    "marked": "^14.1.4"
+  },
+  "devDependencies": {
+    "electron": "^33.4.11",
+    "electron-builder": "^25.1.8"
+  }
+}

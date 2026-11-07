@@ -1,0 +1,54 @@
+# Welcome to the Channel
+Hey everyone, and welcome back! Today we're building something {#ffd166}really useful{/}: a teleprompter that sits right under your webcam, so you can read your script while you {white|#6b62f2}look straight at your audience{/}.
+
+## Part 1 · Why This Matters
+When you read from a second monitor, your eyes drift. Viewers notice it instantly, even if they can't say why. Keeping the words close to the lens makes you look **confident**, *relaxed*, and prepared.
+
+### Quick Facts
+- Eye contact builds trust within the first **seven seconds**.
+- Most people read about {#4cc9f0}150 words per minute{/} out loud.
+- A short pause feels much longer to you than it does to the viewer.
+
+> {black|#ffd166}CUE:{/} Smile here, then lean in slightly toward the camera.
+
+---
+
+## Part 2 · Writing a Script That Sounds Natural
+Write the way you talk. Short sentences. Simple words. If a line feels awkward when you say it out loud, rewrite it, because your audience will hear the awkwardness too.
+
+### Three Rules I Always Follow
+1. Start with the **payoff**: tell people what they'll get.
+2. Use one idea per paragraph, so every scroll feels like a fresh beat.
+3. End each section with a {|#2a2a2a}bridge sentence{/} that pulls viewers into the next one.
+
+> {white|#ff4d6d}B-ROLL:{/} Show the editor screen recording while reading this section.
+
+Here's a tip most creators miss: mark your *emphasis words* in colour. When you see {red}red{/}, you punch the word. When you see {#90be6d}green{/}, you slow down and let it land.
+
+---
+
+## Part 3 · Recording Day
+
+### Before You Hit Record
+- Check your lighting and framing.
+- Drink some water, because your voice will thank you.
+- Run the {#c2c2c2}hidden-from-recording check{/} in Settings.
+
+### Shot List
+| Time | Shot | Note |
+|------|------|------|
+| 0:00 | Face cam | Smile, then intro |
+| 0:45 | Screen recording | Show the settings window |
+| 2:10 | Face cam | Wrap up and subscribe ask |
+
+### During the Take
+Speak to **one person**, not a crowd. Picture a friend sitting just behind the lens. If you stumble, don't stop: pause, breathe, and pick up from the start of the sentence. You can cut it later.
+
+> {black|#90be6d}PAUSE:{/} Two-second beat before the next line.
+
+---
+
+# Wrapping Up
+That's everything you need to read naturally on camera. If this helped, **subscribe**, leave a comment with your biggest on-camera struggle, and I'll see you in the next one.
+
+### Thanks for Watching!

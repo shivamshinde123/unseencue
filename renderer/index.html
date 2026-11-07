@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self'; script-src 'self' 'wasm-unsafe-eval'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; media-src 'self' mediastream: blob:; connect-src 'self'">
+  <title>Unseencue</title>
+  <link rel="stylesheet" href="tokens.css">
+  <link rel="stylesheet" href="prompter.css">
+</head>
+<body>
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="i-file" viewBox="0 0 24 24"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/></symbol>
+    <symbol id="i-unseen" viewBox="0 0 24 24"><path d="M3 12s3.5-6 9-6c1.6 0 3 .5 4.2 1.2M21 12s-1.2 2-3.4 3.7M9.9 17.7c.7.2 1.4.3 2.1.3-5.5 0-9-6-9-6"/><path d="M4 20L20 4"/></symbol>
+    <symbol id="i-paste" viewBox="0 0 24 24"><rect x="6" y="4" width="12" height="17" rx="2"/><path d="M9 4.5V3.5a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v1"/><path d="M9.5 11h5M9.5 15h5"/></symbol>
+    <symbol id="i-upload" viewBox="0 0 24 24"><path d="M12 15V4M7.5 8.5L12 4l4.5 4.5"/><path d="M4 15v3a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-3"/></symbol>
+    <symbol id="i-edit" viewBox="0 0 24 24"><path d="M4 20h4L19 9a2.8 2.8 0 0 0-4-4L4 16z"/><path d="M13.5 6.5l4 4"/></symbol>
+    <symbol id="i-play" viewBox="0 0 24 24"><path d="M8 5.5v13l10.5-6.5z" fill="currentColor"/></symbol>
+    <symbol id="i-pause" viewBox="0 0 24 24"><path d="M8 5v14M16 5v14"/></symbol>
+    <symbol id="i-restart" viewBox="0 0 24 24"><path d="M4 12a8 8 0 1 0 2.4-5.7"/><path d="M4 4v4.5h4.5"/></symbol>
+    <symbol id="i-mic" viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5.5 11a6.5 6.5 0 0 0 13 0M12 17.5V21"/></symbol>
+    <symbol id="i-face" viewBox="0 0 24 24"><path d="M4 8V6a2 2 0 0 1 2-2h2M16 4h2a2 2 0 0 1 2 2v2M20 16v2a2 2 0 0 1-2 2h-2M8 20H6a2 2 0 0 1-2-2v-2"/><circle cx="12" cy="11" r="3"/><path d="M8 17c1-1.4 2.4-2 4-2s3 .6 4 2"/></symbol>
+    <symbol id="i-sliders" viewBox="0 0 24 24"><path d="M4 7h10M18 7h2M4 17h4M12 17h8"/><circle cx="16" cy="7" r="2"/><circle cx="10" cy="17" r="2"/></symbol>
+    <symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></symbol>
+  </svg>
+
+  <main id="card">
+    <div id="viewport"><article id="content"></article></div>
+    <div id="marker" aria-hidden="true"><span class="l"></span><span class="r"></span></div>
+
+    <section id="editor" hidden>
+      <textarea id="editor-text" spellcheck="true"
+        placeholder="Paste (Ctrl+V) or type your script here, or drop a .txt file on this window…&#10;&#10;# Big heading&#10;## Section&#10;Normal text, {red}coloured words{/}, {black|#ffd166}highlighted cue{/}.&#10;--- adds a break"></textarea>
+      <div id="tips" hidden>
+        <div class="tips-head"><span>Formatting</span><span class="tips-sub">Click one to insert it</span></div>
+        <button class="tip" data-snip="# Heading&#10;"><code># Heading</code><span>Big heading</span></button>
+        <button class="tip" data-snip="## Section&#10;"><code>## Section</code><span>Section heading</span></button>
+        <button class="tip" data-snip="### Subheading&#10;"><code>### Subheading</code><span>Small heading</span></button>
+        <button class="tip" data-snip="**bold**"><code>**bold**</code><span>Bold</span></button>
+        <button class="tip" data-snip="*italic*"><code>*italic*</code><span>Italic</span></button>
+        <button class="tip" data-snip="{red}word{/}"><code>{red}word{/}</code><span>Coloured text</span></button>
+        <button class="tip" data-snip="{black|#ffd166}word{/}"><code>{black|#ffd166}word{/}</code><span>Text on a highlight</span></button>
+        <button class="tip" data-snip="- point&#10;"><code>- point</code><span>Bullet list</span></button>
+        <button class="tip" data-snip="1. step&#10;"><code>1. step</code><span>Numbered list</span></button>
+        <button class="tip" data-snip="> CUE: smile here&#10;"><code>&gt; CUE: …</code><span>Stage cue box (not read aloud)</span></button>
+        <button class="tip" data-snip="---&#10;"><code>---</code><span>Section break</span></button>
+      </div>
+      <div class="editor-bar">
+        <button class="pill" id="ed-tips" aria-expanded="false"><span class="q">?</span>Formatting help</button>
+        <span id="ed-msg" class="ed-msg" role="status"></span>
+        <button class="pill" id="ed-paste"><svg class="icon"><use href="#i-paste"/></svg>Paste from clipboard</button>
+        <button class="pill" id="ed-open"><svg class="icon"><use href="#i-upload"/></svg>Upload file</button>
+        <button class="pill" id="ed-cancel">Cancel</button>
+        <button class="pill primary" id="ed-done">Done</button>
+      </div>
+    </section>
+
+    <div id="drop" hidden><svg class="icon"><use href="#i-upload"/></svg><span>Drop your script file here</span></div>
+    <div id="countdown" hidden><span></span></div>
+    <div id="status" class="status" hidden></div>
+
+    <nav id="bar" aria-label="Unseencue controls">
+      <span class="brand" title="Unseencue · hidden from recordings and screen shares"><svg class="icon"><use href="#i-unseen"/></svg><span class="brand-name">Unseencue</span></span>
+      <span class="sep"></span>
+      <button class="pill" id="paste" title="Use the text you copied as your script"><svg class="icon"><use href="#i-paste"/></svg>Paste</button>
+      <button class="pill" id="open" title="Upload a .txt or .md file (or drop one on the window)"><svg class="icon"><use href="#i-upload"/></svg>Upload</button>
+      <button class="pill icon-only" id="edit" title="Type or edit the script"><svg class="icon"><use href="#i-edit"/></svg></button>
+      <span class="sep"></span>
+      <button class="pill icon-only" id="restart" title="Back to the top"><svg class="icon"><use href="#i-restart"/></svg></button>
+      <button class="pill primary icon-only" id="play" title="Start / pause"><svg class="icon"><use href="#i-play"/></svg></button>
+      <label class="speed" title="Scroll speed">
+        <input id="speed" type="range" min="5" max="200" step="1" aria-label="Scroll speed">
+        <span id="speed-val"></span>
+      </label>
+      <span class="sep"></span>
+      <button class="pill icon-only" id="voice" title="Voice follow: scroll only while you talk"><svg class="icon"><use href="#i-mic"/></svg><i class="dot"></i></button>
+      <button class="pill icon-only" id="head" title="Head follow: pause when you look away"><svg class="icon"><use href="#i-face"/></svg></button>
+      <span id="eta" title="Progress and time left"></span>
+      <span class="sep"></span>
+      <button class="pill icon-only" id="settings" title="Settings"><svg class="icon"><use href="#i-sliders"/></svg></button>
+      <button class="pill icon-only" id="close" title="Quit"><svg class="icon"><use href="#i-x"/></svg></button>
+    </nav>
+
+    <div id="grab" title="Drag to move"><i></i></div>
+    <div class="rz" data-dir="n"></div><div class="rz" data-dir="s"></div>
+    <div class="rz" data-dir="e"></div><div class="rz" data-dir="w"></div>
+    <div class="rz" data-dir="ne"></div><div class="rz" data-dir="nw"></div>
+    <div class="rz" data-dir="se"></div><div class="rz" data-dir="sw"></div>
+  </main>
+
+  <video id="cam" playsinline muted hidden></video>
+  <script type="module" src="tooltip.js"></script>
+  <script type="module" src="prompter.js"></script>
+</body>
+</html>

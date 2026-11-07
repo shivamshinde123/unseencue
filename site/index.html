@@ -1,0 +1,317 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Unseencue: the teleprompter nobody can see</title>
+  <meta name="description" content="Unseencue is a free Windows teleprompter that sits right under your webcam and stays invisible in screen recordings, Zoom, Google Meet, Teams and OBS.">
+  <meta property="og:title" content="Unseencue: the teleprompter nobody can see">
+  <meta property="og:description" content="Read your script while looking into the lens. Hidden from recordings and screen shares.">
+  <meta property="og:image" content="assets/prompter.png">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ededed' stroke-width='1.8' stroke-linecap='round'%3E%3Cpath d='M3 12s3.5-6 9-6c1.6 0 3 .5 4.2 1.2M21 12s-1.2 2-3.4 3.7M9.9 17.7c.7.2 1.4.3 2.1.3-5.5 0-9-6-9-6'/%3E%3Cpath d='M4 20L20 4'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,400&family=Geist:wght@500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --void: #0a0a0a; --graphite: #161616; --frost: rgba(212, 212, 212, .1);
+      --snow: #fff; --bone: #ededed; --ash: #c2c2c2; --smoke: #b2b2b2; --slate: #686868;
+      --hairline: rgba(229, 229, 229, .14); --hairline-strong: rgba(229, 229, 229, .28);
+      --violet: 107, 98, 242;
+      --wash: linear-gradient(90deg, transparent, rgba(var(--violet), .565) 50%, transparent);
+      --ui: 'DM Sans', ui-sans-serif, system-ui, 'Segoe UI', sans-serif;
+      --head: 'Geist', 'DM Sans', ui-sans-serif, system-ui, sans-serif;
+      --ease: cubic-bezier(.2, .7, .2, 1);
+      color-scheme: dark;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; background: var(--void); color: var(--bone); font: 400 16px/1.6 var(--ui); letter-spacing: .01em; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+    a { color: inherit; }
+    img { max-width: 100%; height: auto; display: block; }
+    .icon { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; flex: none; }
+    .wrap { width: min(1200px, 100% - 48px); margin: 0 auto; }
+    @media (max-width: 600px) { .wrap { width: calc(100% - 32px); } }
+
+    /* pills */
+    .pill { display: inline-flex; align-items: center; justify-content: center; gap: 8px; height: 44px; padding: 0 20px; border-radius: 9999px; border: 1px solid var(--hairline-strong); color: rgba(255,255,255,.88); text-decoration: none; font: 500 15px/1 var(--ui); letter-spacing: .02em; transition: background .15s var(--ease), border-color .15s var(--ease), transform .15s var(--ease); white-space: nowrap; }
+    .pill:hover { background: var(--frost); border-color: rgba(229,229,229,.45); }
+    .pill.primary { background: var(--snow); color: var(--graphite); border-color: var(--snow); }
+    .pill.primary:hover { background: var(--bone); transform: translateY(-1px); }
+    .pill:focus-visible, a:focus-visible, summary:focus-visible { outline: 2px solid rgba(var(--violet), .9); outline-offset: 3px; }
+    .pill.sm { height: 34px; padding: 0 14px; font-size: 13.5px; }
+
+    /* floating nav */
+    nav.top { position: fixed; top: 16px; left: 50%; transform: translateX(-50%); z-index: 20; display: flex; align-items: center; gap: 6px; padding: 6px 6px 6px 16px; border-radius: 19px; background: rgba(22,22,22,.78); backdrop-filter: blur(12px); box-shadow: inset 0 0 0 1px var(--hairline), rgba(0,0,0,.25) 0 10px 30px; width: max-content; max-width: calc(100% - 32px); }
+    .brand { display: inline-flex; align-items: center; gap: 8px; font: 600 15px/1 var(--head); letter-spacing: -0.01em; color: #fff; text-decoration: none; margin-right: 10px; }
+    .brand .icon { color: var(--ash); }
+    nav.top .links a { color: rgba(255,255,255,.75); text-decoration: none; font: 500 13.5px/1 var(--ui); padding: 10px 12px; border-radius: 9999px; }
+    nav.top .links a:hover { color: #fff; background: var(--frost); }
+    @media (max-width: 720px) { nav.top .links { display: none; } }
+
+    /* hero */
+    .hero { position: relative; padding: 150px 0 80px; overflow: hidden;
+      background:
+        radial-gradient(55% 70% at 8% 100%, rgba(255, 150, 90, .55), transparent 62%),
+        radial-gradient(60% 80% at 95% 95%, rgba(52, 86, 230, .65), transparent 65%),
+        radial-gradient(40% 40% at 55% 0%, rgba(var(--violet), .25), transparent 70%),
+        linear-gradient(180deg, #0d0c13 0%, #15131f 50%, #221b36 100%); }
+    .hero::after { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 160px; background: linear-gradient(transparent, var(--void)); pointer-events: none; }
+    .hero-grid { position: relative; z-index: 1; display: grid; grid-template-columns: 1fr; gap: 56px; text-align: center; justify-items: center; }
+    .badge { display: inline-flex; align-items: center; gap: 8px; padding: 6px 14px; border-radius: 9999px; background: rgba(22,22,22,.6); box-shadow: inset 0 0 0 1px var(--hairline-strong); font: 500 13px/1 var(--ui); color: var(--bone); letter-spacing: .025em; }
+    .badge i { width: 6px; height: 6px; border-radius: 50%; background: #fff; box-shadow: 0 0 8px rgba(255,255,255,.8); }
+    h1 { margin: 22px auto 0; font: 500 clamp(44px, 7.2vw, 84px)/1.02 var(--ui); letter-spacing: -0.035em; color: #fff; max-width: 14ch; }
+    .lede { margin: 22px auto 0; max-width: 60ch; font-size: clamp(17px, 2vw, 19px); color: var(--ash); }
+    .ctas { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin-top: 34px; }
+    .meta { margin-top: 16px; font-size: 13px; color: var(--smoke); }
+
+    /* monitor mockup: the prompter sitting under a webcam */
+    .monitor { width: min(980px, 100%); }
+    .screen { position: relative; aspect-ratio: 16 / 9; border-radius: 26px 26px 10px 10px; overflow: hidden; padding: 4.2% 0 0;
+      background:
+        radial-gradient(60% 80% at 15% 100%, rgba(255, 150, 90, .45), transparent 60%),
+        radial-gradient(70% 90% at 90% 100%, rgba(60, 90, 220, .55), transparent 65%),
+        linear-gradient(180deg, #14121c 0%, #1d1a2a 55%, #2a2140 100%);
+      box-shadow: 0 0 0 10px #0d0d10, 0 0 0 11px var(--hairline), rgba(0,0,0,.55) 0 40px 90px; }
+    .cam { position: absolute; top: 1.4%; left: 50%; transform: translateX(-50%); width: 12px; height: 12px; border-radius: 50%; background: #050505; box-shadow: 0 0 0 3px #222, inset 0 0 0 3px #1b2a4a; z-index: 3; }
+    .cam::after { content: ''; position: absolute; inset: -24px; border-radius: 50%; background: radial-gradient(rgba(var(--violet), .35), transparent 65%); animation: pulse 3.2s var(--ease) infinite; }
+    @keyframes pulse { 50% { opacity: .35; } }
+    .fake { position: absolute; border-radius: 14px; background: rgba(255,255,255,.06); box-shadow: inset 0 0 0 1px rgba(255,255,255,.08); }
+    .fake::before { content: ''; position: absolute; left: 16px; right: 45%; top: 16px; height: 9px; border-radius: 5px; background: rgba(255,255,255,.12); }
+    .fake.a { left: 5%; top: 30%; width: 42%; height: 58%; }
+    .fake.b { left: 44%; top: 44%; width: 50%; height: 50%; }
+    .prompter-shot { position: relative; z-index: 2; width: 58%; margin: 0 auto; border-radius: 18px; filter: drop-shadow(0 18px 40px rgba(0,0,0,.45)); }
+    .stand { width: 22%; height: 34px; margin: 0 auto; background: linear-gradient(#141418, #0c0c0f); border-radius: 0 0 8px 8px; box-shadow: inset 0 1px 0 var(--hairline); }
+    .caption { margin-top: 18px; font-size: 13px; color: var(--slate); text-align: center; }
+
+    /* sections */
+    section { padding: 96px 0; }
+    .eyebrow { font: 500 13px/1 var(--ui); letter-spacing: .14em; text-transform: uppercase; color: var(--smoke); }
+    h2 { margin: 14px 0 0; font: 500 clamp(32px, 4.4vw, 48px)/1.08 var(--head); letter-spacing: -0.03em; color: #fff; max-width: 22ch; }
+    .sub { margin: 16px 0 0; max-width: 62ch; color: var(--ash); font-size: 18px; }
+    .wash { height: 1px; background: var(--wash); margin: 0 auto; width: min(900px, 90%); }
+
+    /* feature cards */
+    .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 44px; }
+    @media (max-width: 960px) { .grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 620px) { .grid { grid-template-columns: 1fr; } }
+    .card { background: var(--frost); border-radius: 24px; padding: 28px; box-shadow: inset 0 0 0 1px rgba(255,255,255,.04); }
+    .card .ic { width: 38px; height: 38px; border-radius: 10px; display: grid; place-items: center; background: rgba(255,255,255,.08); color: #fff; margin-bottom: 18px; }
+    .card h3 { margin: 0; font: 500 19px/1.3 var(--head); letter-spacing: -0.01em; color: #fff; }
+    .card p { margin: 8px 0 0; color: var(--ash); font-size: 15px; }
+
+    /* hidden-from list */
+    .split { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: start; }
+    @media (max-width: 880px) { .split { grid-template-columns: 1fr; gap: 36px; } }
+    .apps { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 28px; }
+    .apps span { padding: 8px 14px; border-radius: 9999px; box-shadow: inset 0 0 0 1px var(--hairline-strong); font: 500 14px/1 var(--ui); color: var(--bone); }
+    .compare { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .compare figure { margin: 0; }
+    .compare .pane { aspect-ratio: 4 / 3; border-radius: 18px; position: relative; overflow: hidden; background: linear-gradient(160deg, #1d1a2a, #2a2140); box-shadow: inset 0 0 0 1px var(--hairline); }
+    .compare .pane .fake.a { left: 8%; top: 38%; width: 56%; height: 50%; }
+    .compare .pane .fake.b { left: 40%; top: 52%; width: 52%; height: 40%; }
+    .compare .mini { position: absolute; left: 50%; top: 10%; transform: translateX(-50%); width: 70%; z-index: 2; border-radius: 10px; }
+    .compare .ghost { position: absolute; left: 50%; top: 10%; transform: translateX(-50%); width: 70%; aspect-ratio: 806 / 310; border-radius: 10px; border: 1.5px dashed rgba(255,255,255,.18); z-index: 2; display: grid; place-items: center; color: var(--slate); font-size: 12px; }
+    .compare figcaption { margin-top: 10px; font-size: 13.5px; color: var(--ash); text-align: center; }
+    .compare figcaption b { color: #fff; font-weight: 500; }
+
+    /* steps */
+    .steps { list-style: none; padding: 0; margin: 44px 0 0; display: grid; gap: 4px; }
+    .steps li { display: grid; grid-template-columns: 1fr auto; gap: 24px; align-items: baseline; padding: 20px 0; border-bottom: 1px solid rgba(255,255,255,.06); }
+    .steps h3 { margin: 0; font: 500 21px/1.3 var(--head); color: #fff; letter-spacing: -0.01em; }
+    .steps p { margin: 6px 0 0; color: var(--ash); max-width: 64ch; }
+    .steps .n { font: 500 15px/1 var(--ui); color: var(--ash); font-variant-numeric: tabular-nums; }
+    code { font: 500 .9em var(--ui); background: rgba(255,255,255,.07); padding: 2px 7px; border-radius: 4px; color: var(--bone); }
+
+    /* shots */
+    .shots { display: grid; grid-template-columns: 1.6fr 1fr; gap: 14px; margin-top: 44px; align-items: start; }
+    @media (max-width: 880px) { .shots { grid-template-columns: 1fr; } }
+    .frame { border-radius: 24px; overflow: hidden; background: var(--graphite); box-shadow: inset 0 0 0 1px var(--hairline); }
+    .frame img { width: 100%; }
+    .frame figcaption { padding: 14px 18px 18px; font-size: 14px; color: var(--ash); }
+    .shots figure { margin: 0; }
+    .shot-pad { padding: 18px; background: linear-gradient(160deg, #1d1a2a, #2a2140); }
+
+    /* syntax table */
+    .syntax { margin-top: 36px; border-radius: 24px; background: var(--frost); padding: 10px 28px; }
+    .syntax div { display: grid; grid-template-columns: 240px 1fr; gap: 16px; padding: 14px 0; border-bottom: 1px solid rgba(255,255,255,.06); align-items: center; }
+    .syntax div:last-child { border-bottom: 0; }
+    .syntax span { color: var(--ash); }
+    @media (max-width: 600px) { .syntax div { grid-template-columns: 1fr; gap: 6px; } }
+
+    /* download */
+    .download { text-align: center; border-radius: 40px; padding: 72px 28px; position: relative; overflow: hidden;
+      background: radial-gradient(70% 90% at 50% 120%, rgba(var(--violet), .35), transparent 70%), var(--graphite); box-shadow: inset 0 0 0 1px var(--hairline); }
+    .download h2 { margin: 14px auto 0; }
+    .download .sub { margin-left: auto; margin-right: auto; }
+    .reqs { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 22px; margin-top: 26px; color: var(--smoke); font-size: 14px; }
+    .reqs span::before { content: '✓  '; color: #fff; }
+    .note { margin: 22px auto 0; max-width: 60ch; font-size: 13.5px; color: var(--slate); }
+
+    /* faq */
+    details { border-bottom: 1px solid rgba(255,255,255,.07); }
+    summary { list-style: none; cursor: pointer; padding: 22px 0; font: 500 18px/1.4 var(--head); color: #fff; display: flex; justify-content: space-between; gap: 20px; }
+    summary::-webkit-details-marker { display: none; }
+    summary::after { content: '+'; color: var(--ash); font: 400 22px/1 var(--ui); transition: transform .2s var(--ease); }
+    details[open] summary::after { transform: rotate(45deg); }
+    details p { margin: -6px 0 22px; color: var(--ash); max-width: 70ch; }
+    .faq { margin-top: 30px; }
+
+    footer { padding: 40px 0 60px; color: var(--slate); font-size: 14px; }
+    footer .row { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; align-items: center; border-top: 1px solid var(--hairline); padding-top: 28px; }
+    footer a { color: var(--ash); text-decoration: none; }
+    footer a:hover { color: #fff; }
+
+    @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } html { scroll-behavior: auto; } }
+  </style>
+</head>
+<body>
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="i-unseen" viewBox="0 0 24 24"><path d="M3 12s3.5-6 9-6c1.6 0 3 .5 4.2 1.2M21 12s-1.2 2-3.4 3.7M9.9 17.7c.7.2 1.4.3 2.1.3-5.5 0-9-6-9-6"/><path d="M4 20L20 4"/></symbol>
+    <symbol id="i-down" viewBox="0 0 24 24"><path d="M12 4v11M7.5 10.5L12 15l4.5-4.5"/><path d="M5 20h14"/></symbol>
+    <symbol id="i-gh" viewBox="0 0 24 24"><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3 0 0 0-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></symbol>
+    <symbol id="i-cam" viewBox="0 0 24 24"><circle cx="12" cy="11" r="4"/><circle cx="12" cy="11" r="1.4"/><path d="M8 20h8M12 15v5"/></symbol>
+    <symbol id="i-mic" viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5.5 11a6.5 6.5 0 0 0 13 0M12 17.5V21"/></symbol>
+    <symbol id="i-face" viewBox="0 0 24 24"><path d="M4 8V6a2 2 0 0 1 2-2h2M16 4h2a2 2 0 0 1 2 2v2M20 16v2a2 2 0 0 1-2 2h-2M8 20H6a2 2 0 0 1-2-2v-2"/><circle cx="12" cy="11" r="3"/><path d="M8 17c1-1.4 2.4-2 4-2s3 .6 4 2"/></symbol>
+    <symbol id="i-paste" viewBox="0 0 24 24"><rect x="6" y="4" width="12" height="17" rx="2"/><path d="M9 4.5V3.5a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v1"/><path d="M9.5 11h5M9.5 15h5"/></symbol>
+    <symbol id="i-type" viewBox="0 0 24 24"><path d="M4 7V5h16v2M12 5v14M9 19h6"/></symbol>
+    <symbol id="i-sliders" viewBox="0 0 24 24"><path d="M4 7h10M18 7h2M4 17h4M12 17h8"/><circle cx="16" cy="7" r="2"/><circle cx="10" cy="17" r="2"/></symbol>
+    <symbol id="i-lock" viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></symbol>
+  </svg>
+
+  <nav class="top" aria-label="Main">
+    <a class="brand" href="#top"><svg class="icon"><use href="#i-unseen"/></svg>Unseencue</a>
+    <span class="links"><a href="#features">Features</a><a href="#hidden">Hidden</a><a href="#how">How it works</a><a href="#faq">FAQ</a></span>
+    <a class="pill primary sm" href="#download">Download</a>
+  </nav>
+
+  <header class="hero" id="top">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="badge"><i></i>Free for Windows 10 &amp; 11</span>
+        <h1>The teleprompter nobody can see.</h1>
+        <p class="lede">Unseencue sits right under your webcam, so you read your script while looking straight into the lens. It stays invisible in screen recordings, Zoom, Google Meet, Teams and OBS.</p>
+        <div class="ctas">
+          <a class="pill primary" href="https://github.com/shivamshinde123/unseencue/releases/latest/download/Unseencue.exe"><svg class="icon"><use href="#i-down"/></svg>Download for Windows</a>
+          <a class="pill" href="https://github.com/shivamshinde123/unseencue"><svg class="icon"><use href="#i-gh"/></svg>View on GitHub</a>
+        </div>
+        <p class="meta">Portable .exe · about 80 MB · no installer, no account</p>
+      </div>
+      <div class="monitor">
+        <div class="screen">
+          <span class="cam" aria-hidden="true"></span>
+          <div class="fake a"></div><div class="fake b"></div>
+          <img class="prompter-shot" src="assets/prompter.png" alt="Unseencue's teleprompter window sitting directly under the webcam at the top of a monitor" width="806" height="310">
+        </div>
+        <div class="stand"></div>
+        <p class="caption">Your script sits a finger's width below the lens. Your eyes never leave the camera.</p>
+      </div>
+    </div>
+  </header>
+
+  <section id="features">
+    <div class="wrap">
+      <div class="eyebrow">Features</div>
+      <h2>Everything you need to read naturally on camera.</h2>
+      <p class="sub">Built for creators, presenters and anyone who records or shares their screen.</p>
+      <div class="grid">
+        <article class="card"><div class="ic"><svg class="icon"><use href="#i-unseen"/></svg></div><h3>Hidden from capture</h3><p>Windows leaves it out of every recording and screen share. You see it; your audience doesn't.</p></article>
+        <article class="card"><div class="ic"><svg class="icon"><use href="#i-cam"/></svg></div><h3>Lives under your webcam</h3><p>Top-left, centre or right, or save the exact spot. It opens there every time.</p></article>
+        <article class="card"><div class="ic"><svg class="icon"><use href="#i-mic"/></svg></div><h3>Voice follow</h3><p>Scrolls while you talk and pauses when you stop. It adapts to your room's noise automatically.</p></article>
+        <article class="card"><div class="ic"><svg class="icon"><use href="#i-face"/></svg></div><h3>Head follow</h3><p>Look away and it waits; look back and it carries on. Face tracking runs on your PC.</p></article>
+        <article class="card"><div class="ic"><svg class="icon"><use href="#i-paste"/></svg></div><h3>Paste, type or upload</h3><p>Paste your script, type it in, open a .txt or .md file, or drop one on the window.</p></article>
+        <article class="card"><div class="ic"><svg class="icon"><use href="#i-sliders"/></svg></div><h3>Make it yours</h3><p>Any installed font, size, spacing, colours, heading styles, reading marker and see-through level, with a live preview.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <div class="wash" role="presentation"></div>
+
+  <section id="hidden">
+    <div class="wrap split">
+      <div>
+        <div class="eyebrow">Hidden everywhere</div>
+        <h2>Share your screen. Keep your script to yourself.</h2>
+        <p class="sub">Unseencue uses a Windows feature that excludes its window from screen capture. Recorders and meeting apps simply see what's behind it.</p>
+        <div class="apps" aria-label="Apps it stays hidden from">
+          <span>Zoom</span><span>Google Meet</span><span>Microsoft Teams</span><span>OBS Studio</span><span>Webex</span><span>Slack</span><span>Discord</span><span>Loom</span><span>Xbox Game Bar</span><span>Snipping Tool</span><span>PrintScreen</span>
+        </div>
+        <p class="sub" style="font-size:15px;color:var(--slate)">Needs Windows 10 version 2004 or later. A built-in check in Settings shows you exactly what a recorder sees.</p>
+      </div>
+      <div class="compare">
+        <figure>
+          <div class="pane"><div class="fake a"></div><div class="fake b"></div><img class="mini" src="assets/prompter.png" alt="" width="806" height="310"></div>
+          <figcaption><b>What you see</b>: your script</figcaption>
+        </figure>
+        <figure>
+          <div class="pane"><div class="fake a"></div><div class="fake b"></div><div class="ghost" aria-hidden="true"></div></div>
+          <figcaption><b>What they see</b>: just your desktop</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <div class="wash" role="presentation"></div>
+
+  <section id="how">
+    <div class="wrap">
+      <div class="eyebrow">How it works</div>
+      <h2>Ready in under a minute.</h2>
+      <ol class="steps">
+        <li><div><h3>Download and open</h3><p>Run <code>Unseencue.exe</code>. It's portable, so there's nothing to install. It appears at the top-centre of your screen, under the webcam.</p></div><span class="n">01</span></li>
+        <li><div><h3>Add your script</h3><p>Click <b>Paste</b> or <b>Upload</b>, type in the editor, or drag a file onto the window. Use headings and colours to mark sections and cues.</p></div><span class="n">02</span></li>
+        <li><div><h3>Press play</h3><p>A countdown runs, then the script scrolls at your speed. Or let voice follow pace it for you.</p></div><span class="n">03</span></li>
+        <li><div><h3>Record or go live</h3><p>Start OBS, Zoom, Meet or Teams as usual. Your script stays on your screen and out of the shot.</p></div><span class="n">04</span></li>
+      </ol>
+
+      <div class="shots">
+        <figure class="frame"><img src="assets/settings.png" alt="Settings window with controls on the left and a live preview of the teleprompter on the right" loading="lazy" width="1424" height="890"><figcaption>Settings with a live, real-size preview of your teleprompter.</figcaption></figure>
+        <figure class="frame"><div class="shot-pad"><img src="assets/editor.png" alt="The paste and type editor with Formatting help, Paste from clipboard and Upload file buttons" loading="lazy" width="806" height="310" style="border-radius:16px"></div><figcaption>Paste, type or upload, with a built-in formatting guide.</figcaption></figure>
+      </div>
+
+      <div class="syntax" aria-label="Script formatting">
+        <div><code># Heading</code><span>Big heading for each part of your video</span></div>
+        <div><code>{red}word{/}</code><span>Colour a word you want to punch</span></div>
+        <div><code>{black|#ffd166}CUE{/}</code><span>Highlight a cue you mustn't miss</span></div>
+        <div><code>&gt; CUE: smile here</code><span>A stage note in a small box, not a line to read</span></div>
+        <div><code>---</code><span>A break where you pause</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="download">
+    <div class="wrap">
+      <div class="download">
+        <div class="eyebrow">Download</div>
+        <h2>Look your audience in the eye.</h2>
+        <p class="sub">Free, private and portable. Everything runs on your PC. No account, no tracking.</p>
+        <div class="ctas"><a class="pill primary" href="https://github.com/shivamshinde123/unseencue/releases/latest/download/Unseencue.exe"><svg class="icon"><use href="#i-down"/></svg>Download Unseencue.exe</a><a class="pill" href="https://github.com/shivamshinde123/unseencue/releases">All releases</a></div>
+        <div class="reqs"><span>Windows 10 (2004+) or 11</span><span>About 80 MB</span><span>No installer</span><span>Works offline</span></div>
+        <p class="note">The app isn't code-signed yet, so Windows SmartScreen may show "Windows protected your PC". Click <b>More info</b>, then <b>Run anyway</b>.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq" style="padding-top:40px">
+    <div class="wrap">
+      <div class="eyebrow">FAQ</div>
+      <h2>Questions</h2>
+      <div class="faq">
+        <details><summary>Will people in my Zoom, Meet or Teams call see it?</summary><p>No. When you share your screen, they see whatever is behind the teleprompter. Your webcam video never shows your screen either.</p></details>
+        <details><summary>Will it appear in my OBS recording?</summary><p>No, whether you capture the whole display or a single window. Use <b>Settings → Check it's hidden now</b> to see what a recorder captures.</p></details>
+        <details><summary>Does voice follow record my voice?</summary><p>No. It only measures loudness, locally, to decide whether you're talking. Nothing is recorded, stored or sent anywhere.</p></details>
+        <details><summary>Head follow says my camera is in use.</summary><p>Windows usually gives a webcam to one app at a time. Choose a virtual camera in Settings → Head follow → Camera. In OBS, click Start Virtual Camera and pick "OBS Virtual Camera". Voice follow and manual scrolling keep working either way.</p></details>
+        <details><summary>Does it work on Mac or Linux?</summary><p>Not yet. Hiding from capture relies on a Windows feature.</p></details>
+        <details><summary>Will it change my script files?</summary><p>Never. Uploaded files are only read. Edits become an in-app copy.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap row">
+      <a class="brand" href="#top"><svg class="icon"><use href="#i-unseen"/></svg>Unseencue</a>
+      <span><a href="https://github.com/shivamshinde123/unseencue">GitHub</a> · <a href="https://github.com/shivamshinde123/unseencue#readme">Documentation</a> · <a href="https://github.com/shivamshinde123/unseencue/issues">Report a problem</a></span>
+    </div>
+  </footer>
+</body>
+</html>
