@@ -110,3 +110,10 @@ The user picked **Unseencue** from the shortlist (unseencue.com and unseencue.ap
 
 ## 2026-11-07 — Positioning: made for creating, not cheating
 The author's motivation: a job application asked them to walk through their AI-agent workflow, so they wanted to record it, and needed a script to stay on track without it showing in the recording. The product is positioned for **recording videos and presenting**. A clear **Responsible use** statement says it is not for interviews, coding assessments, exams, certifications, or anywhere notes aren't allowed, and that the author doesn't endorse that. It appears in the README (its own section, plus the FAQ), on the website (its own section, plus the FAQ) and in the app (Settings → Hidden card). Marketing copy leads with "stays out of your recordings" rather than "hidden in meetings". The bundled sample script is now an AI-agent workflow walkthrough, and the README/site screenshots use it.
+
+## 2026-11-07 — Published
+- Code: https://github.com/shivamshinde123/unseencue (public; free GitHub Pages needs a public repo).
+- Exe: GitHub Release **v0.2.0**, asset named `Unseencue.exe`, so `…/releases/latest/download/Unseencue.exe` always points at the newest release. The website and README link there. Binaries stay out of git (`release/` is gitignored).
+- Website: `site/` is deployed to https://shivamshinde123.github.io/unseencue/ by `.github/workflows/pages.yml` (Pages build type "workflow") on every push that touches `site/`.
+- To ship a new version: bump `version` in package.json → `npm run dist` → `gh release create vX.Y.Z "<exe copied as Unseencue.exe>" --latest`.
+- No license chosen yet (all rights reserved until one is added).
