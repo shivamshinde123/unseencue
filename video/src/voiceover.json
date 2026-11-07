@@ -1074,8 +1074,8 @@
   },
   {
     "id": "cta",
-    "text": "Unseencue. Free and open source, for Windows. Stay on script, and look at the lens!",
-    "durationMs": 5904,
+    "text": "Unseencue. Free and open source, for Windows and Mac. Stay on script, and look at the lens!",
+    "durationMs": 6528,
     "words": [
       {
         "text": "Unseencue",
@@ -1085,72 +1085,82 @@
       {
         "text": "Free",
         "startMs": 1215,
-        "endMs": 1577
+        "endMs": 1554
       },
       {
         "text": "and",
-        "startMs": 1589,
-        "endMs": 1706
+        "startMs": 1565,
+        "endMs": 1671
       },
       {
         "text": "open",
-        "startMs": 1717,
-        "endMs": 1974
+        "startMs": 1682,
+        "endMs": 1928
       },
       {
         "text": "source",
-        "startMs": 1986,
-        "endMs": 2418
+        "startMs": 1939,
+        "endMs": 2453
       },
       {
         "text": "for",
-        "startMs": 2430,
-        "endMs": 2617
+        "startMs": 2570,
+        "endMs": 2780
       },
       {
         "text": "Windows",
-        "startMs": 2628,
-        "endMs": 3178
-      },
-      {
-        "text": "Stay",
-        "startMs": 3518,
-        "endMs": 3787
-      },
-      {
-        "text": "on",
-        "startMs": 3798,
-        "endMs": 3927
-      },
-      {
-        "text": "script",
-        "startMs": 3939,
-        "endMs": 4453
+        "startMs": 2792,
+        "endMs": 3248
       },
       {
         "text": "and",
-        "startMs": 4476,
-        "endMs": 4639
+        "startMs": 3259,
+        "endMs": 3364
+      },
+      {
+        "text": "Mac",
+        "startMs": 3376,
+        "endMs": 3797
+      },
+      {
+        "text": "Stay",
+        "startMs": 4137,
+        "endMs": 4406
+      },
+      {
+        "text": "on",
+        "startMs": 4418,
+        "endMs": 4546
+      },
+      {
+        "text": "script",
+        "startMs": 4558,
+        "endMs": 5072
+      },
+      {
+        "text": "and",
+        "startMs": 5095,
+        "endMs": 5259
       },
       {
         "text": "look",
-        "startMs": 4651,
-        "endMs": 4826
+        "startMs": 5270,
+        "endMs": 5446
       },
       {
         "text": "at",
-        "startMs": 4838,
-        "endMs": 4920
+        "startMs": 5457,
+        "endMs": 5539
       },
       {
         "text": "the",
-        "startMs": 4932,
-        "endMs": 5025
+        "startMs": 5551,
+        "endMs": 5644
       },
       {
         "text": "lens",
-        "startMs": 5037,
-        "endMs": 5562
+        "startMs": 5656,
+        "endMs": 6182
       }
     ]
   }

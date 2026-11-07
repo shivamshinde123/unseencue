@@ -30,11 +30,11 @@ export const Cta: React.FC<{ seconds: number }> = ({ seconds }) => {
 
         <div style={{ position: "absolute", left: 0, right: 0, top: 560, display: "flex", justifyContent: "center", gap: 18, ...enter(t, wordAt("cta", "Free") - 0.1, 0.8) }}>
           <div style={{ display: "flex", alignItems: "center", gap: 14, height: 84, padding: "0 40px", borderRadius: 999, background: "#fff", color: T.graphite, font: `500 36px ${T.ui}` }}>
-            <Icon name="down" size={34} /> Download for Windows
+            <Icon name="down" size={34} /> Download for Windows &amp; Mac
           </div>
           <div style={{ display: "flex", alignItems: "center", height: 84, padding: "0 36px", borderRadius: 999, boxShadow: `inset 0 0 0 1.5px ${T.hairlineStrong}`, color: "#fff", font: `500 34px ${T.ui}` }}>Free · Open source (MIT)</div>
         </div>
-        <div style={{ position: "absolute", left: 0, right: 0, top: 690, textAlign: "center", font: `500 36px ${T.ui}`, color: T.ash, letterSpacing: ".01em", ...enter(t, wordAt("cta", "Windows"), 0.8) }}>
+        <div style={{ position: "absolute", left: 0, right: 0, top: 690, textAlign: "center", font: `500 36px ${T.ui}`, color: T.ash, letterSpacing: ".01em", ...enter(t, wordAt("cta", "Mac"), 0.8) }}>
           shivamshinde123.github.io/unseencue
         </div>
       </div>

@@ -162,6 +162,12 @@
 
     .player { margin: 36px auto 0; width: min(1100px, 100%); border-radius: 24px; overflow: hidden; background: var(--graphite); box-shadow: inset 0 0 0 1px var(--hairline), rgba(0,0,0,.45) 0 30px 80px, 0 0 120px rgba(var(--violet), .14); }
     .player video { display: block; width: 100%; height: auto; background: #000; }
+    .dl-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 30px; text-align: left; }
+    @media (max-width: 760px) { .dl-grid { grid-template-columns: 1fr; } }
+    .dl-card { border-radius: 24px; padding: 26px 26px 22px; background: rgba(255,255,255,.05); box-shadow: inset 0 0 0 1px var(--hairline); display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+    .dl-os { width: 100%; font: 500 26px/1.2 var(--head); color: #fff; }
+    .dl-sub { width: 100%; color: var(--smoke); font-size: 14px; margin: -4px 0 6px; }
+    .dl-card .note { width: 100%; margin: 8px 0 0; text-align: left; }
     .story p { margin: 0 0 16px; color: var(--ash); font-size: 18px; }
     .story p b { color: #fff; font-weight: 500; }
     .use { border-radius: 24px; padding: 40px 36px; background: var(--frost); box-shadow: inset 0 0 0 1px rgba(255,255,255,.04); }
@@ -201,14 +207,15 @@
     <div class="wrap hero-grid">
       <div>
         <img src="assets/icon-180.png" alt="Unseencue app icon" width="88" height="88" style="margin:0 auto 18px;border-radius:22px;box-shadow:0 20px 50px rgba(0,0,0,.45)">
-        <span class="badge"><i></i>Free for Windows 10 &amp; 11</span>
+        <span class="badge"><i></i>Free for Windows &amp; Mac</span>
         <h1>Stay on script. Look at the lens.</h1>
         <p class="lede">Unseencue is a teleprompter for creators. It sits right under your webcam so you read while looking into the lens, and it stays out of your screen recordings, so your notes never end up in the video.</p>
         <div class="ctas">
-          <a class="pill primary" href="https://github.com/shivamshinde123/unseencue/releases/latest/download/Unseencue-Setup.exe"><svg class="icon"><use href="#i-down"/></svg>Download for Windows</a>
-          <a class="pill" href="https://github.com/shivamshinde123/unseencue"><svg class="icon"><use href="#i-gh"/></svg>View on GitHub</a>
+          <a class="pill primary" id="dl-win" href="https://github.com/shivamshinde123/unseencue/releases/latest/download/Unseencue-Setup.exe"><svg class="icon"><use href="#i-down"/></svg>Download for Windows</a>
+          <a class="pill primary" id="dl-mac" href="#download"><svg class="icon"><use href="#i-down"/></svg>Download for Mac</a>
+          <a class="pill" href="https://github.com/shivamshinde123/unseencue"><svg class="icon"><use href="#i-gh"/></svg>GitHub</a>
         </div>
-        <p class="meta">Installer · about 88 MB · adds Unseencue to your Start menu · or get the <a href="https://github.com/shivamshinde123/unseencue/releases/latest/download/Unseencue.exe">portable .exe</a></p>
+        <p class="meta">Free · Windows 10/11 installer or portable · macOS for Apple Silicon and Intel · <a href="#download">all downloads</a></p>
       </div>
       <div class="monitor">
         <div class="screen">
@@ -281,7 +288,7 @@
         <div class="apps" aria-label="Recorders and screen shares it stays out of">
           <span>Zoom</span><span>Google Meet</span><span>Microsoft Teams</span><span>OBS Studio</span><span>Webex</span><span>Slack</span><span>Discord</span><span>Loom</span><span>Xbox Game Bar</span><span>Snipping Tool</span><span>PrintScreen</span>
         </div>
-        <p class="sub" style="font-size:15px;color:var(--slate)">Needs Windows 10 version 2004 or later. A built-in check in Settings shows you exactly what a recorder sees.</p>
+        <p class="sub" style="font-size:15px;color:var(--slate)">Windows 10 (2004 or later) and 11. On Mac it uses Apple's equivalent setting and was verified hidden on macOS 15.8; Apple has changed screen capture in recent versions, so some recorders may still see it. A built-in check in Settings shows you exactly what a recorder sees.</p>
       </div>
       <div class="compare">
         <figure>
@@ -342,10 +349,24 @@
       <div class="download">
         <div class="eyebrow">Download</div>
         <h2>Look your audience in the eye.</h2>
-        <p class="sub">Free, open source (MIT), private and portable. Everything runs on your PC. No account, no tracking.</p>
-        <div class="ctas"><a class="pill primary" href="https://github.com/shivamshinde123/unseencue/releases/latest/download/Unseencue-Setup.exe"><svg class="icon"><use href="#i-down"/></svg>Download installer</a><a class="pill" href="https://github.com/shivamshinde123/unseencue/releases/latest/download/Unseencue.exe">Portable .exe</a></div>
-        <div class="reqs"><span>Windows 10 (2004+) or 11</span><span>Start menu &amp; desktop shortcuts</span><span>Uninstall from Settings › Apps</span><span>Works offline</span></div>
-        <p class="note">The installer puts Unseencue in your Start menu and on your desktop, no admin rights needed. The portable .exe runs without installing. The app isn't code-signed yet, so Windows SmartScreen may show "Windows protected your PC": click <b>More info</b>, then <b>Run anyway</b>. <a href="https://github.com/shivamshinde123/unseencue/releases">All releases</a></p>
+        <p class="sub">Free and open source (MIT), for Windows and Mac. Everything runs on your computer.</p>
+        <div class="dl-grid">
+          <div class="dl-card">
+            <div class="dl-os">Windows</div>
+            <div class="dl-sub">Windows 10 (2004+) or 11</div>
+            <a class="pill primary" href="https://github.com/shivamshinde123/unseencue/releases/latest/download/Unseencue-Setup.exe"><svg class="icon"><use href="#i-down"/></svg>Installer</a>
+            <a class="pill" href="https://github.com/shivamshinde123/unseencue/releases/latest/download/Unseencue.exe">Portable .exe</a>
+            <p class="note">The installer adds Unseencue to your Start menu and desktop, with no admin rights needed. If SmartScreen says "Windows protected your PC", click <b>More info</b>, then <b>Run anyway</b>.</p>
+          </div>
+          <div class="dl-card">
+            <div class="dl-os">Mac</div>
+            <div class="dl-sub">macOS for Apple Silicon (M1–M4) or Intel</div>
+            <a class="pill primary" id="dl-mac-arm" href="https://github.com/shivamshinde123/unseencue/releases/latest/download/Unseencue-mac-arm64.dmg"><svg class="icon"><use href="#i-down"/></svg>Apple Silicon</a>
+            <a class="pill" href="https://github.com/shivamshinde123/unseencue/releases/latest/download/Unseencue-mac-x64.dmg">Intel Mac</a>
+            <p class="note">Open the DMG and drag Unseencue into Applications. The first time, <b>right-click → Open → Open</b> (or <b>System Settings › Privacy &amp; Security › Open Anyway</b>), because the app isn't signed with a paid Apple certificate. Not sure which Mac you have? Apple menu › About This Mac: "Apple M…" means Apple Silicon.</p>
+          </div>
+        </div>
+        <p class="note" style="margin-top:18px"><a href="https://github.com/shivamshinde123/unseencue/releases">All releases</a> · Works offline · No account, no tracking</p>
       </div>
     </div>
   </section>
@@ -360,7 +381,7 @@
         <details><summary>Will it appear in my OBS recording?</summary><p>No, whether you capture the whole display or a single window. Use <b>Settings → Check it's hidden now</b> to see what a recorder captures.</p></details>
         <details><summary>Does voice follow record my voice?</summary><p>No. It only measures loudness, locally, to decide whether you're talking. Nothing is recorded, stored or sent anywhere.</p></details>
         <details><summary>Head follow says my camera is in use.</summary><p>Windows usually gives a webcam to one app at a time. Choose a virtual camera in Settings → Head follow → Camera. In OBS, click Start Virtual Camera and pick "OBS Virtual Camera". Voice follow and manual scrolling keep working either way.</p></details>
-        <details><summary>Does it work on Mac or Linux?</summary><p>Not yet. Hiding from capture relies on a Windows feature.</p></details>
+        <details><summary>Does it work on Mac?</summary><p>Yes, on macOS for Apple Silicon and Intel. On Mac, hiding uses Apple's own "don't capture this window" setting. On a macOS 15.8 test Mac the window was left out of the screen capture, but Apple has changed screen capture in recent macOS versions and some recorders may still see it, so use <b>Settings › Check it's hidden now</b> with the app you record with. Linux isn't supported.</p></details>
         <details><summary>Will it change my script files?</summary><p>Never. Uploaded files are only read. Edits become an in-app copy.</p></details>
       </div>
     </div>
@@ -372,5 +393,14 @@
       <span><a href="https://github.com/shivamshinde123/unseencue">GitHub</a> · <a href="https://github.com/shivamshinde123/unseencue#readme">Documentation</a> · <a href="https://github.com/shivamshinde123/unseencue/issues">Report a problem</a> · <a href="https://github.com/shivamshinde123/unseencue/blob/main/LICENSE">MIT License</a></span>
     </div>
   </footer>
+  <script>
+    // Put the visitor's platform first. Apple Silicon can't be detected reliably, so Mac links to both options.
+    (function () {
+      var mac = /Mac/i.test(navigator.platform || navigator.userAgent);
+      var win = document.getElementById('dl-win'), m = document.getElementById('dl-mac');
+      if (mac && win && m) { win.classList.remove('primary'); win.parentNode.insertBefore(m, win); }
+      else if (m) { m.classList.remove('primary'); }
+    })();
+  </script>
 </body>
 </html>

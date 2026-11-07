@@ -23,7 +23,7 @@ SCENES = [
     ("follow", "Voice follow scrolls while you talk, and pauses when you stop. Head follow waits whenever you look away. Pretty neat, right?"),
     ("custom", "Make it yours! Pick any font, size, colour and reading marker, and watch every change in a live preview."),
     ("responsible", "Quick note: it's made for creating. Videos, demos and presentations. Not for interviews or exams."),
-    ("cta", "Unseen Cue. Free and open source, for Windows. Stay on script, and look at the lens!"),
+    ("cta", "Unseen Cue. Free and open source, for Windows and Mac. Stay on script, and look at the lens!"),
 ]
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent

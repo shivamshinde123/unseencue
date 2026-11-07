@@ -8,7 +8,7 @@
 
 Read your script while you look straight into the lens. Unseencue is visible on your monitor but stays out of your screen recordings and screen shares, so your notes never end up in the video.
 
-[**⬇ Download for Windows**](https://github.com/shivamshinde123/unseencue/releases/latest/download/Unseencue-Setup.exe) (installer) · [portable .exe](https://github.com/shivamshinde123/unseencue/releases/latest/download/Unseencue.exe) · [Website](https://shivamshinde123.github.io/unseencue/) · [Report a problem](https://github.com/shivamshinde123/unseencue/issues)
+**⬇ Download:** [Windows installer](https://github.com/shivamshinde123/unseencue/releases/latest/download/Unseencue-Setup.exe) · [Windows portable](https://github.com/shivamshinde123/unseencue/releases/latest/download/Unseencue.exe) · [Mac (Apple Silicon)](https://github.com/shivamshinde123/unseencue/releases/latest/download/Unseencue-mac-arm64.dmg) · [Mac (Intel)](https://github.com/shivamshinde123/unseencue/releases/latest/download/Unseencue-mac-x64.dmg) · [Website](https://shivamshinde123.github.io/unseencue/) · [Report a problem](https://github.com/shivamshinde123/unseencue/issues)
 
 <a href="https://shivamshinde123.github.io/unseencue/#video"><img src="site/assets/video-poster.jpg" alt="Watch the 2-minute Unseencue video" width="760"></a>
 
@@ -92,7 +92,18 @@ When you read a script from another window, your eyes drift away from the camera
 
 **Windows SmartScreen** may say "Windows protected your PC" because the app isn't code-signed yet. Click **More info → Run anyway**.
 
-**Requirements:** Windows 10 version 2004 (May 2020 update) or later, or Windows 11. Hiding from capture needs 2004 or later. A microphone for voice follow and a webcam for head follow are optional.
+### macOS
+
+- **Apple Silicon (M1–M4):** [Unseencue-mac-arm64.dmg](https://github.com/shivamshinde123/unseencue/releases/latest/download/Unseencue-mac-arm64.dmg)
+- **Intel Mac:** [Unseencue-mac-x64.dmg](https://github.com/shivamshinde123/unseencue/releases/latest/download/Unseencue-mac-x64.dmg)
+
+Not sure which you have? Apple menu › **About This Mac**: "Apple M…" means Apple Silicon.
+
+1. Open the DMG and drag **Unseencue** into **Applications**.
+2. **First launch:** the app is ad-hoc signed but not signed with a paid Apple Developer certificate, so macOS says it can't verify the developer. **Right-click (or Control-click) the app → Open → Open**, or go to **System Settings › Privacy & Security** and click **Open Anyway**. You only do this once.
+3. macOS asks for **Microphone** (voice follow) and **Camera** (head follow) the first time you turn them on. **Settings › Check it's hidden now** needs **Screen Recording** permission.
+
+**Requirements:** Windows 10 version 2004 (May 2020 update) or later, or Windows 11; or macOS (Apple Silicon or Intel). A microphone for voice follow and a webcam for head follow are optional.
 
 ## Quick start
 
@@ -201,13 +212,15 @@ Turn on ☺ (or Settings → Head follow). Scrolling pauses when you turn away f
 
 ## How it stays hidden
 
-Unseencue asks Windows to exclude its windows from capture (`SetWindowDisplayAffinity` with `WDA_EXCLUDEFROMCAPTURE`, available since Windows 10 version 2004). Windows then leaves those windows out of every capture path that apps use (Windows Graphics Capture, DXGI desktop duplication and GDI), so screen recorders and screen shares see whatever is *behind* the teleprompter.
+**Windows.** Unseencue asks Windows to exclude its windows from capture (`SetWindowDisplayAffinity` with `WDA_EXCLUDEFROMCAPTURE`, available since Windows 10 version 2004). Windows then leaves those windows out of every capture path that apps use (Windows Graphics Capture, DXGI desktop duplication and GDI), so screen recorders and screen shares see whatever is *behind* the teleprompter.
 
 It was verified with two methods:
 - the modern capture path used by Chrome (so Google Meet), Teams, Zoom and OBS
 - the classic GDI path used by PrintScreen-style tools
 
 Both show the desktop, not the script. The Settings window is hidden the same way.
+
+**macOS.** The same setting maps to Apple's "don't share this window" flag (`NSWindowSharingNone`). Our automated probe on a GitHub-hosted **macOS 15.8** Apple Silicon Mac draws two red windows, one protected and one not, then captures the screen: the protected window was absent and the normal one was captured. But developers report that since macOS 15.4 some apps using Apple's newer capture system (ScreenCaptureKit) can still see such windows, and we can't test every recorder on every macOS version. So on Mac, run **Settings › Check it's hidden now** with the app you'll record with.
 
 **Limits:** it can't hide from a camera physically pointed at your monitor, from hardware capture cards plugged into your display output, or from software running on very old Windows builds. Your **webcam video never shows your screen** in the first place.
 
@@ -234,7 +247,7 @@ Both show the desktop, not the script. The Settings window is hidden the same wa
 
 ## FAQ
 
-**Does it work on macOS or Linux?** Not yet. The capture-hiding relies on a Windows API. Electron's equivalent on macOS hides from many recorders but not all, so it hasn't been enabled or tested there.
+**Does it work on macOS?** Yes, as of 0.4.0 (Apple Silicon and Intel). See [How it stays hidden](#how-it-stays-hidden) for what's verified on Mac. Linux isn't supported.
 
 **Is it free?** Yes.
 
@@ -248,7 +261,7 @@ Both show the desktop, not the script. The Settings window is hidden the same wa
 
 ## Build from source
 
-Requirements: Windows 10 2004+ / 11, [Node.js](https://nodejs.org) 20+.
+Requirements: [Node.js](https://nodejs.org) 20+ on Windows 10 2004+/11 or macOS.
 
 ```bash
 git clone https://github.com/shivamshinde123/unseencue.git
@@ -262,6 +275,8 @@ Build the installer and the portable exe:
 ```bash
 npm run dist        # release/Unseencue-Setup-<version>.exe and Unseencue-<version>-portable.exe
 ```
+
+On a Mac: `npm run dist:mac` (DMG for your Mac's architecture; ad-hoc signed by `scripts/adhoc-sign.cjs`). You don't need a Mac though: **`.github/workflows/mac.yml`** builds both Mac DMGs on GitHub's Mac machines, runs the self-tests there, and attaches the DMGs to each published release.
 
 The app icon is drawn in `build/icon.svg`; `npm run icon` regenerates `build/icon.ico`, `renderer/icon.png` and the website icons from it.
 
@@ -307,6 +322,7 @@ The app has built-in self-tests, run as `electron . --selftest=<view>`. Screensh
 | `settings` | Settings window and live preview (top, middle, bottom screenshots). |
 | `paste` | Presses a real Ctrl+V inside and outside the editor (your clipboard is restored). |
 | `table` | Markdown tables fit the column. |
+| `script` (also) | Includes a **capture probe**: two red windows, one protected, one not; reports whether the protected one is missing from a real screen capture. |
 | `walk` | **Clicks through every setting** (35 steps) with real mouse events and screenshots each one into `%TEMP%\tp-walk`, with a `walk-log.json`. Your own settings are restored afterwards. |
 
 ## Architecture
