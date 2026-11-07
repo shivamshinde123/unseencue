@@ -338,9 +338,12 @@ ipcMain.handle('selftest:press-paste', async (_e, text) => {
   clipboard.writeText(text);
   prompter.focus();
   prompter.webContents.focus();
-  const mod = IS_MAC ? 'meta' : 'control';
-  prompter.webContents.sendInputEvent({ type: 'keyDown', keyCode: 'V', modifiers: [mod] });
-  prompter.webContents.sendInputEvent({ type: 'keyUp', keyCode: 'V', modifiers: [mod] });
+  if (IS_MAC) {
+    prompter.webContents.paste(); // exactly what Edit › Paste / ⌘V does
+  } else {
+    prompter.webContents.sendInputEvent({ type: 'keyDown', keyCode: 'V', modifiers: ['control'] });
+    prompter.webContents.sendInputEvent({ type: 'keyUp', keyCode: 'V', modifiers: ['control'] });
+  }
   await new Promise((r) => setTimeout(r, 400));
   clipboard.writeText(before);
 });
@@ -451,7 +454,51 @@ async function walkSettings() {
   console.log('[walk] steps:', log.length, 'failed:', JSON.stringify(log.filter((e) => !e.ok).map((e) => e.name)), 'output:', out);
 }
 
+// Self-test: is a protected window really left out of screen capture on this OS?
+// Two solid red windows, one with content protection and one without; capture the screen and look for red in each.
+// control visible + protected invisible = hidden works; both invisible = capture not permitted (inconclusive).
+async function protectionProbe() {
+  const { workArea: wa } = screen.getPrimaryDisplay();
+  const make = (x, protect) => {
+    const w = new BrowserWindow({ x, y: wa.y + wa.height - 260, width: 200, height: 140, frame: false, show: true, backgroundColor: '#ff0000', alwaysOnTop: true, focusable: false, skipTaskbar: true });
+    w.setAlwaysOnTop(true, 'screen-saver', 2);
+    if (protect) w.setContentProtection(true);
+    w.loadURL('data:text/html,<body style="margin:0;background:%23ff0000"></body>');
+    return w;
+  };
+  const prot = make(wa.x + 40, true);
+  const ctrl = make(wa.x + 300, false);
+  await new Promise((r) => setTimeout(r, 1500));
+  const result = { os: `${process.platform} ${process.getSystemVersion()}` };
+  try {
+    const d = screen.getPrimaryDisplay();
+    const size = { width: Math.round(d.bounds.width * d.scaleFactor), height: Math.round(d.bounds.height * d.scaleFactor) };
+    const src = (await desktopCapturer.getSources({ types: ['screen'], thumbnailSize: size })).find((s) => s.display_id === String(d.id)) || null;
+    const redShare = (win) => {
+      if (!src || src.thumbnail.isEmpty()) return null;
+      const b = win.getBounds();
+      const img = src.thumbnail.crop({ x: Math.round((b.x - d.bounds.x + 20) * d.scaleFactor), y: Math.round((b.y - d.bounds.y + 20) * d.scaleFactor), width: Math.round(160 * d.scaleFactor), height: Math.round(100 * d.scaleFactor) });
+      const px = img.toBitmap(); // BGRA
+      let red = 0;
+      for (let i = 0; i < px.length; i += 4) if (px[i + 2] > 200 && px[i + 1] < 70 && px[i] < 70) red++;
+      return Math.round((100 * red) / (px.length / 4));
+    };
+    result.protectedRedPct = redShare(prot);
+    result.controlRedPct = redShare(ctrl);
+    result.verdict =
+      result.controlRedPct == null || result.controlRedPct < 50 ? 'inconclusive (capture not permitted or blocked)'
+        : result.protectedRedPct < 5 ? 'HIDDEN from capture' : 'VISIBLE in capture';
+    if (src) fs.writeFileSync(path.join(app.getPath('temp'), 'tp-probe-capture.png'), src.thumbnail.resize({ width: 1200 }).toPNG());
+  } catch (e) {
+    result.verdict = 'inconclusive: ' + e.message;
+  }
+  prot.destroy();
+  ctrl.destroy();
+  return result;
+}
+
 ipcMain.handle('selftest:done', async (_e, report) => {
+  if (SELFTEST_VIEW === 'script') report.captureProbe = await protectionProbe();
   if (SELFTEST_VIEW === 'walk' && settingsWin) await walkSettings();
   const shot = await captureTest();
   console.log('[selftest] renderer report:', JSON.stringify(report));
