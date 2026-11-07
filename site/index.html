@@ -3,10 +3,10 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Unseencue: the teleprompter nobody can see</title>
-  <meta name="description" content="Unseencue is a free Windows teleprompter that sits right under your webcam and stays invisible in screen recordings, Zoom, Google Meet, Teams and OBS.">
-  <meta property="og:title" content="Unseencue: the teleprompter nobody can see">
-  <meta property="og:description" content="Read your script while looking into the lens. Hidden from recordings and screen shares.">
+  <title>Unseencue: a teleprompter for creators that stays out of your recordings</title>
+  <meta name="description" content="Unseencue is a free Windows teleprompter for creators. It sits right under your webcam so you look into the lens, and it stays out of your screen recordings.">
+  <meta property="og:title" content="Unseencue: a teleprompter for creators">
+  <meta property="og:description" content="Read your script while looking into the lens. Your notes stay out of the recording.">
   <meta property="og:image" content="assets/prompter.png">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ededed' stroke-width='1.8' stroke-linecap='round'%3E%3Cpath d='M3 12s3.5-6 9-6c1.6 0 3 .5 4.2 1.2M21 12s-1.2 2-3.4 3.7M9.9 17.7c.7.2 1.4.3 2.1.3-5.5 0-9-6-9-6'/%3E%3Cpath d='M4 20L20 4'/%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -157,6 +157,13 @@
     details p { margin: -6px 0 22px; color: var(--ash); max-width: 70ch; }
     .faq { margin-top: 30px; }
 
+    .story p { margin: 0 0 16px; color: var(--ash); font-size: 18px; }
+    .story p b { color: #fff; font-weight: 500; }
+    .use { border-radius: 24px; padding: 40px 36px; background: var(--frost); box-shadow: inset 0 0 0 1px rgba(255,255,255,.04); }
+    .use .sub b { color: #fff; font-weight: 500; }
+    .not { margin-top: 24px; padding: 20px 22px; border-radius: 16px; background: rgba(255, 77, 109, .08); box-shadow: inset 0 0 0 1px rgba(255, 120, 140, .3); }
+    .not p { margin: 0; color: var(--bone); font-size: 16px; }
+    .not b { color: #fff; font-weight: 600; }
     footer { padding: 40px 0 60px; color: var(--slate); font-size: 14px; }
     footer .row { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; align-items: center; border-top: 1px solid var(--hairline); padding-top: 28px; }
     footer a { color: var(--ash); text-decoration: none; }
@@ -181,7 +188,7 @@
 
   <nav class="top" aria-label="Main">
     <a class="brand" href="#top"><svg class="icon"><use href="#i-unseen"/></svg>Unseencue</a>
-    <span class="links"><a href="#features">Features</a><a href="#hidden">Hidden</a><a href="#how">How it works</a><a href="#faq">FAQ</a></span>
+    <span class="links"><a href="#story">Story</a><a href="#features">Features</a><a href="#how">How it works</a><a href="#use">Responsible use</a><a href="#faq">FAQ</a></span>
     <a class="pill primary sm" href="#download">Download</a>
   </nav>
 
@@ -189,8 +196,8 @@
     <div class="wrap hero-grid">
       <div>
         <span class="badge"><i></i>Free for Windows 10 &amp; 11</span>
-        <h1>The teleprompter nobody can see.</h1>
-        <p class="lede">Unseencue sits right under your webcam, so you read your script while looking straight into the lens. It stays invisible in screen recordings, Zoom, Google Meet, Teams and OBS.</p>
+        <h1>Stay on script. Look at the lens.</h1>
+        <p class="lede">Unseencue is a teleprompter for creators. It sits right under your webcam so you read while looking into the lens, and it stays out of your screen recordings, so your notes never end up in the video.</p>
         <div class="ctas">
           <a class="pill primary" href="https://github.com/shivamshinde123/unseencue/releases/latest/download/Unseencue.exe"><svg class="icon"><use href="#i-down"/></svg>Download for Windows</a>
           <a class="pill" href="https://github.com/shivamshinde123/unseencue"><svg class="icon"><use href="#i-gh"/></svg>View on GitHub</a>
@@ -204,10 +211,26 @@
           <img class="prompter-shot" src="assets/prompter.png" alt="Unseencue's teleprompter window sitting directly under the webcam at the top of a monitor" width="806" height="310">
         </div>
         <div class="stand"></div>
-        <p class="caption">Your script sits a finger's width below the lens. Your eyes never leave the camera.</p>
+        <p class="caption">Your script sits a finger's width below the lens, so your eyes stay on the camera.</p>
       </div>
     </div>
   </header>
+
+  <section id="story">
+    <div class="wrap split">
+      <div>
+        <div class="eyebrow">Why I built it</div>
+        <h2>I had a workflow to show, and too much to say.</h2>
+      </div>
+      <div class="story">
+        <p>A job application asked me to <b>walk them through my AI-agent workflow</b>: how I plan with agents, how I use agent skills, and how I put it all together to build applications. I wanted to show it for real, on video.</p>
+        <p>There was a lot to cover. Without a script I'd ramble and skip what mattered. With a script in another window, my eyes left the camera and the script showed up in the recording.</p>
+        <p>So I built Unseencue: my script sits right under the webcam, keeps me on track, and stays out of the recording. Now anyone making a tutorial, demo or YouTube video can use it too.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="wash" role="presentation"></div>
 
   <section id="features">
     <div class="wrap">
@@ -215,7 +238,7 @@
       <h2>Everything you need to read naturally on camera.</h2>
       <p class="sub">Built for creators, presenters and anyone who records or shares their screen.</p>
       <div class="grid">
-        <article class="card"><div class="ic"><svg class="icon"><use href="#i-unseen"/></svg></div><h3>Hidden from capture</h3><p>Windows leaves it out of every recording and screen share. You see it; your audience doesn't.</p></article>
+        <article class="card"><div class="ic"><svg class="icon"><use href="#i-unseen"/></svg></div><h3>Out of your recordings</h3><p>Windows leaves it out of screen recordings and screen shares. You see your script; your video doesn't.</p></article>
         <article class="card"><div class="ic"><svg class="icon"><use href="#i-cam"/></svg></div><h3>Lives under your webcam</h3><p>Top-left, centre or right, or save the exact spot. It opens there every time.</p></article>
         <article class="card"><div class="ic"><svg class="icon"><use href="#i-mic"/></svg></div><h3>Voice follow</h3><p>Scrolls while you talk and pauses when you stop. It adapts to your room's noise automatically.</p></article>
         <article class="card"><div class="ic"><svg class="icon"><use href="#i-face"/></svg></div><h3>Head follow</h3><p>Look away and it waits; look back and it carries on. Face tracking runs on your PC.</p></article>
@@ -230,10 +253,10 @@
   <section id="hidden">
     <div class="wrap split">
       <div>
-        <div class="eyebrow">Hidden everywhere</div>
-        <h2>Share your screen. Keep your script to yourself.</h2>
-        <p class="sub">Unseencue uses a Windows feature that excludes its window from screen capture. Recorders and meeting apps simply see what's behind it.</p>
-        <div class="apps" aria-label="Apps it stays hidden from">
+        <div class="eyebrow">Clean recordings</div>
+        <h2>Record your screen. Leave your notes out.</h2>
+        <p class="sub">Unseencue uses a Windows feature that excludes its window from screen capture, so recorders and screen shares see what's behind it. Demo your work without a script floating over it.</p>
+        <div class="apps" aria-label="Recorders and screen shares it stays out of">
           <span>Zoom</span><span>Google Meet</span><span>Microsoft Teams</span><span>OBS Studio</span><span>Webex</span><span>Slack</span><span>Discord</span><span>Loom</span><span>Xbox Game Bar</span><span>Snipping Tool</span><span>PrintScreen</span>
         </div>
         <p class="sub" style="font-size:15px;color:var(--slate)">Needs Windows 10 version 2004 or later. A built-in check in Settings shows you exactly what a recorder sees.</p>
@@ -279,6 +302,19 @@
     </div>
   </section>
 
+  <section id="use" style="padding-top:20px">
+    <div class="wrap">
+      <div class="use">
+        <div class="eyebrow">Responsible use</div>
+        <h2>Made for creating, not for cheating.</h2>
+        <p class="sub">Unseencue is for <b>your own videos and presentations</b>: tutorials, demos, walkthroughs, course lessons, and keeping your own talking points in front of you when notes are allowed.</p>
+        <div class="not">
+          <p><b>Please don't use it in job interviews, coding assessments, exams, certifications</b>, or anywhere you're expected to answer without notes or where hidden help would mislead the people evaluating you. That's dishonest and unfair to everyone else. I don't endorse it, and it isn't what this project is for.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section id="download">
     <div class="wrap">
       <div class="download">
@@ -297,7 +333,8 @@
       <div class="eyebrow">FAQ</div>
       <h2>Questions</h2>
       <div class="faq">
-        <details><summary>Will people in my Zoom, Meet or Teams call see it?</summary><p>No. When you share your screen, they see whatever is behind the teleprompter. Your webcam video never shows your screen either.</p></details>
+        <details><summary>Will people in my Zoom, Meet or Teams call see it?</summary><p>No. When you share your screen, they see whatever is behind the teleprompter. That's for presenting with your own talking points when notes are fine. It is <b>not</b> for interviews, assessments or exams.</p></details>
+        <details><summary>Can I use it in an interview or an exam?</summary><p>No. Please don't. Using hidden notes where you're expected to answer on your own is dishonest, and this project doesn't support it. Unseencue is for recording your own content and presenting.</p></details>
         <details><summary>Will it appear in my OBS recording?</summary><p>No, whether you capture the whole display or a single window. Use <b>Settings → Check it's hidden now</b> to see what a recorder captures.</p></details>
         <details><summary>Does voice follow record my voice?</summary><p>No. It only measures loudness, locally, to decide whether you're talking. Nothing is recorded, stored or sent anywhere.</p></details>
         <details><summary>Head follow says my camera is in use.</summary><p>Windows usually gives a webcam to one app at a time. Choose a virtual camera in Settings → Head follow → Camera. In OBS, click Start Virtual Camera and pick "OBS Virtual Camera". Voice follow and manual scrolling keep working either way.</p></details>

@@ -432,8 +432,6 @@ ipcMain.handle('selftest:done', async (_e, report) => {
     fs.writeFileSync(path.join(out, 'tp-recorder-view.png'), Buffer.from(shot.split(',')[1], 'base64'));
     fs.writeFileSync(path.join(out, `tp-your-view-${SELFTEST_VIEW}.png`), (await prompter.webContents.capturePage()).toPNG());
     if (settingsWin) {
-      await settingsWin.webContents.executeJavaScript("window.__showTip && window.__showTip('.swatch')");
-      await new Promise((r) => setTimeout(r, 300));
       fs.writeFileSync(path.join(out, 'tp-settings-view.png'), (await settingsWin.webContents.capturePage()).toPNG());
       await settingsWin.webContents.executeJavaScript("document.querySelector('.panel').scrollTop = 900");
       await new Promise((r) => setTimeout(r, 300));

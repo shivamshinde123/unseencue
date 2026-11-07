@@ -1,54 +1,43 @@
-# Welcome to the Channel
-Hey everyone, and welcome back! Today we're building something {#ffd166}really useful{/}: a teleprompter that sits right under your webcam, so you can read your script while you {white|#6b62f2}look straight at your audience{/}.
+# My AI Agent Workflow
+Hi! In this video I'll walk you through how I build software with **AI agents**: how I plan, how I use {#ffd166}agent skills{/}, and how I keep the agent {white|#6b62f2}honest and on track{/}.
 
-## Part 1 · Why This Matters
-When you read from a second monitor, your eyes drift. Viewers notice it instantly, even if they can't say why. Keeping the words close to the lens makes you look **confident**, *relaxed*, and prepared.
+## 1 · Plan Before Any Code
+Every project starts with a short spec, not a prompt. I write down the *goal*, the *users*, and what "done" looks like.
+- {#4cc9f0}Requirements first{/}: the agent asks questions before building.
+- {#90be6d}Docs as memory{/}: decisions go in a `docs/` folder so the next session picks up cold.
+- **One task at a time**, each with a clear finish line.
 
-### Quick Facts
-- Eye contact builds trust within the first **seven seconds**.
-- Most people read about {#4cc9f0}150 words per minute{/} out loud.
-- A short pause feels much longer to you than it does to the viewer.
-
-> {black|#ffd166}CUE:{/} Smile here, then lean in slightly toward the camera.
+> {black|#ffd166}SHOW:{/} The docs folder and the decision log.
 
 ---
 
-## Part 2 · Writing a Script That Sounds Natural
-Write the way you talk. Short sentences. Simple words. If a line feels awkward when you say it out loud, rewrite it, because your audience will hear the awkwardness too.
+## 2 · Agent Skills Do the Heavy Lifting
+A **skill** is a packaged playbook the agent loads when a task matches: design rules, a review checklist, a deploy routine.
 
-### Three Rules I Always Follow
-1. Start with the **payoff**: tell people what they'll get.
-2. Use one idea per paragraph, so every scroll feels like a fresh beat.
-3. End each section with a {|#2a2a2a}bridge sentence{/} that pulls viewers into the next one.
+### The skills I use most
+1. **Design system** · keeps every screen consistent.
+2. **Code review** · catches bugs before I do.
+3. **Browser testing** · clicks through the app like a real user.
 
-> {white|#ff4d6d}B-ROLL:{/} Show the editor screen recording while reading this section.
-
-Here's a tip most creators miss: mark your *emphasis words* in colour. When you see {red}red{/}, you punch the word. When you see {#90be6d}green{/}, you slow down and let it land.
+> {white|#ff4d6d}SAY:{/} Skills turn "be careful" into a repeatable process.
 
 ---
 
-## Part 3 · Recording Day
+## 3 · Verify, Don't Trust
+I never accept "it works" without proof. The agent runs the tests, takes screenshots, and shows me what it checked.
 
-### Before You Hit Record
-- Check your lighting and framing.
-- Drink some water, because your voice will thank you.
-- Run the {#c2c2c2}hidden-from-recording check{/} in Settings.
+| Step | Tool | Proof |
+|------|------|-------|
+| Unit tests | Node test runner | 5 of 5 passing |
+| UI walk-through | Automated clicks | 35 screenshots |
+| Capture check | Screen capture API | Window hidden |
 
-### Shot List
-| Time | Shot | Note |
-|------|------|------|
-| 0:00 | Face cam | Smile, then intro |
-| 0:45 | Screen recording | Show the settings window |
-| 2:10 | Face cam | Wrap up and subscribe ask |
+### Why it matters
+Agents are fast, but **speed without checks** just ships bugs faster. Verification is what makes them {#90be6d}trustworthy{/}.
 
-### During the Take
-Speak to **one person**, not a crowd. Picture a friend sitting just behind the lens. If you stumble, don't stop: pause, breathe, and pick up from the start of the sentence. You can cut it later.
-
-> {black|#90be6d}PAUSE:{/} Two-second beat before the next line.
+> {black|#90be6d}PAUSE:{/} Two-second beat, then wrap up.
 
 ---
 
 # Wrapping Up
-That's everything you need to read naturally on camera. If this helped, **subscribe**, leave a comment with your biggest on-camera struggle, and I'll see you in the next one.
-
-### Thanks for Watching!
+That's my workflow: **plan**, **use skills**, **verify everything**. Thanks for watching!

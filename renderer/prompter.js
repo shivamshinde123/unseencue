@@ -401,8 +401,10 @@ if (PREVIEW) {
       report.ctrlVOutside = !$('editor').hidden && $('editor-text').value;
     }
     if (view === 'table') { const t = content.querySelector('table'); pos = Math.max(0, t.offsetTop - markerY() - 80); draw(); report.table = t.offsetWidth <= content.clientWidth; }
-    else if (view === 'editor') openEditor('');
-    else if (view !== 'table') { pos = endPos() * 0.12; draw(); }
+    else if (view === 'editor') { openEditor(script.text); const ta = $('editor-text'); ta.setSelectionRange(0, 0); ta.scrollTop = 0; }
+    else if (view === 'plan') { const h = content.querySelectorAll('h2')[0]; pos = Math.max(0, h.offsetTop - 22); draw(); }
+    else if (view === 'hero') { const h = content.querySelector('h1'); pos = Math.max(0, h.offsetTop - 22); draw(); }
+    else if (!['table', 'hero', 'plan'].includes(view)) { pos = endPos() * 0.12; draw(); }
     document.body.classList.add('show-bar');
     if (view === 'tooltip') report.tooltip = window.__showTip?.('#paste');
     if (view === 'settings' || view === 'walk') await api.openSettings();

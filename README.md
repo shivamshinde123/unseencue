@@ -2,9 +2,9 @@
 
 # Unseencue
 
-**A teleprompter that sits right under your webcam, and that nobody watching can see.**
+**A teleprompter for creators that sits right under your webcam.**
 
-Read your script while you look straight into the lens. Unseencue is visible on your monitor but invisible in screen recordings, screen shares and meeting apps.
+Read your script while you look straight into the lens. Unseencue is visible on your monitor but stays out of your screen recordings and screen shares, so your notes never end up in the video.
 
 [**⬇ Download for Windows**](https://github.com/shivamshinde123/unseencue/releases/latest/download/Unseencue.exe) · [Website](https://shivamshinde123.github.io/unseencue/) · [Report a problem](https://github.com/shivamshinde123/unseencue/issues)
 
@@ -16,6 +16,8 @@ Read your script while you look straight into the lens. Unseencue is visible on 
 
 ## Contents
 
+- [Why I built it](#why-i-built-it)
+- [Responsible use](#responsible-use)
 - [Why Unseencue](#why-unseencue)
 - [Features](#features)
 - [Download and install](#download-and-install)
@@ -36,15 +38,31 @@ Read your script while you look straight into the lens. Unseencue is visible on 
 
 ---
 
+## Why I built it
+
+A job application asked me to *walk them through my AI-agent workflow*: how I plan with agents, how I use agent skills, and how I put the pieces together to build applications. I wanted to show them, not just tell them, so I decided to record a video of my real workflow.
+
+There was a lot to cover. Without a script I'd ramble, skip the parts that mattered, and drift off track. But reading a script from another window made my eyes wander away from the camera, and the script showed up in my screen recording. So I built Unseencue: a script that sits right under the webcam, keeps me on track, and stays out of the recording.
+
+It's useful for anyone who makes videos: YouTube tutorials, product demos, course lessons, walkthroughs of your own work, or a talk you want to give smoothly. It's also handy for keeping your own agenda or talking points in front of you during a meeting or presentation you're running.
+
+## Responsible use
+
+> **Unseencue is not a cheating tool, and I don't endorse using it that way.**
+>
+> Don't use it in job interviews, coding assessments, exams, certifications, or any situation where you're expected to answer without notes, or where hidden help would mislead the people evaluating you. It's dishonest and unfair to everyone else, and that's not what this project is for.
+
+It's for **your own content and presentations**: recording videos, demos and walkthroughs, and keeping your own talking points in front of you when notes are allowed. If you're not sure whether notes are OK in a situation, ask, or don't use it.
+
 ## Why Unseencue
 
-When you read a script from another window, your eyes drift away from the camera and viewers notice. Hardware teleprompters fix that but are bulky and expensive. Unseencue puts your script in a slim, see-through strip **directly under your webcam**, so your eyes stay on the lens. Windows keeps the window out of every screen capture, so you can record your screen or share it in a meeting without anyone seeing your notes.
+When you read a script from another window, your eyes drift away from the camera and viewers notice. Hardware teleprompters fix that but are bulky and expensive. Unseencue puts your script in a slim, see-through strip **directly under your webcam**, so your eyes stay on the lens. Windows keeps the window out of every screen capture, so you can record your screen without your notes ending up in the video.
 
 ## Features
 
 | | |
 |---|---|
-| **Hidden from capture** | Invisible to OBS, Zoom, Google Meet, Microsoft Teams, Webex, Slack, Discord, Loom, Xbox Game Bar, Snipping Tool and PrintScreen. You still see it. |
+| **Stays out of your recordings** | Left out of screen recordings and screen shares (OBS, Loom, Xbox Game Bar, Snipping Tool, PrintScreen, and screen sharing in Zoom, Meet and Teams). You still see it. |
 | **Sits under your webcam** | Opens at the top-left, top-centre or top-right of your screen, or at an exact spot you save as home. |
 | **Paste or upload** | Paste text (button, Ctrl+V, or right-click), type it in, upload a `.txt`/`.md` file, or drag a file onto the window. |
 | **Markdown + colour** | Headings, bold, italic, lists, tables, stage-cue boxes, breaks, and coloured or highlighted words. |
@@ -129,7 +147,7 @@ Keeping the words close to the lens makes you look **confident**.
 ---
 ```
 
-A full example covering every style ships with the app: [`renderer/sample-script.txt`](renderer/sample-script.txt).
+A full example covering every style ships with the app: [`renderer/sample-script.txt`](renderer/sample-script.txt). It's a short script for walking through an AI-agent workflow, the video this app was built for.
 
 > Pasted or typed scripts are stored inside the app. Files you upload are never modified.
 
@@ -208,7 +226,7 @@ Both show the desktop, not the script. The Settings window is hidden the same wa
 
 **Is it free?** Yes.
 
-**Can people in my Zoom/Meet/Teams call see it if I share my screen?** No. They see what's behind it.
+**Can people in my Zoom/Meet/Teams call see it if I share my screen?** No, they see what's behind it. That's for keeping your own talking points handy when notes are fine, **not** for interviews, assessments or exams. See [Responsible use](#responsible-use).
 
 **Will it show in my OBS recording?** No, whether you capture the display or a window.
 
