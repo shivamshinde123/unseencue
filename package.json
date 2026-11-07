@@ -1,7 +1,7 @@
 {
   "name": "unseencue",
   "productName": "Unseencue",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "Unseencue: a teleprompter that sits under your webcam and stays hidden from recordings and screen shares",
   "main": "main.js",
   "private": true,
