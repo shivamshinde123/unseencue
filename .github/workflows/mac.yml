@@ -1,0 +1,94 @@
+# Builds the macOS app on GitHub's Mac machines (Apple Silicon + Intel), runs the app's own
+# self-tests on each, keeps screenshots as artifacts, and attaches the .dmg files to a release.
+name: Mac build
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+    inputs:
+      release_tag:
+        description: "Also upload the DMGs to this release tag (leave empty to only build + test)"
+        required: false
+        default: ""
+
+permissions:
+  contents: write
+
+jobs:
+  mac:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - arch: arm64
+            runner: macos-15
+          - arch: x64
+            runner: macos-15-intel
+    runs-on: ${{ matrix.runner }}
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      - name: Unit tests
+        run: npm test
+
+      - name: Build the app and DMG
+        run: npx electron-builder --mac dmg --${{ matrix.arch }} --publish never
+        env:
+          CSC_IDENTITY_AUTO_DISCOVERY: "false"
+
+      - name: Check the signature (ad-hoc) and the bundle
+        run: |
+          APP=$(ls -d release/mac*/Unseencue.app | head -1)
+          echo "app: $APP"
+          codesign --verify --deep --strict --verbose=2 "$APP"
+          codesign -dv "$APP" 2>&1 | grep -E "Signature|Identifier|Format"
+          /usr/libexec/PlistBuddy -c "Print :NSMicrophoneUsageDescription" "$APP/Contents/Info.plist"
+          /usr/libexec/PlistBuddy -c "Print :NSCameraUsageDescription" "$APP/Contents/Info.plist"
+          file "$APP/Contents/MacOS/Unseencue"
+          ls -la release/*.dmg
+
+      - name: Run the app's self-tests on this Mac
+        run: |
+          APP=$(ls -d release/mac*/Unseencue.app | head -1)
+          BIN="$APP/Contents/MacOS/Unseencue"
+          mkdir -p shots
+          for v in script editor settings paste table walk; do
+            perl -e 'alarm shift; exec @ARGV' 300 "$BIN" --selftest=$v > "shots/log-$v.txt" 2>&1
+            code=$?
+            echo "$v exit=$code" | tee -a shots/summary.txt
+            grep -h "renderer report\|\[walk\]\|\[capture\]\|Uncaught" "shots/log-$v.txt" | cut -c1-400 | tee -a shots/summary.txt || true
+            cp "$TMPDIR"/tp-*.png shots/ 2>/dev/null || true
+          done
+          cp -R "$TMPDIR/tp-walk" shots/walk 2>/dev/null || true
+          ! grep -q "exit=[^0]" shots/summary.txt
+
+      - name: Keep screenshots and logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: mac-${{ matrix.arch }}-selftest
+          path: shots
+
+      - name: Keep the DMG
+        uses: actions/upload-artifact@v4
+        with:
+          name: mac-${{ matrix.arch }}-dmg
+          path: release/*.dmg
+
+      - name: Attach to the release
+        if: github.event_name == 'release' || inputs.release_tag != ''
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ github.event.release.tag_name || inputs.release_tag }}
+        run: |
+          cp release/*.dmg "Unseencue-mac-${{ matrix.arch }}.dmg"
+          gh release upload "$TAG" "Unseencue-mac-${{ matrix.arch }}.dmg" --clobber --repo "$GITHUB_REPOSITORY"

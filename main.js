@@ -1,5 +1,6 @@
 // Electron main process: windows, settings file, script loading, capture test.
-const { app, BrowserWindow, ipcMain, dialog, screen, protocol, net, desktopCapturer, session, nativeTheme, clipboard, Menu } = require('electron');
+const { app, BrowserWindow, ipcMain, dialog, screen, protocol, net, desktopCapturer, session, nativeTheme, clipboard, Menu, systemPreferences, shell } = require('electron');
+const IS_MAC = process.platform === 'darwin';
 const path = require('node:path');
 const fs = require('node:fs');
 const { pathToFileURL } = require('node:url');
@@ -153,6 +154,7 @@ function createPrompter() {
     title: 'Unseencue',
   });
   prompter.setAlwaysOnTop(true, 'screen-saver');
+  if (IS_MAC) prompter.setVisibleOnAllWorkspaces(true, { visibleOnFullScreen: true });
   prompter.loadURL('app://bundle/renderer/index.html' + (SELFTEST ? `?selftest=${SELFTEST_VIEW}` : ''));
   prompter.on('closed', () => {
     prompter = null;
@@ -204,6 +206,14 @@ function draftScript() {
 // What a screen recorder sees where the prompter sits. Recorders use the same capture APIs,
 // so if this comes back without the script, recordings won't show it either.
 async function captureTest() {
+  try {
+    return await captureTestInner();
+  } catch (e) {
+    console.log('[capture] unavailable: ' + e.message);
+    return null; // e.g. macOS hasn't granted Screen Recording yet
+  }
+}
+async function captureTestInner() {
   if (!prompter) return null;
   const b = prompter.getBounds();
   const display = screen.getDisplayMatching(b);
@@ -211,6 +221,7 @@ async function captureTest() {
   const size = { width: Math.round(display.bounds.width * scale), height: Math.round(display.bounds.height * scale) };
   const sources = await desktopCapturer.getSources({ types: ['screen'], thumbnailSize: size });
   const src = sources.find((s) => s.display_id === String(display.id)) || sources[0];
+  if (!src || src.thumbnail.isEmpty()) return null;
   return src.thumbnail
     .crop({
       x: Math.round((b.x - display.bounds.x) * scale),
@@ -298,6 +309,21 @@ ipcMain.handle('capture:test', () => captureTest());
 
 // Clipboard read for the Paste buttons (works even if keyboard shortcuts or focus get in the way).
 ipcMain.handle('clipboard:read', () => clipboard.readText());
+ipcMain.handle('platform', () => process.platform);
+// macOS: microphone/camera need the user's OK (System Settings › Privacy & Security). Windows/Linux: nothing to ask.
+ipcMain.handle('media:ask', async (_e, kind) => {
+  if (!IS_MAC || SELFTEST) return true; // CI Macs have no one to click "Allow"
+  const status = systemPreferences.getMediaAccessStatus(kind);
+  if (status === 'granted') return true;
+  if (status === 'denied' || status === 'restricted') return false;
+  return systemPreferences.askForMediaAccess(kind);
+});
+ipcMain.handle('open:privacy', (_e, kind) => {
+  const pane = { microphone: 'Privacy_Microphone', camera: 'Privacy_Camera', screen: 'Privacy_ScreenCapture' }[kind];
+  if (IS_MAC && pane) shell.openExternal(`x-apple.systempreferences:com.apple.preference.security?${pane}`);
+  else if (kind === 'microphone') shell.openExternal('ms-settings:privacy-microphone');
+  else if (kind === 'camera') shell.openExternal('ms-settings:privacy-webcam');
+});
 ipcMain.handle('script:load-path', (_e, file) => {
   // A .txt/.md file dropped onto the window.
   settings.lastFile = file;
@@ -312,8 +338,9 @@ ipcMain.handle('selftest:press-paste', async (_e, text) => {
   clipboard.writeText(text);
   prompter.focus();
   prompter.webContents.focus();
-  prompter.webContents.sendInputEvent({ type: 'keyDown', keyCode: 'V', modifiers: ['control'] });
-  prompter.webContents.sendInputEvent({ type: 'keyUp', keyCode: 'V', modifiers: ['control'] });
+  const mod = IS_MAC ? 'meta' : 'control';
+  prompter.webContents.sendInputEvent({ type: 'keyDown', keyCode: 'V', modifiers: [mod] });
+  prompter.webContents.sendInputEvent({ type: 'keyUp', keyCode: 'V', modifiers: [mod] });
   await new Promise((r) => setTimeout(r, 400));
   clipboard.writeText(before);
 });
@@ -459,13 +486,46 @@ function migrateOldSettings() {
 }
 
 // Same ID as the installer's Start-menu shortcut, so Windows groups the taskbar button with it and shows our icon.
-app.setAppUserModelId('local.unseencue');
+if (process.platform === 'win32') app.setAppUserModelId('local.unseencue');
+
+function buildMenu() {
+  if (!IS_MAC) {
+    // Keeps Ctrl+X/C/V/A/Z working in every window (the menu bar itself stays hidden).
+    return Menu.buildFromTemplate([{ role: 'editMenu' }]);
+  }
+  // macOS always shows a menu bar: give it the usual app menu, with Settings on ⌘,
+  return Menu.buildFromTemplate([
+    {
+      label: app.name,
+      submenu: [
+        { role: 'about' },
+        { type: 'separator' },
+        { label: 'Settings…', accelerator: 'Cmd+,', click: () => openSettings() },
+        { type: 'separator' },
+        { role: 'hide' },
+        { role: 'hideOthers' },
+        { role: 'unhide' },
+        { type: 'separator' },
+        { role: 'quit' },
+      ],
+    },
+    { role: 'editMenu' },
+    {
+      label: 'Window',
+      submenu: [
+        { label: 'Move Back Home', accelerator: 'Cmd+0', click: () => prompter?.setBounds(homeBounds()) },
+        { role: 'minimize' },
+        { role: 'close' },
+      ],
+    },
+  ]);
+}
 
 app.whenReady().then(() => {
   migrateOldSettings();
   nativeTheme.themeSource = 'dark';
-  // Keeps Ctrl+X/C/V/A/Z working in every window (the menu bar itself stays hidden).
-  Menu.setApplicationMenu(Menu.buildFromTemplate([{ role: 'editMenu' }]));
+  Menu.setApplicationMenu(buildMenu());
+  if (IS_MAC) app.setAboutPanelOptions({ applicationName: 'Unseencue', copyright: 'MIT License © 2026 Shivam Shinde', website: 'https://shivamshinde123.github.io/unseencue/' });
   const allowed = new Set(['media', 'local-fonts', 'clipboard-read', 'clipboard-sanitized-write']);
   const fromApp = (url) => typeof url === 'string' && url.startsWith('app://bundle/');
   session.defaultSession.setPermissionRequestHandler((wc, perm, cb, details) => cb(allowed.has(perm) && fromApp(details.requestingUrl || wc.getURL())));

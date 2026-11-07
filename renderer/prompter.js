@@ -268,6 +268,7 @@ async function syncVoice() {
     voiceBusy = true;
     try {
       talking = false;
+      if (!(await api.askMedia('microphone'))) throw Object.assign(new Error('Microphone permission denied'), { name: 'NotAllowedError' });
       voice = await startVoice(S.voice,
         (t) => { talking = t; $('voice').classList.toggle('hearing', t); updateStatus(); },
         (db, t, trig) => api.sendLevel(db, t, trig));
@@ -276,7 +277,9 @@ async function syncVoice() {
       voice = null; talking = true;
       $('voice').classList.add('err');
       flash(e.name === 'NotAllowedError'
-        ? 'Microphone blocked. Allow desktop apps in Windows Settings › Privacy › Microphone.'
+        ? (api.platform === 'darwin'
+          ? 'Microphone blocked. Allow Unseencue in System Settings › Privacy & Security › Microphone.'
+          : 'Microphone blocked. Allow desktop apps in Windows Settings › Privacy › Microphone.')
         : 'Microphone unavailable: ' + e.message, 7000);
     } finally { voiceBusy = false; }
   } else if (!S.voice.enabled && voice) {
@@ -291,6 +294,7 @@ async function syncHead() {
     headBusy = true;
     try {
       flash('Starting head follow — look at the screen');
+      if (!(await api.askMedia('camera'))) throw new Error(api.platform === 'darwin' ? 'allow Unseencue in System Settings › Privacy & Security › Camera' : 'camera permission denied');
       head = await startHead($('cam'), S.head, (l) => { looking = l; updateStatus(); });
       $('head').classList.remove('err');
       flash('Head follow on', 1500);
@@ -384,7 +388,8 @@ if (PREVIEW) {
     report.landmarker = 'loaded';
     try {
       // Mic probe: proves the stream is live (not silent) and shows the room's noise floor.
-      const v = await startVoice({ ...S.voice }, () => {});
+      // (time-boxed: a CI Mac with no microphone permission may never answer)
+      const v = await Promise.race([startVoice({ ...S.voice }, () => {}), new Promise((_, rej) => setTimeout(() => rej(Object.assign(new Error('timeout'), { name: 'Timeout' })), 6000))]);
       await new Promise((r) => setTimeout(r, 1500));
       report.mic = { context: v.state, peakDb: Math.round(v.peakDb), marginDb: S.voice.marginDb, floorDb: Math.round(v.floorDb) };
       v.stop();

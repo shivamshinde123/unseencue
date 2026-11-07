@@ -104,7 +104,7 @@
     <p class="hint">Pauses when you look away and resumes when you look back. It calibrates during each countdown.</p>
     <div class="row"><label for="cam">Camera</label><span class="cam-pick"><select id="cam" data-key="head.deviceId" class="field"></select><button class="pill icon-only" id="rescan" title="Refresh camera list" aria-label="Refresh camera list">↻</button></span></div>
     <div class="row"><label for="hsens">Look-away tolerance</label><input id="hsens" data-key="head.sensitivity" type="range" min="0.04" max="0.3" step="0.01"><output></output></div>
-    <p class="hint">Windows usually gives a webcam to one app at a time. If your recorder or meeting app already has it, pick its virtual camera here (in OBS: Start Virtual Camera → "OBS Virtual Camera").</p>
+    <p class="hint" id="cam-hint">Windows usually gives a webcam to one app at a time. If your recorder or meeting app already has it, pick its virtual camera here (in OBS: Start Virtual Camera → "OBS Virtual Camera").</p>
   </section>
 
   <section class="card">
@@ -124,7 +124,7 @@
 
   <section class="card">
     <h2>Hidden from recordings &amp; screen shares</h2>
-    <p class="hint">The teleprompter and this window are left out of screen recordings and screen shares on Windows 10 (2004 or later) and Windows 11: OBS, Loom, Xbox Game Bar, Snipping Tool, PrintScreen, and screen sharing in Zoom, Meet and Teams. Your webcam video is separate and never shows the screen.</p>
+    <p class="hint" id="hidden-hint">The teleprompter and this window are left out of screen recordings and screen shares on Windows 10 (2004 or later) and Windows 11: OBS, Loom, Xbox Game Bar, Snipping Tool, PrintScreen, and screen sharing in Zoom, Meet and Teams. Your webcam video is separate and never shows the screen.</p>
     <p class="use-note"><b>Made for creating, not cheating.</b> Use it for your own videos and presentations. Please don't use it in interviews, assessments or exams, or anywhere notes aren't allowed.</p>
     <div class="buttons">
       <button class="pill primary" id="test">Check it's hidden now</button>

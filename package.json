@@ -1,7 +1,7 @@
 {
   "name": "unseencue",
   "productName": "Unseencue",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "Unseencue: a teleprompter that sits under your webcam and stays hidden from recordings and screen shares",
   "main": "main.js",
   "private": true,
@@ -13,7 +13,8 @@
     "test": "node --test test/markdown.test.mjs test/voice.test.mjs",
     "fetch-model": "node scripts/fetch-model.mjs",
     "dist": "electron-builder --win",
-    "icon": "node scripts/make-icon.mjs"
+    "icon": "node scripts/make-icon.mjs",
+    "dist:mac": "electron-builder --mac"
   },
   "build": {
     "appId": "local.unseencue",
@@ -52,6 +53,49 @@
     },
     "portable": {
       "artifactName": "Unseencue-${version}-portable.${ext}"
+    },
+    "mac": {
+      "target": [
+        {
+          "target": "dmg",
+          "arch": [
+            "arm64",
+            "x64"
+          ]
+        }
+      ],
+      "icon": "build/icon.png",
+      "category": "public.app-category.video",
+      "identity": "-",
+      "hardenedRuntime": false,
+      "gatekeeperAssess": false,
+      "darkModeSupport": true,
+      "extendInfo": {
+        "NSMicrophoneUsageDescription": "Voice follow listens to how loud you are (nothing is recorded) so the script scrolls while you talk.",
+        "NSCameraUsageDescription": "Head follow checks whether you are looking at the screen (nothing is recorded) and pauses when you look away."
+      }
+    },
+    "dmg": {
+      "artifactName": "Unseencue-${version}-${arch}.${ext}",
+      "title": "Unseencue",
+      "backgroundColor": "#0a0a0a",
+      "iconSize": 110,
+      "contents": [
+        {
+          "x": 150,
+          "y": 190
+        },
+        {
+          "x": 390,
+          "y": 190,
+          "type": "link",
+          "path": "/Applications"
+        }
+      ],
+      "window": {
+        "width": 540,
+        "height": 380
+      }
     }
   },
   "dependencies": {

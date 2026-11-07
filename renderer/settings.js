@@ -222,6 +222,14 @@ $('test').onclick = async () => {
   $('shot-msg').textContent = 'This is what Zoom, Meet, Teams or OBS would capture where your teleprompter sits. If you see your desktop or other windows here, and not your script, it is hidden.';
 };
 
+// macOS wording (the HTML is written for Windows)
+if (window.api.platform === 'darwin') {
+  $('cam-hint').textContent =
+    'macOS lets several apps share the camera, so this usually just works. If not, pick another camera here (in OBS: Start Virtual Camera → "OBS Virtual Camera").';
+  $('hidden-hint').textContent =
+    'On macOS the teleprompter and this window ask to be left out of screen capture. Most recorders and screen shares respect this, but on macOS 15.4 and later some apps that use Apple’s newer capture system can still see it. Use the check below with the app you record with. The check needs Screen Recording permission (System Settings › Privacy & Security › Screen Recording).';
+}
+
 window.api.onSettings((s) => { S = s; fill(); renderFonts(); });
 fill();
 fitPreview();
