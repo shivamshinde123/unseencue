@@ -1,0 +1,1057 @@
+[
+  {
+    "id": "hook",
+    "text": "You know exactly what you want to say... until the camera turns on.",
+    "durationMs": 4080,
+    "words": [
+      {
+        "text": "You",
+        "startMs": 100,
+        "endMs": 175
+      },
+      {
+        "text": "know",
+        "startMs": 175,
+        "endMs": 338
+      },
+      {
+        "text": "exactly",
+        "startMs": 338,
+        "endMs": 988
+      },
+      {
+        "text": "what",
+        "startMs": 1000,
+        "endMs": 1125
+      },
+      {
+        "text": "you",
+        "startMs": 1125,
+        "endMs": 1212
+      },
+      {
+        "text": "want",
+        "startMs": 1225,
+        "endMs": 1325
+      },
+      {
+        "text": "to",
+        "startMs": 1325,
+        "endMs": 1362
+      },
+      {
+        "text": "say",
+        "startMs": 1375,
+        "endMs": 1862
+      },
+      {
+        "text": "until",
+        "startMs": 2475,
+        "endMs": 2700
+      },
+      {
+        "text": "the",
+        "startMs": 2712,
+        "endMs": 2788
+      },
+      {
+        "text": "camera",
+        "startMs": 2800,
+        "endMs": 3150
+      },
+      {
+        "text": "turns",
+        "startMs": 3150,
+        "endMs": 3425
+      },
+      {
+        "text": "on",
+        "startMs": 3438,
+        "endMs": 3700
+      }
+    ]
+  },
+  {
+    "id": "problem",
+    "text": "Read from a second window, and your eyes drift away from the lens. Worse, your notes end up in your screen recording.",
+    "durationMs": 7200,
+    "words": [
+      {
+        "text": "Read",
+        "startMs": 88,
+        "endMs": 350
+      },
+      {
+        "text": "from",
+        "startMs": 362,
+        "endMs": 475
+      },
+      {
+        "text": "a",
+        "startMs": 475,
+        "endMs": 512
+      },
+      {
+        "text": "second",
+        "startMs": 512,
+        "endMs": 888
+      },
+      {
+        "text": "window",
+        "startMs": 888,
+        "endMs": 1425
+      },
+      {
+        "text": "and",
+        "startMs": 1638,
+        "endMs": 1712
+      },
+      {
+        "text": "your",
+        "startMs": 1712,
+        "endMs": 1875
+      },
+      {
+        "text": "eyes",
+        "startMs": 1888,
+        "endMs": 2288
+      },
+      {
+        "text": "drift",
+        "startMs": 2288,
+        "endMs": 2650
+      },
+      {
+        "text": "away",
+        "startMs": 2662,
+        "endMs": 3075
+      },
+      {
+        "text": "from",
+        "startMs": 3075,
+        "endMs": 3212
+      },
+      {
+        "text": "the",
+        "startMs": 3212,
+        "endMs": 3288
+      },
+      {
+        "text": "lens",
+        "startMs": 3288,
+        "endMs": 3875
+      },
+      {
+        "text": "Worse",
+        "startMs": 4275,
+        "endMs": 4812
+      },
+      {
+        "text": "your",
+        "startMs": 5025,
+        "endMs": 5125
+      },
+      {
+        "text": "notes",
+        "startMs": 5125,
+        "endMs": 5462
+      },
+      {
+        "text": "end",
+        "startMs": 5625,
+        "endMs": 5775
+      },
+      {
+        "text": "up",
+        "startMs": 5788,
+        "endMs": 5925
+      },
+      {
+        "text": "in",
+        "startMs": 5925,
+        "endMs": 6000
+      },
+      {
+        "text": "your",
+        "startMs": 6000,
+        "endMs": 6100
+      },
+      {
+        "text": "screen",
+        "startMs": 6100,
+        "endMs": 6362
+      },
+      {
+        "text": "recording",
+        "startMs": 6362,
+        "endMs": 6825
+      }
+    ]
+  },
+  {
+    "id": "origin",
+    "text": "I ran into this when a job application asked me to walk them through my AI agent workflow. There was a lot to cover, and I didn't want to ramble. So I built a tool.",
+    "durationMs": 10368,
+    "words": [
+      {
+        "text": "I",
+        "startMs": 100,
+        "endMs": 162
+      },
+      {
+        "text": "ran",
+        "startMs": 175,
+        "endMs": 488
+      },
+      {
+        "text": "into",
+        "startMs": 488,
+        "endMs": 688
+      },
+      {
+        "text": "this",
+        "startMs": 688,
+        "endMs": 1075
+      },
+      {
+        "text": "when",
+        "startMs": 1088,
+        "endMs": 1200
+      },
+      {
+        "text": "a",
+        "startMs": 1200,
+        "endMs": 1250
+      },
+      {
+        "text": "job",
+        "startMs": 1250,
+        "endMs": 1550
+      },
+      {
+        "text": "application",
+        "startMs": 1562,
+        "endMs": 2275
+      },
+      {
+        "text": "asked",
+        "startMs": 2438,
+        "endMs": 2725
+      },
+      {
+        "text": "me",
+        "startMs": 2725,
+        "endMs": 2850
+      },
+      {
+        "text": "to",
+        "startMs": 2862,
+        "endMs": 2938
+      },
+      {
+        "text": "walk",
+        "startMs": 2938,
+        "endMs": 3388
+      },
+      {
+        "text": "them",
+        "startMs": 3388,
+        "endMs": 3675
+      },
+      {
+        "text": "through",
+        "startMs": 3900,
+        "endMs": 4088
+      },
+      {
+        "text": "my",
+        "startMs": 4088,
+        "endMs": 4312
+      },
+      {
+        "text": "AI",
+        "startMs": 4412,
+        "endMs": 4950
+      },
+      {
+        "text": "agent",
+        "startMs": 5062,
+        "endMs": 5400
+      },
+      {
+        "text": "workflow",
+        "startMs": 5400,
+        "endMs": 6088
+      },
+      {
+        "text": "There",
+        "startMs": 6488,
+        "endMs": 6538
+      },
+      {
+        "text": "was",
+        "startMs": 6550,
+        "endMs": 6625
+      },
+      {
+        "text": "a",
+        "startMs": 6625,
+        "endMs": 6662
+      },
+      {
+        "text": "lot",
+        "startMs": 6662,
+        "endMs": 7025
+      },
+      {
+        "text": "to",
+        "startMs": 7025,
+        "endMs": 7100
+      },
+      {
+        "text": "cover",
+        "startMs": 7112,
+        "endMs": 7512
+      },
+      {
+        "text": "and",
+        "startMs": 7775,
+        "endMs": 7825
+      },
+      {
+        "text": "I",
+        "startMs": 7838,
+        "endMs": 7900
+      },
+      {
+        "text": "didn't",
+        "startMs": 7912,
+        "endMs": 8125
+      },
+      {
+        "text": "want",
+        "startMs": 8125,
+        "endMs": 8212
+      },
+      {
+        "text": "to",
+        "startMs": 8225,
+        "endMs": 8262
+      },
+      {
+        "text": "ramble",
+        "startMs": 8275,
+        "endMs": 8850
+      },
+      {
+        "text": "So",
+        "startMs": 9262,
+        "endMs": 9350
+      },
+      {
+        "text": "I",
+        "startMs": 9350,
+        "endMs": 9400
+      },
+      {
+        "text": "built",
+        "startMs": 9400,
+        "endMs": 9575
+      },
+      {
+        "text": "a",
+        "startMs": 9575,
+        "endMs": 9625
+      },
+      {
+        "text": "tool",
+        "startMs": 9625,
+        "endMs": 10000
+      }
+    ]
+  },
+  {
+    "id": "reveal",
+    "text": "Meet Unseencue. A teleprompter that sits right under your webcam, so your eyes stay on the lens.",
+    "durationMs": 6120,
+    "words": [
+      {
+        "text": "Meet",
+        "startMs": 100,
+        "endMs": 325
+      },
+      {
+        "text": "Unseencue",
+        "startMs": 438,
+        "endMs": 1262
+      },
+      {
+        "text": "A",
+        "startMs": 1650,
+        "endMs": 1700
+      },
+      {
+        "text": "teleprompter",
+        "startMs": 1700,
+        "endMs": 2388
+      },
+      {
+        "text": "that",
+        "startMs": 2388,
+        "endMs": 2512
+      },
+      {
+        "text": "sits",
+        "startMs": 2512,
+        "endMs": 2775
+      },
+      {
+        "text": "right",
+        "startMs": 2788,
+        "endMs": 3075
+      },
+      {
+        "text": "under",
+        "startMs": 3075,
+        "endMs": 3212
+      },
+      {
+        "text": "your",
+        "startMs": 3225,
+        "endMs": 3375
+      },
+      {
+        "text": "webcam",
+        "startMs": 3375,
+        "endMs": 3950
+      },
+      {
+        "text": "so",
+        "startMs": 4300,
+        "endMs": 4400
+      },
+      {
+        "text": "your",
+        "startMs": 4400,
+        "endMs": 4525
+      },
+      {
+        "text": "eyes",
+        "startMs": 4525,
+        "endMs": 4825
+      },
+      {
+        "text": "stay",
+        "startMs": 4838,
+        "endMs": 5062
+      },
+      {
+        "text": "on",
+        "startMs": 5062,
+        "endMs": 5138
+      },
+      {
+        "text": "the",
+        "startMs": 5150,
+        "endMs": 5200
+      },
+      {
+        "text": "lens",
+        "startMs": 5200,
+        "endMs": 5750
+      }
+    ]
+  },
+  {
+    "id": "hidden",
+    "text": "And it stays out of your recordings. OBS, Loom, and screen sharing in Zoom, Meet and Teams see right through it. You see your script. Your video doesn't.",
+    "durationMs": 10776,
+    "words": [
+      {
+        "text": "And",
+        "startMs": 88,
+        "endMs": 150
+      },
+      {
+        "text": "it",
+        "startMs": 150,
+        "endMs": 225
+      },
+      {
+        "text": "stays",
+        "startMs": 225,
+        "endMs": 675
+      },
+      {
+        "text": "out",
+        "startMs": 688,
+        "endMs": 800
+      },
+      {
+        "text": "of",
+        "startMs": 800,
+        "endMs": 862
+      },
+      {
+        "text": "your",
+        "startMs": 862,
+        "endMs": 975
+      },
+      {
+        "text": "recordings",
+        "startMs": 988,
+        "endMs": 1738
+      },
+      {
+        "text": "OBS",
+        "startMs": 2138,
+        "endMs": 2975
+      },
+      {
+        "text": "Loom",
+        "startMs": 3212,
+        "endMs": 3625
+      },
+      {
+        "text": "and",
+        "startMs": 4100,
+        "endMs": 4225
+      },
+      {
+        "text": "screen",
+        "startMs": 4225,
+        "endMs": 4725
+      },
+      {
+        "text": "sharing",
+        "startMs": 4725,
+        "endMs": 5075
+      },
+      {
+        "text": "in",
+        "startMs": 5075,
+        "endMs": 5162
+      },
+      {
+        "text": "Zoom",
+        "startMs": 5175,
+        "endMs": 5550
+      },
+      {
+        "text": "Meet",
+        "startMs": 6062,
+        "endMs": 6400
+      },
+      {
+        "text": "and",
+        "startMs": 6550,
+        "endMs": 6650
+      },
+      {
+        "text": "Teams",
+        "startMs": 6650,
+        "endMs": 6962
+      },
+      {
+        "text": "see",
+        "startMs": 6962,
+        "endMs": 7112
+      },
+      {
+        "text": "right",
+        "startMs": 7112,
+        "endMs": 7388
+      },
+      {
+        "text": "through",
+        "startMs": 7400,
+        "endMs": 7675
+      },
+      {
+        "text": "it",
+        "startMs": 7688,
+        "endMs": 7875
+      },
+      {
+        "text": "You",
+        "startMs": 8275,
+        "endMs": 8325
+      },
+      {
+        "text": "see",
+        "startMs": 8325,
+        "endMs": 8475
+      },
+      {
+        "text": "your",
+        "startMs": 8475,
+        "endMs": 8588
+      },
+      {
+        "text": "script",
+        "startMs": 8600,
+        "endMs": 9038
+      },
+      {
+        "text": "Your",
+        "startMs": 9438,
+        "endMs": 9550
+      },
+      {
+        "text": "video",
+        "startMs": 9562,
+        "endMs": 9925
+      },
+      {
+        "text": "doesn't",
+        "startMs": 9938,
+        "endMs": 10400
+      }
+    ]
+  },
+  {
+    "id": "script",
+    "text": "Paste your script, type it, or drop in a file. Headings, colours and cue boxes make every section easy to find.",
+    "durationMs": 7992,
+    "words": [
+      {
+        "text": "Paste",
+        "startMs": 112,
+        "endMs": 300
+      },
+      {
+        "text": "your",
+        "startMs": 300,
+        "endMs": 375
+      },
+      {
+        "text": "script",
+        "startMs": 375,
+        "endMs": 875
+      },
+      {
+        "text": "type",
+        "startMs": 1088,
+        "endMs": 1338
+      },
+      {
+        "text": "it",
+        "startMs": 1350,
+        "endMs": 1512
+      },
+      {
+        "text": "or",
+        "startMs": 1950,
+        "endMs": 2025
+      },
+      {
+        "text": "drop",
+        "startMs": 2025,
+        "endMs": 2338
+      },
+      {
+        "text": "in",
+        "startMs": 2338,
+        "endMs": 2388
+      },
+      {
+        "text": "a",
+        "startMs": 2388,
+        "endMs": 2425
+      },
+      {
+        "text": "file",
+        "startMs": 2425,
+        "endMs": 2888
+      },
+      {
+        "text": "Headings",
+        "startMs": 3300,
+        "endMs": 3912
+      },
+      {
+        "text": "colours",
+        "startMs": 4138,
+        "endMs": 4575
+      },
+      {
+        "text": "and",
+        "startMs": 4575,
+        "endMs": 4675
+      },
+      {
+        "text": "cue",
+        "startMs": 4675,
+        "endMs": 4925
+      },
+      {
+        "text": "boxes",
+        "startMs": 4925,
+        "endMs": 5438
+      },
+      {
+        "text": "make",
+        "startMs": 5438,
+        "endMs": 5662
+      },
+      {
+        "text": "every",
+        "startMs": 5850,
+        "endMs": 6138
+      },
+      {
+        "text": "section",
+        "startMs": 6138,
+        "endMs": 6638
+      },
+      {
+        "text": "easy",
+        "startMs": 6825,
+        "endMs": 7075
+      },
+      {
+        "text": "to",
+        "startMs": 7075,
+        "endMs": 7125
+      },
+      {
+        "text": "find",
+        "startMs": 7138,
+        "endMs": 7625
+      }
+    ]
+  },
+  {
+    "id": "follow",
+    "text": "Voice follow scrolls while you talk, and pauses when you stop. Head follow waits whenever you look away.",
+    "durationMs": 6504,
+    "words": [
+      {
+        "text": "Voice",
+        "startMs": 100,
+        "endMs": 400
+      },
+      {
+        "text": "follow",
+        "startMs": 412,
+        "endMs": 738
+      },
+      {
+        "text": "scrolls",
+        "startMs": 738,
+        "endMs": 1225
+      },
+      {
+        "text": "while",
+        "startMs": 1225,
+        "endMs": 1350
+      },
+      {
+        "text": "you",
+        "startMs": 1350,
+        "endMs": 1462
+      },
+      {
+        "text": "talk",
+        "startMs": 1462,
+        "endMs": 1950
+      },
+      {
+        "text": "and",
+        "startMs": 2338,
+        "endMs": 2425
+      },
+      {
+        "text": "pauses",
+        "startMs": 2425,
+        "endMs": 3000
+      },
+      {
+        "text": "when",
+        "startMs": 3012,
+        "endMs": 3125
+      },
+      {
+        "text": "you",
+        "startMs": 3125,
+        "endMs": 3188
+      },
+      {
+        "text": "stop",
+        "startMs": 3188,
+        "endMs": 3650
+      },
+      {
+        "text": "Head",
+        "startMs": 4075,
+        "endMs": 4262
+      },
+      {
+        "text": "follow",
+        "startMs": 4275,
+        "endMs": 4700
+      },
+      {
+        "text": "waits",
+        "startMs": 4712,
+        "endMs": 5162
+      },
+      {
+        "text": "whenever",
+        "startMs": 5175,
+        "endMs": 5475
+      },
+      {
+        "text": "you",
+        "startMs": 5475,
+        "endMs": 5575
+      },
+      {
+        "text": "look",
+        "startMs": 5575,
+        "endMs": 5712
+      },
+      {
+        "text": "away",
+        "startMs": 5712,
+        "endMs": 6138
+      }
+    ]
+  },
+  {
+    "id": "custom",
+    "text": "Choose any font, size, colour and reading marker, and see every change in a live preview.",
+    "durationMs": 6576,
+    "words": [
+      {
+        "text": "Choose",
+        "startMs": 88,
+        "endMs": 488
+      },
+      {
+        "text": "any",
+        "startMs": 500,
+        "endMs": 675
+      },
+      {
+        "text": "font",
+        "startMs": 675,
+        "endMs": 1162
+      },
+      {
+        "text": "size",
+        "startMs": 1438,
+        "endMs": 2162
+      },
+      {
+        "text": "colour",
+        "startMs": 2362,
+        "endMs": 2812
+      },
+      {
+        "text": "and",
+        "startMs": 2825,
+        "endMs": 2975
+      },
+      {
+        "text": "reading",
+        "startMs": 2975,
+        "endMs": 3300
+      },
+      {
+        "text": "marker",
+        "startMs": 3300,
+        "endMs": 3775
+      },
+      {
+        "text": "and",
+        "startMs": 4050,
+        "endMs": 4125
+      },
+      {
+        "text": "see",
+        "startMs": 4125,
+        "endMs": 4375
+      },
+      {
+        "text": "every",
+        "startMs": 4475,
+        "endMs": 4738
+      },
+      {
+        "text": "change",
+        "startMs": 4738,
+        "endMs": 5212
+      },
+      {
+        "text": "in",
+        "startMs": 5212,
+        "endMs": 5300
+      },
+      {
+        "text": "a",
+        "startMs": 5312,
+        "endMs": 5362
+      },
+      {
+        "text": "live",
+        "startMs": 5375,
+        "endMs": 5750
+      },
+      {
+        "text": "preview",
+        "startMs": 5750,
+        "endMs": 6200
+      }
+    ]
+  },
+  {
+    "id": "responsible",
+    "text": "It's made for creating: videos, demos and presentations. Not for interviews or exams.",
+    "durationMs": 7008,
+    "words": [
+      {
+        "text": "It's",
+        "startMs": 88,
+        "endMs": 188
+      },
+      {
+        "text": "made",
+        "startMs": 188,
+        "endMs": 412
+      },
+      {
+        "text": "for",
+        "startMs": 425,
+        "endMs": 562
+      },
+      {
+        "text": "creating",
+        "startMs": 562,
+        "endMs": 1125
+      },
+      {
+        "text": "videos",
+        "startMs": 1512,
+        "endMs": 2238
+      },
+      {
+        "text": "demos",
+        "startMs": 2425,
+        "endMs": 3088
+      },
+      {
+        "text": "and",
+        "startMs": 3200,
+        "endMs": 3312
+      },
+      {
+        "text": "presentations",
+        "startMs": 3312,
+        "endMs": 4300
+      },
+      {
+        "text": "Not",
+        "startMs": 4712,
+        "endMs": 4862
+      },
+      {
+        "text": "for",
+        "startMs": 4862,
+        "endMs": 4988
+      },
+      {
+        "text": "interviews",
+        "startMs": 5000,
+        "endMs": 5700
+      },
+      {
+        "text": "or",
+        "startMs": 5838,
+        "endMs": 5975
+      },
+      {
+        "text": "exams",
+        "startMs": 5975,
+        "endMs": 6650
+      }
+    ]
+  },
+  {
+    "id": "cta",
+    "text": "Unseencue. Free and open source, for Windows. Stay on script. Look at the lens.",
+    "durationMs": 6528,
+    "words": [
+      {
+        "text": "Unseencue",
+        "startMs": 100,
+        "endMs": 875
+      },
+      {
+        "text": "Free",
+        "startMs": 1312,
+        "endMs": 1662
+      },
+      {
+        "text": "and",
+        "startMs": 1775,
+        "endMs": 1888
+      },
+      {
+        "text": "open",
+        "startMs": 1888,
+        "endMs": 2188
+      },
+      {
+        "text": "source",
+        "startMs": 2188,
+        "endMs": 2775
+      },
+      {
+        "text": "for",
+        "startMs": 2925,
+        "endMs": 3075
+      },
+      {
+        "text": "Windows",
+        "startMs": 3075,
+        "endMs": 3688
+      },
+      {
+        "text": "Stay",
+        "startMs": 4088,
+        "endMs": 4288
+      },
+      {
+        "text": "on",
+        "startMs": 4300,
+        "endMs": 4425
+      },
+      {
+        "text": "script",
+        "startMs": 4425,
+        "endMs": 4912
+      },
+      {
+        "text": "Look",
+        "startMs": 5312,
+        "endMs": 5438
+      },
+      {
+        "text": "at",
+        "startMs": 5438,
+        "endMs": 5488
+      },
+      {
+        "text": "the",
+        "startMs": 5488,
+        "endMs": 5562
+      },
+      {
+        "text": "lens",
+        "startMs": 5562,
+        "endMs": 6150
+      }
+    ]
+  }
+]

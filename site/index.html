@@ -157,6 +157,8 @@
     details p { margin: -6px 0 22px; color: var(--ash); max-width: 70ch; }
     .faq { margin-top: 30px; }
 
+    .player { margin: 36px auto 0; width: min(1100px, 100%); border-radius: 24px; overflow: hidden; background: var(--graphite); box-shadow: inset 0 0 0 1px var(--hairline), rgba(0,0,0,.45) 0 30px 80px, 0 0 120px rgba(var(--violet), .14); }
+    .player video { display: block; width: 100%; height: auto; background: #000; }
     .story p { margin: 0 0 16px; color: var(--ash); font-size: 18px; }
     .story p b { color: #fff; font-weight: 500; }
     .use { border-radius: 24px; padding: 40px 36px; background: var(--frost); box-shadow: inset 0 0 0 1px rgba(255,255,255,.04); }
@@ -188,7 +190,7 @@
 
   <nav class="top" aria-label="Main">
     <a class="brand" href="#top"><svg class="icon"><use href="#i-unseen"/></svg>Unseencue</a>
-    <span class="links"><a href="#story">Story</a><a href="#features">Features</a><a href="#how">How it works</a><a href="#use">Responsible use</a><a href="#faq">FAQ</a></span>
+    <span class="links"><a href="#video">Watch</a><a href="#story">Story</a><a href="#features">Features</a><a href="#how">How it works</a><a href="#use">Responsible use</a><a href="#faq">FAQ</a></span>
     <a class="pill primary sm" href="#download">Download</a>
   </nav>
 
@@ -215,6 +217,22 @@
       </div>
     </div>
   </header>
+
+  <section id="video" style="padding-top:40px">
+    <div class="wrap">
+      <div class="eyebrow" style="text-align:center">Watch</div>
+      <h2 style="margin-left:auto;margin-right:auto;text-align:center">See it in two minutes.</h2>
+      <div class="player">
+        <video controls playsinline preload="metadata" poster="assets/video-poster.jpg" width="1920" height="1080" aria-label="Unseencue product video, about two minutes, with narration and captions">
+          <source src="assets/unseencue-promo.mp4" type="video/mp4">
+          <a href="assets/unseencue-promo.mp4">Download the video (MP4)</a>
+        </video>
+      </div>
+      <p class="caption" style="margin-top:16px">Narrated, with captions · 1:56</p>
+    </div>
+  </section>
+
+  <div class="wash" role="presentation"></div>
 
   <section id="story">
     <div class="wrap split">

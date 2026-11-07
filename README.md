@@ -8,6 +8,10 @@ Read your script while you look straight into the lens. Unseencue is visible on 
 
 [**⬇ Download for Windows**](https://github.com/shivamshinde123/unseencue/releases/latest/download/Unseencue.exe) · [Website](https://shivamshinde123.github.io/unseencue/) · [Report a problem](https://github.com/shivamshinde123/unseencue/issues)
 
+<a href="https://shivamshinde123.github.io/unseencue/#video"><img src="site/assets/video-poster.jpg" alt="Watch the 2-minute Unseencue video" width="760"></a>
+
+**[▶ Watch the 2-minute video](https://shivamshinde123.github.io/unseencue/#video)** · [Download the MP4](https://github.com/shivamshinde123/unseencue/releases/latest/download/Unseencue-promo.mp4)
+
 <img src="site/assets/prompter.png" alt="The Unseencue teleprompter window showing a script with the reading marker and the floating control bar" width="760">
 
 </div>
@@ -34,6 +38,7 @@ Read your script while you look straight into the lens. Unseencue is visible on 
 - [Project structure](#project-structure)
 - [Testing](#testing)
 - [Architecture](#architecture)
+- [Product video](#product-video)
 - [Credits](#credits)
 - [License](#license)
 
@@ -306,6 +311,19 @@ The app has built-in self-tests, run as `electron . --selftest=<view>`. Screensh
 - **Files** are served over a private `app://` scheme so the MediaPipe WebAssembly, model and fonts load offline.
 
 More detail is in [`docs/`](docs/): requirements, architecture, the decision log, the UI spec and the code flow.
+
+## Product video
+
+The 2-minute promo is made with [Remotion](https://www.remotion.dev) in [`video/`](video/): React scenes, an AI voiceover (Microsoft's neural "Andrew" voice via `edge-tts`) with word-synced captions, and an original ambient track synthesized locally.
+
+```bash
+cd video
+npm install
+python scripts/voiceover.py   # voice + word timings (needs: pip install edge-tts)
+python scripts/music.py       # music bed (needs: numpy)
+npx remotion studio           # preview and edit
+npx remotion render src/index.ts UnseencuePromo out/unseencue-promo.mp4
+```
 
 ## Credits
 

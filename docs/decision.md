@@ -117,3 +117,11 @@ The author's motivation: a job application asked them to walk through their AI-a
 - Website: `site/` is deployed to https://shivamshinde123.github.io/unseencue/ by `.github/workflows/pages.yml` (Pages build type "workflow") on every push that touches `site/`.
 - To ship a new version: bump `version` in package.json → `npm run dist` → `gh release create vX.Y.Z "<exe copied as Unseencue.exe>" --latest`.
 - License: MIT (LICENSE added 2026-11-07).
+
+## 2026-11-07 — Product video (video/)
+A ~2-minute 16:9 promo built with **Remotion** (the default for video work) in `video/`. It has 10 scenes joined by fades: hook → problem → the author's story (the job application asking for an AI-agent workflow walkthrough) → reveal → hidden from capture → paste/type/upload → voice & head follow → customise → responsible use → CTA.
+- **Voice:** Microsoft neural "Andrew" via `edge-tts` (`video/scripts/voiceover.py`), one MP3 per scene plus word timings in `src/voiceover.json`. The name is spoken as "Unseen Cue" for a clear pronunciation; captions merge it back to "Unseencue".
+- **Captions:** word-by-word highlight from those timings. Lines break at the script's punctuation, max 8 words, and never on a single dangling word.
+- **Music:** an original ambient pad synthesized locally (`scripts/music.py`, numpy), so there's no licensing. Music base volume 0.6, ducking to 42% under each voice line; final mix normalised to about -14 LUFS (YouTube level) with ffmpeg loudnorm.
+- **Visuals:** the teleprompter is rebuilt as React components, so it animates sharply. Voice follow in the video is driven by the real narration timings. Design tokens match the app and site.
+- **Review:** `node scripts/stills.mjs <dir> <frames…>` renders review frames in one bundle pass. Frames from every scene were checked; the fixes from that review were code overflow, caption line breaks, highlight placement, the band-marker colour format and layout balance.
