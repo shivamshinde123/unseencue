@@ -326,7 +326,19 @@ $('close').onclick = () => { savePos(); api.close(); };
 
 // Mouse wheel nudges the script (handy while paused).
 $('viewport').addEventListener('wheel', (e) => { pos = Math.max(0, Math.min(endPos(), pos + e.deltaY * 0.5)); draw(); savePos(); }, { passive: true });
-addEventListener('resize', layout);
+addEventListener('resize', () => { layout(); fitBar(); });
+
+// Keep every control (including ✕) inside the window: try the full bar, then compact it a step at a time.
+const BAR_STEPS = ['bar-c1', 'bar-c2', 'bar-c3', 'bar-c4', 'bar-c5', 'bar-c6', 'bar-c7'];
+function fitBar() {
+  const bar = $('bar');
+  const room = $('card').clientWidth - 28;
+  document.body.classList.remove(...BAR_STEPS);
+  for (const step of BAR_STEPS) {
+    if (bar.scrollWidth <= room) break;
+    document.body.classList.add(step);
+  }
+}
 
 // ---------- resize from any edge or corner ----------
 for (const h of document.querySelectorAll('.rz')) {
@@ -342,7 +354,7 @@ for (const h of document.querySelectorAll('.rz')) {
       const n = { ...b };
       if (dir.includes('e')) n.width = b.width + dx;
       if (dir.includes('s')) n.height = b.height + dy;
-      if (dir.includes('w')) { n.width = Math.max(360, b.width - dx); n.x = b.x + b.width - n.width; }
+      if (dir.includes('w')) { n.width = Math.max(420, b.width - dx); n.x = b.x + b.width - n.width; }
       if (dir.includes('n')) { n.height = Math.max(160, b.height - dy); n.y = b.y + b.height - n.height; }
       cancelAnimationFrame(frame);
       frame = requestAnimationFrame(() => api.setBounds(n));
@@ -375,6 +387,8 @@ async function previewScript() {
 }
 
 applySettings();
+fitBar();
+document.fonts?.ready.then(fitBar); // label widths change once the fonts load
 if (PREVIEW) {
   await previewScript();
 } else if (SELFTEST) {

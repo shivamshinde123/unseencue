@@ -85,7 +85,7 @@ function saveSettings() {
 
 let prompter = null;
 let settingsWin = null;
-const MIN = { width: 360, height: 160 };
+const MIN = { width: 420, height: 160 }; // narrower than 420 the control bar can't fit every button
 
 function onSomeScreen(b) {
   return screen.getAllDisplays().some(({ workArea: w }) =>
@@ -586,6 +586,26 @@ app.whenReady().then(() => {
   });
   loadSettings();
   createPrompter();
+  // --shot: open normally (your real settings), save what the window looks like after 4 s, then quit. For debugging layout.
+  if (process.argv.includes('--shot')) {
+    setTimeout(async () => {
+      await prompter.webContents.executeJavaScript("document.body.classList.add('show-bar')");
+      await new Promise((r) => setTimeout(r, 400));
+      fs.writeFileSync(path.join(app.getPath('temp'), 'tp-first-open.png'), (await prompter.webContents.capturePage()).toPNG());
+      console.log('[shot] bounds', JSON.stringify(prompter.getBounds()));
+      // --shot-widths=360,480,...: also check the control bar at other window widths
+      const arg = process.argv.find((x) => x.startsWith('--shot-widths='));
+      for (const w of arg ? arg.split('=')[1].split(',').map(Number) : []) {
+        prompter.setBounds({ ...prompter.getBounds(), width: w });
+        await new Promise((r) => setTimeout(r, 500));
+        const fit = await prompter.webContents.executeJavaScript(
+          "(() => { const b = document.getElementById('bar').getBoundingClientRect(), c = document.getElementById('card').getBoundingClientRect(), x = document.getElementById('close').getBoundingClientRect(); return { steps: [...document.body.classList].filter((k) => k.startsWith('bar-c')).length, barInside: b.left >= c.left && b.right <= c.right, closeVisible: x.width > 0 && x.right <= c.right - 8 }; })()");
+        console.log('[shot] width', w, JSON.stringify(fit));
+        fs.writeFileSync(path.join(app.getPath('temp'), `tp-bar-${w}.png`), (await prompter.webContents.capturePage()).toPNG());
+      }
+      app.exit(0);
+    }, 4000);
+  }
 });
 
 app.on('window-all-closed', () => app.quit());

@@ -151,3 +151,15 @@ The user has no Mac. Electron runs the same code on macOS, so no Xcode or Swift 
 
 ## 2026-11-07 — Hero shows the video, not a screenshot
 The hero's monitor-mockup screenshot looked like the video's first frame, so the page opened with the same image twice. The hero now holds the video player itself (`#video`, so the README's `#video` links still work). The separate "See it in two minutes" section and the mockup CSS were removed.
+
+## 2026-11-07 — Control bar fits itself (✕ was cut off)
+**Bug:** on the user's screen the prompter opens 649 px wide, and the bar's fixed width breakpoints (900/700/520 px) didn't shrink it enough, so ✕ overflowed past the rounded right edge. **Fix:** `fitBar()` measures the bar against the window (on load, after fonts load, and on resize) and applies compact steps one at a time until it fits:
+1. hide time left
+2. hide the "Unseencue" label
+3. shorter speed slider
+4. hide the logo
+5. drop the separators
+6. hide restart and the speed number
+7. Paste/Upload icon-only (last, because the user wanted those labels)
+
+The minimum window width is now 420 px; at 360 px even the most compact bar can't hold every control. A `--shot [--shot-widths=…]` debug flag opens the app with the real settings and records, at each width, whether the bar is inside the window and ✕ is visible. Verified at 420, 520, 649, 806 and 1000 px (dev build and the installed build).

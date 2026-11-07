@@ -187,10 +187,16 @@ body:hover #bar, body.show-bar #bar { opacity: 1; transform: translate(-50%, 0);
 #voice .dot { position: absolute; top: 6px; right: 6px; width: 5px; height: 5px; border-radius: 50%; background: transparent; transition: background .15s; }
 #voice.on .dot { background: var(--slate); }
 #voice.on.hearing .dot { background: #fff; box-shadow: 0 0 6px rgba(255, 255, 255, .8); }
-/* keep the whole bar inside the window as it gets narrower */
-@media (max-width: 900px) { #bar .speed input { width: 72px; } #eta { display: none; } }
-@media (max-width: 700px) { #bar .brand-name { display: none; } #bar .speed input { width: 56px; } }
-@media (max-width: 520px) { #paste, #open { width: 32px; padding: 0; font-size: 0; gap: 0; } }
+/* Compact steps, applied one at a time by fitBar() in prompter.js until the bar fits the window */
+body.bar-c1 #eta { display: none; }
+body.bar-c2 #bar .brand-name { display: none; }
+body.bar-c3 #bar .speed input { width: 56px; }
+body.bar-c4 #bar .brand, body.bar-c4 #bar .brand + .sep { display: none; }
+body.bar-c5 #bar .sep { display: none; }
+body.bar-c5 #bar { gap: 4px; }
+body.bar-c6 #restart, body.bar-c6 #speed-val { display: none; }
+/* last resort: the labelled Paste / Upload become icons (tooltips still name them) */
+body.bar-c7 #paste, body.bar-c7 #open { width: 32px; padding: 0; font-size: 0; gap: 0; }
 
 /* ---------- move + resize ---------- */
 #grab {
