@@ -5,6 +5,8 @@
   "description": "Unseencue: a teleprompter that sits under your webcam and stays hidden from recordings and screen shares",
   "main": "main.js",
   "private": true,
+  "license": "MIT",
+  "author": "Shivam Shinde",
   "scripts": {
     "start": "electron .",
     "selftest": "electron . --selftest",

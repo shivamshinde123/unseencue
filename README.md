@@ -35,6 +35,7 @@ Read your script while you look straight into the lens. Unseencue is visible on 
 - [Testing](#testing)
 - [Architecture](#architecture)
 - [Credits](#credits)
+- [License](#license)
 
 ---
 
@@ -311,4 +312,6 @@ More detail is in [`docs/`](docs/): requirements, architecture, the decision log
 - Visual design follows the [Dimension style reference](https://styles.refero.design/style/fbcf9cbb-7c6b-449d-862a-bce521a8ab1d) on Refero Styles.
 - [Electron](https://www.electronjs.org), [marked](https://marked.js.org), [MediaPipe Tasks Vision](https://ai.google.dev/edge/mediapipe), and the [DM Sans](https://fonts.google.com/specimen/DM+Sans) and [Geist](https://vercel.com/font) fonts via Fontsource.
 
-**License:** not chosen yet. Until a license file is added, all rights are reserved by the author.
+## License
+
+[MIT](LICENSE) © 2026 Shivam Shinde. You're free to use, change and share the code. Please keep to the spirit of [Responsible use](#responsible-use).

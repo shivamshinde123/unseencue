@@ -116,4 +116,4 @@ The author's motivation: a job application asked them to walk through their AI-a
 - Exe: GitHub Release **v0.2.0**, asset named `Unseencue.exe`, so `…/releases/latest/download/Unseencue.exe` always points at the newest release. The website and README link there. Binaries stay out of git (`release/` is gitignored).
 - Website: `site/` is deployed to https://shivamshinde123.github.io/unseencue/ by `.github/workflows/pages.yml` (Pages build type "workflow") on every push that touches `site/`.
 - To ship a new version: bump `version` in package.json → `npm run dist` → `gh release create vX.Y.Z "<exe copied as Unseencue.exe>" --latest`.
-- No license chosen yet (all rights reserved until one is added).
+- License: MIT (LICENSE added 2026-11-07).
