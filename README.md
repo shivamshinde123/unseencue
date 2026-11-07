@@ -10,6 +10,8 @@ Read your script while you look straight into the lens. Unseencue is visible on 
 
 **⬇ Download:** [Windows installer](https://github.com/shivamshinde123/unseencue/releases/latest/download/Unseencue-Setup.exe) · [Windows portable](https://github.com/shivamshinde123/unseencue/releases/latest/download/Unseencue.exe) · [Mac (Apple Silicon)](https://github.com/shivamshinde123/unseencue/releases/latest/download/Unseencue-mac-arm64.dmg) · [Mac (Intel)](https://github.com/shivamshinde123/unseencue/releases/latest/download/Unseencue-mac-x64.dmg) · [Website](https://shivamshinde123.github.io/unseencue/) · [Report a problem](https://github.com/shivamshinde123/unseencue/issues)
 
+<a href="https://www.producthunt.com/products/unseencue?embed=true&amp;utm_source=badge-featured&amp;utm_medium=badge&amp;utm_campaign=badge-unseencue" target="_blank" rel="noopener noreferrer"><img alt="Unseencue - Read your script on camera, invisible to screen recordings | Product Hunt" width="250" height="54" src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1308146&amp;theme=light&amp;t=1794087055644"></a>
+
 <a href="https://shivamshinde123.github.io/unseencue/#video"><img src="site/assets/video-poster.jpg" alt="Watch the 2-minute Unseencue video" width="760"></a>
 
 **[▶ Watch the 2-minute video](https://shivamshinde123.github.io/unseencue/#video)** · [Download the MP4](https://github.com/shivamshinde123/unseencue/releases/latest/download/Unseencue-promo.mp4)
