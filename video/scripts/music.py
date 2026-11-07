@@ -1,8 +1,10 @@
-"""Synthesize an original, calm ambient bed for the video (no licensing questions).
+"""Synthesize an original, upbeat background track for the video (no licensing questions).
 
-Slow, warm chords (detuned soft sines with a gentle overtone), each fading into the next,
-a quiet high shimmer, a soft low pulse, and a simple feedback-delay "room".
-Writes public/music/ambient.wav. Run from video/:  python scripts/music.py
+112 BPM, bright major key (C - G - Am - F), with a light pop/lo-fi groove:
+kick on 1 & 3, claps on 2 & 4, swung hi-hats, a bouncy octave bass, plucky off-beat chords
+and a marimba-style melody. Intro → groove → short breakdown → groove → ring-out.
+Writes public/music/ambient.wav (name kept so the composition doesn't change).
+Run from video/:  python scripts/music.py
 """
 import pathlib
 import wave
@@ -10,97 +12,167 @@ import wave
 import numpy as np
 
 SR = 44100
-LENGTH = 126.0  # seconds; a little longer than the video so it can fade out under the end card
-CHORD_LEN = 8.0
-FADE = 3.0
+BPM = 112
+BEAT = 60 / BPM
+BAR = 4 * BEAT
+LENGTH = 126.0
+N = int(LENGTH * SR)
+rng = np.random.default_rng(3)
 
-# A minor-ish, hopeful loop: Fmaj7 - Am9 - Cmaj7 - G6/sus (MIDI notes)
-CHORDS = [
-    [41, 53, 57, 60, 64],  # Fmaj7
-    [45, 57, 60, 64, 71],  # Am9
-    [48, 55, 59, 64, 67],  # Cmaj7
-    [43, 55, 60, 62, 64],  # Gsus/6
-]
+L = np.zeros(N)
+R = np.zeros(N)
+
 
 def hz(m):
     return 440.0 * 2 ** ((m - 69) / 12)
 
-t_total = int(LENGTH * SR)
-out = np.zeros((t_total, 2))
-rng = np.random.default_rng(7)
 
-# chords
-n_chords = int(LENGTH // CHORD_LEN) + 1
-for i in range(n_chords):
-    start = int(i * CHORD_LEN * SR)
-    dur = int((CHORD_LEN + FADE) * SR)
-    if start >= t_total:
-        break
-    dur = min(dur, t_total - start)
-    t = np.arange(dur) / SR
-    env = np.minimum(1, t / FADE) * np.minimum(1, (CHORD_LEN + FADE - t) / FADE)
-    env = env ** 1.5
-    seg = np.zeros((dur, 2))
-    for j, note in enumerate(CHORDS[i % len(CHORDS)]):
-        f = hz(note)
-        amp = 0.11 if j == 0 else 0.07
-        for side, detune in ((0, -0.18), (1, 0.18)):
-            ph = rng.uniform(0, 2 * np.pi)
-            tone = np.sin(2 * np.pi * (f + detune) * t + ph)
-            tone += 0.18 * np.sin(2 * np.pi * 2 * (f + detune) * t + ph)  # soft overtone
-            seg[:, side] += amp * tone
-    out[start:start + dur] += seg * env[:, None]
+def add(sig, t0, gain=1.0, pan=0.0):
+    s = int(t0 * SR)
+    if s >= N:
+        return
+    e = min(N, s + len(sig))
+    seg = sig[: e - s] * gain
+    L[s:e] += seg * (1 - pan) / 1.0 if pan > 0 else seg
+    R[s:e] += seg * (1 + pan) / 1.0 if pan < 0 else seg
 
-# high shimmer: slow, quiet bell tones from the chord, every 4 s
-t_all = np.arange(t_total) / SR
-for k in range(int(LENGTH // 4)):
-    s = int((k * 4 + 1.5) * SR)
-    d = min(int(3.5 * SR), t_total - s)
-    if d <= 0:
-        break
-    tt = np.arange(d) / SR
-    note = CHORDS[(k // 2) % len(CHORDS)][-1 - (k % 3)] + 12
-    bell = np.sin(2 * np.pi * hz(note) * tt) * np.exp(-tt * 1.4) * 0.025
-    pan = 0.3 + 0.4 * (k % 2)
-    out[s:s + d, 0] += bell * (1 - pan)
-    out[s:s + d, 1] += bell * pan
 
-# soft low pulse on each chord change
-for i in range(n_chords):
-    s = int(i * CHORD_LEN * SR)
-    d = min(int(2.5 * SR), t_total - s)
-    if d <= 0:
-        break
-    tt = np.arange(d) / SR
-    root = hz(CHORDS[i % len(CHORDS)][0] - 12)
-    pulse = np.sin(2 * np.pi * root * tt) * np.exp(-tt * 1.8) * 0.12
-    out[s:s + d] += pulse[:, None]
+def env(n, attack=0.004, decay=0.25):
+    t = np.arange(n) / SR
+    return np.minimum(1, t / attack) * np.exp(-t / decay)
 
-# one-pole low-pass to keep it warm
-alpha = 0.18
-for c in range(2):
-    y = np.empty(t_total)
+
+def tone(freq, dur, harmonics=((1, 1.0),), attack=0.004, decay=0.25):
+    n = int(dur * SR)
+    t = np.arange(n) / SR
+    s = sum(a * np.sin(2 * np.pi * freq * k * t) for k, a in harmonics)
+    return s * env(n, attack, decay)
+
+
+def lowpass(x, a):
+    y = np.empty_like(x)
     acc = 0.0
-    x = out[:, c]
-    for n in range(t_total):
-        acc += alpha * (x[n] - acc)
-        y[n] = acc
-    out[:, c] = y
+    for i in range(len(x)):
+        acc += a * (x[i] - acc)
+        y[i] = acc
+    return y
 
-# simple stereo feedback-delay room
-for delay_s, gain, cross in ((0.37, 0.35, True), (0.53, 0.28, False), (0.71, 0.2, True)):
-    d = int(delay_s * SR)
-    wet = np.zeros_like(out)
-    wet[d:] = out[:-d] * gain
-    if cross:
-        wet = wet[:, ::-1]
-    out += wet
 
-# master: fade in/out, normalise to -16 dBFS peak-ish
-fade_in, fade_out = int(4 * SR), int(6 * SR)
-out[:fade_in] *= np.linspace(0, 1, fade_in)[:, None]
-out[-fade_out:] *= np.linspace(1, 0, fade_out)[:, None]
-out *= 0.16 / np.max(np.abs(out))
+# ---------- instruments ----------
+def kick():
+    n = int(0.35 * SR)
+    t = np.arange(n) / SR
+    f = 50 + 90 * np.exp(-t * 28)
+    ph = 2 * np.pi * np.cumsum(f) / SR
+    return np.sin(ph) * np.exp(-t * 9) * 0.9
+
+
+def clap():
+    n = int(0.25 * SR)
+    t = np.arange(n) / SR
+    noise = rng.uniform(-1, 1, n)
+    noise = noise - lowpass(noise, 0.08)  # take the top end
+    bursts = sum(np.exp(-np.maximum(0, t - d) * 60) * (t >= d) for d in (0, 0.011, 0.022))
+    return noise * (bursts * 0.35 + np.exp(-t * 14) * 0.5) * 0.45
+
+
+def hat(open_=False):
+    n = int((0.22 if open_ else 0.05) * SR)
+    t = np.arange(n) / SR
+    noise = rng.uniform(-1, 1, n)
+    noise = noise - lowpass(noise, 0.35)
+    return noise * np.exp(-t * (9 if open_ else 70)) * 0.22
+
+
+KICK, CLAP, HAT, OHAT = kick(), clap(), hat(), hat(True)
+
+# C - G - Am - F  (bass roots, chord voicings, melody notes per bar)
+PROG = [
+    (36, [60, 64, 67, 72]),  # C
+    (43, [59, 62, 67, 71]),  # G
+    (45, [60, 64, 69, 72]),  # Am
+    (41, [60, 65, 69, 72]),  # F
+]
+MELODY = [  # 8 eighth-notes per bar (None = rest), a sunny hook that loops over 4 bars
+    [76, None, 79, 76, 74, None, 72, None],
+    [74, None, 71, 74, 79, None, 74, None],
+    [72, None, 76, 72, 69, None, 72, 74],
+    [72, None, 69, 72, 77, 76, 74, None],
+]
+
+bars = int(LENGTH // BAR) + 1
+for b in range(bars):
+    t_bar = b * BAR
+    if t_bar >= LENGTH - 2:
+        break
+    root, chord = PROG[b % 4]
+    intro = b < 4
+    breakdown = 44 <= b < 48
+    outro = b >= bars - 3
+    drums = not intro and not breakdown and not outro
+    swing = 0.06 * BEAT
+
+    # drums
+    if drums:
+        for beat in (0, 2):
+            add(KICK, t_bar + beat * BEAT, 0.55)
+        add(KICK, t_bar + 2.5 * BEAT, 0.22)  # little pickup kick
+        for beat in (1, 3):
+            add(CLAP, t_bar + beat * BEAT, 0.5)
+    if not outro:
+        for e in range(8):
+            off = (e % 2) * swing
+            if e == 7 and drums:
+                add(OHAT, t_bar + e * BEAT / 2 + off, 0.4, pan=0.3)
+            else:
+                add(HAT, t_bar + e * BEAT / 2 + off, 0.6 if e % 2 else 0.35, pan=0.3)
+
+    # bass: bouncy octave eighths (root, octave)
+    if not intro and not breakdown:
+        for e in range(8):
+            note = root + (12 if e % 2 else 0)
+            sig = tone(hz(note), BEAT / 2 * 0.95, ((1, 1), (2, 0.35), (3, 0.12)), 0.006, 0.18)
+            add(lowpass(sig, 0.12), t_bar + e * BEAT / 2, 0.42)
+
+    # plucky chord stabs on the off-beats (and a long pad in intro/breakdown/outro)
+    if intro or breakdown or outro:
+        for i, n_ in enumerate(chord):
+            pad = tone(hz(n_), BAR + 0.6, ((1, 1), (2, 0.25)), 0.25, 1.8)
+            add(pad, t_bar, 0.09, pan=(-0.3 if i % 2 else 0.3))
+    if not outro:
+        for e in (1, 3, 5, 7):
+            for i, n_ in enumerate(chord):
+                stab = tone(hz(n_), 0.3, ((1, 1), (2, 0.6), (3, 0.35), (4, 0.2), (5, 0.1)), 0.003, 0.11)
+                add(stab, t_bar + e * BEAT / 2 + (e % 2) * swing, 0.2, pan=(-0.25 if i % 2 else 0.25))
+
+    # marimba-style melody (from bar 8, and through the breakdown)
+    if b >= 8 and not outro:
+        for e, n_ in enumerate(MELODY[b % 4]):
+            if n_ is None:
+                continue
+            mar = tone(hz(n_), 0.45, ((1, 1), (4, 0.25), (10, 0.05)), 0.002, 0.16)
+            add(mar, t_bar + e * BEAT / 2 + (e % 2) * swing, 0.5, pan=-0.2)
+
+# final ringing C chord
+end_t = (bars - 3) * BAR
+for i, n_ in enumerate([48, 60, 64, 67, 72, 76]):
+    add(tone(hz(n_), 5.0, ((1, 1), (2, 0.3)), 0.01, 1.6), end_t, 0.09)
+
+# gentle glue: soft room and a little low-pass on the whole mix
+mix = np.stack([L, R], axis=1)
+for d_s, g in ((0.19, 0.18), (0.29, 0.12)):
+    d = int(d_s * SR)
+    wet = np.zeros_like(mix)
+    wet[d:] = mix[:-d] * g
+    mix += wet[:, ::-1]
+for c in range(2):
+    mix[:, c] = lowpass(mix[:, c], 0.9)  # just takes the edge off
+
+fade_in, fade_out = int(1.5 * SR), int(5 * SR)
+mix[:fade_in] *= np.linspace(0, 1, fade_in)[:, None]
+mix[-fade_out:] *= np.linspace(1, 0, fade_out)[:, None]
+mix = np.tanh(mix * 1.2) / np.tanh(1.2)  # soft limiter
+mix *= 0.5 / np.max(np.abs(mix))
 
 path = pathlib.Path(__file__).resolve().parent.parent / "public" / "music" / "ambient.wav"
 path.parent.mkdir(parents=True, exist_ok=True)
@@ -108,5 +180,5 @@ with wave.open(str(path), "wb") as w:
     w.setnchannels(2)
     w.setsampwidth(2)
     w.setframerate(SR)
-    w.writeframes((out * 32767).astype(np.int16).tobytes())
-print("wrote", path, f"{LENGTH:.0f}s")
+    w.writeframes((mix * 32767).astype(np.int16).tobytes())
+print("wrote", path, f"{LENGTH:.0f}s @ {BPM} BPM")

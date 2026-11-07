@@ -25,7 +25,9 @@ export const Scene: React.FC<{ vo: string; background?: string; children: React.
 /** Seconds after the voiceover start at which a given word is spoken (for syncing visuals). */
 export const wordAt = (vo: string, word: string, nth = 0): number => {
   const line = voiceover.find((v) => v.id === vo)!;
-  const hits = line.words.filter((w) => w.text.toLowerCase().startsWith(word.toLowerCase()));
+  // exact (case-sensitive) match first, so "You" doesn't hit "your"; then a loose prefix match
+  const exact = line.words.filter((w) => w.text === word);
+  const hits = exact.length ? exact : line.words.filter((w) => w.text.toLowerCase().startsWith(word.toLowerCase()));
   const w = hits[nth] ?? hits[0];
   return VO_DELAY_S + (w ? w.startMs / 1000 : 0);
 };

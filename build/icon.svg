@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024">
+  <!-- Unseencue app icon: a webcam with a teleprompter card right under it, on the dusk "horizon". -->
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#14121d"/>
+      <stop offset="0.55" stop-color="#1d1930"/>
+      <stop offset="1" stop-color="#2b2147"/>
+    </linearGradient>
+    <radialGradient id="amber" cx="0.08" cy="1" r="0.75">
+      <stop offset="0" stop-color="#ff9a5c" stop-opacity="0.85"/>
+      <stop offset="1" stop-color="#ff9a5c" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="cobalt" cx="0.95" cy="0.95" r="0.8">
+      <stop offset="0" stop-color="#3456e6" stop-opacity="0.95"/>
+      <stop offset="1" stop-color="#3456e6" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="camglow" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#6b62f2" stop-opacity="0.75"/>
+      <stop offset="1" stop-color="#6b62f2" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="card" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#121214"/>
+      <stop offset="1" stop-color="#0a0a0a"/>
+    </linearGradient>
+    <clipPath id="sq"><rect x="0" y="0" width="1024" height="1024" rx="232"/></clipPath>
+  </defs>
+
+  <g clip-path="url(#sq)">
+    <rect width="1024" height="1024" fill="url(#sky)"/>
+    <rect width="1024" height="1024" fill="url(#amber)"/>
+    <rect width="1024" height="1024" fill="url(#cobalt)"/>
+  </g>
+  <rect x="3" y="3" width="1018" height="1018" rx="230" fill="none" stroke="#ffffff" stroke-opacity="0.12" stroke-width="6"/>
+
+  <!-- webcam -->
+  <circle cx="512" cy="188" r="120" fill="url(#camglow)"/>
+  <circle cx="512" cy="188" r="44" fill="#060608" stroke="#2a2a30" stroke-width="12"/>
+  <circle cx="512" cy="188" r="18" fill="#1b2a4a"/>
+  <circle cx="502" cy="178" r="6" fill="#ffffff" fill-opacity="0.5"/>
+
+  <!-- teleprompter card right under the lens -->
+  <rect x="176" y="300" width="672" height="452" rx="64" fill="url(#card)" fill-opacity="0.94"/>
+  <rect x="176" y="300" width="672" height="452" rx="64" fill="none" stroke="#ffffff" stroke-opacity="0.16" stroke-width="5"/>
+
+  <!-- script lines; the middle one is the line being read -->
+  <rect x="268" y="398" width="380" height="40" rx="20" fill="#ffffff" fill-opacity="0.38"/>
+  <rect x="268" y="506" width="488" height="48" rx="24" fill="#ffffff"/>
+  <rect x="268" y="622" width="300" height="40" rx="20" fill="#ffffff" fill-opacity="0.38"/>
+
+  <!-- reading-marker arrows -->
+  <path d="M206 498 L246 530 L206 562 Z" fill="#7d75ff"/>
+  <path d="M818 498 L778 530 L818 562 Z" fill="#7d75ff"/>
+</svg>

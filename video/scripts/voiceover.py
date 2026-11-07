@@ -9,20 +9,21 @@ import json
 import pathlib
 import subprocess
 
-VOICE = "en-US-AndrewMultilingualNeural"
-RATE = "+0%"
+VOICE = "en-US-BrianMultilingualNeural"  # "approachable, casual"
+RATE = "+7%"   # a touch quicker = more upbeat
+PITCH = "+2Hz"
 
 SCENES = [
-    ("hook", "You know exactly what you want to say... until the camera turns on."),
-    ("problem", "Read from a second window, and your eyes drift away from the lens. Worse, your notes end up in your screen recording."),
-    ("origin", "I ran into this when a job application asked me to walk them through my AI agent workflow. There was a lot to cover, and I didn't want to ramble. So I built a tool."),
-    ("reveal", "Meet Unseen Cue. A teleprompter that sits right under your webcam, so your eyes stay on the lens."),
-    ("hidden", "And it stays out of your recordings. OBS, Loom, and screen sharing in Zoom, Meet and Teams see right through it. You see your script. Your video doesn't."),
-    ("script", "Paste your script, type it, or drop in a file. Headings, colours and cue boxes make every section easy to find."),
-    ("follow", "Voice follow scrolls while you talk, and pauses when you stop. Head follow waits whenever you look away."),
-    ("custom", "Choose any font, size, colour and reading marker, and see every change in a live preview."),
-    ("responsible", "It's made for creating: videos, demos and presentations. Not for interviews or exams."),
-    ("cta", "Unseen Cue. Free and open source, for Windows. Stay on script. Look at the lens."),
+    ("hook", "Okay, real talk. You know exactly what you want to say... until the camera turns on."),
+    ("problem", "Read from another window, and your eyes drift right off the lens. Worse, your notes end up in your screen recording. Oops."),
+    ("origin", "So here's how this started. A job application asked me to walk them through my AI agent workflow. There was a lot to cover, and I really didn't want to ramble. So I built a tool!"),
+    ("reveal", "Say hi to Unseen Cue! A teleprompter that sits right under your webcam, so your eyes stay on the lens."),
+    ("hidden", "And here's the magic: it stays out of your recordings. OBS, Loom, and screen sharing in Zoom, Meet and Teams see right through it. You see your script. Your video doesn't."),
+    ("script", "Paste your script, type it, or just drop in a file. Headings, colours and cue boxes make every section super easy to find."),
+    ("follow", "Voice follow scrolls while you talk, and pauses when you stop. Head follow waits whenever you look away. Pretty neat, right?"),
+    ("custom", "Make it yours! Pick any font, size, colour and reading marker, and watch every change in a live preview."),
+    ("responsible", "Quick note: it's made for creating. Videos, demos and presentations. Not for interviews or exams."),
+    ("cta", "Unseen Cue. Free and open source, for Windows. Stay on script, and look at the lens!"),
 ]
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
@@ -41,7 +42,7 @@ def duration_ms(path: pathlib.Path) -> int:
 async def make(scene_id: str, text: str) -> dict:
     import edge_tts
 
-    comm = edge_tts.Communicate(text, VOICE, rate=RATE, boundary="WordBoundary")
+    comm = edge_tts.Communicate(text, VOICE, rate=RATE, pitch=PITCH, boundary="WordBoundary")
     words = []
     path = OUT / f"{scene_id}.mp3"
     with open(path, "wb") as f:

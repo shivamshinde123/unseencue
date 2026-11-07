@@ -1,5 +1,6 @@
 import React from "react";
 import { enter, lerp, prog, useSeconds } from "../anim";
+import { Img, staticFile } from "remotion";
 import { Icon } from "../components/Icons";
 import { Scene, wordAt } from "../components/Scene";
 import { HORIZON, T } from "../theme";
@@ -18,7 +19,7 @@ export const Cta: React.FC<{ seconds: number }> = ({ seconds }) => {
       <div style={{ position: "absolute", inset: 0, background: HORIZON, opacity: prog(t, 0, 1.2) }} />
       <div style={{ position: "absolute", inset: 0, opacity: 1 - out }}>
         <div style={{ position: "absolute", left: 0, right: 0, top: 150, display: "flex", justifyContent: "center", alignItems: "center", gap: 24, opacity: mark, scale: String(lerp(0.94, 1, mark)), filter: `blur(${(1 - mark) * 12}px)` }}>
-          <Icon name="unseen" size={96} color={T.ash} stroke={1.5} />
+          <Img src={staticFile("icon.png")} style={{ width: 120, height: 120, filter: "drop-shadow(0 14px 30px rgba(0,0,0,.45))" }} />
           <span style={{ font: `600 110px ${T.head}`, letterSpacing: "-0.04em", color: "#fff" }}>Unseencue</span>
         </div>
 

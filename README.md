@@ -1,12 +1,14 @@
 <div align="center">
 
+<img src="site/assets/icon-180.png" alt="Unseencue app icon" width="96">
+
 # Unseencue
 
 **A teleprompter for creators that sits right under your webcam.**
 
 Read your script while you look straight into the lens. Unseencue is visible on your monitor but stays out of your screen recordings and screen shares, so your notes never end up in the video.
 
-[**⬇ Download for Windows**](https://github.com/shivamshinde123/unseencue/releases/latest/download/Unseencue.exe) · [Website](https://shivamshinde123.github.io/unseencue/) · [Report a problem](https://github.com/shivamshinde123/unseencue/issues)
+[**⬇ Download for Windows**](https://github.com/shivamshinde123/unseencue/releases/latest/download/Unseencue-Setup.exe) (installer) · [portable .exe](https://github.com/shivamshinde123/unseencue/releases/latest/download/Unseencue.exe) · [Website](https://shivamshinde123.github.io/unseencue/) · [Report a problem](https://github.com/shivamshinde123/unseencue/issues)
 
 <a href="https://shivamshinde123.github.io/unseencue/#video"><img src="site/assets/video-poster.jpg" alt="Watch the 2-minute Unseencue video" width="760"></a>
 
@@ -82,9 +84,13 @@ When you read a script from another window, your eyes drift away from the camera
 
 ## Download and install
 
-1. Download **[Unseencue.exe](https://github.com/shivamshinde123/unseencue/releases/latest/download/Unseencue.exe)** (about 80 MB) from the [latest release](https://github.com/shivamshinde123/unseencue/releases/latest).
-2. Double-click it. It's a portable app: no installer, nothing to uninstall. Put it anywhere, for example on your desktop or taskbar.
-3. **Windows SmartScreen** may say "Windows protected your PC" because the app isn't code-signed yet. Click **More info → Run anyway**.
+**Installer (recommended):** [Unseencue-Setup.exe](https://github.com/shivamshinde123/unseencue/releases/latest/download/Unseencue-Setup.exe), about 88 MB.
+1. Run it. It installs for your Windows user only, so no admin rights are needed, and opens Unseencue when it's done.
+2. **Unseencue** is added to your **Start menu** and your desktop, and to **Settings › Apps** so you can uninstall it.
+
+**Portable:** [Unseencue.exe](https://github.com/shivamshinde123/unseencue/releases/latest/download/Unseencue.exe). Nothing to install; double-click to run it from anywhere. It won't appear in the Start menu.
+
+**Windows SmartScreen** may say "Windows protected your PC" because the app isn't code-signed yet. Click **More info → Run anyway**.
 
 **Requirements:** Windows 10 version 2004 (May 2020 update) or later, or Windows 11. Hiding from capture needs 2004 or later. A microphone for voice follow and a webcam for head follow are optional.
 
@@ -251,11 +257,13 @@ npm install
 npm start
 ```
 
-Build the portable exe (output: `release/Unseencue <version>.exe`):
+Build the installer and the portable exe:
 
 ```bash
-npm run dist
+npm run dist        # release/Unseencue-Setup-<version>.exe and Unseencue-<version>-portable.exe
 ```
+
+The app icon is drawn in `build/icon.svg`; `npm run icon` regenerates `build/icon.ico`, `renderer/icon.png` and the website icons from it.
 
 The face-landmark model is included in `models/`. To download it again:
 

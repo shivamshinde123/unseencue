@@ -106,8 +106,11 @@ function homeBounds() {
   return { x, y: wa.y + 8, width, height };
 }
 
+const ICON = path.join(__dirname, 'renderer', 'icon.png');
+
 function hiddenWindow(opts) {
   const win = new BrowserWindow({
+    icon: ICON, // taskbar / Alt-Tab icon (the exe and shortcuts get build/icon.ico at packaging time)
     ...opts,
     webPreferences: { preload: path.join(__dirname, 'preload.js'), contextIsolation: true, nodeIntegration: false },
   });
@@ -454,6 +457,9 @@ function migrateOldSettings() {
     fs.copyFileSync(old, settingsPath());
   }
 }
+
+// Same ID as the installer's Start-menu shortcut, so Windows groups the taskbar button with it and shows our icon.
+app.setAppUserModelId('local.unseencue');
 
 app.whenReady().then(() => {
   migrateOldSettings();

@@ -1,6 +1,6 @@
 import React from "react";
 import { lerp, prog, useSeconds } from "../anim";
-import { Icon } from "../components/Icons";
+import { Img, staticFile } from "remotion";
 import { Monitor } from "../components/Monitor";
 import { Prompter } from "../components/Prompter";
 import { Scene, wordAt } from "../components/Scene";
@@ -38,7 +38,7 @@ export const Reveal: React.FC = () => {
           filter: `blur(${(1 - mark) * 14}px)`,
         }}
       >
-        <Icon name="unseen" size={150} color={T.ash} stroke={1.5} />
+        <Img src={staticFile("icon.png")} style={{ width: 170, height: 170, filter: "drop-shadow(0 18px 40px rgba(0,0,0,.45))" }} />
         <span style={{ font: `600 170px ${T.head}`, letterSpacing: "-0.04em", color: "#fff" }}>Unseencue</span>
       </div>
       <div style={{ position: "absolute", left: 0, right: 0, top: 600, textAlign: "center", font: `500 46px ${T.ui}`, color: T.ash, opacity: mark * (1 - up) }}>

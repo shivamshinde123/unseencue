@@ -1,1056 +1,1156 @@
 [
   {
     "id": "hook",
-    "text": "You know exactly what you want to say... until the camera turns on.",
-    "durationMs": 4080,
+    "text": "Okay, real talk. You know exactly what you want to say... until the camera turns on.",
+    "durationMs": 5496,
     "words": [
       {
+        "text": "Okay",
+        "startMs": 58,
+        "endMs": 257
+      },
+      {
+        "text": "real",
+        "startMs": 269,
+        "endMs": 537
+      },
+      {
+        "text": "talk",
+        "startMs": 549,
+        "endMs": 1005
+      },
+      {
         "text": "You",
-        "startMs": 100,
-        "endMs": 175
+        "startMs": 1355,
+        "endMs": 1414
       },
       {
         "text": "know",
-        "startMs": 175,
-        "endMs": 338
+        "startMs": 1425,
+        "endMs": 1577
       },
       {
         "text": "exactly",
-        "startMs": 338,
-        "endMs": 988
+        "startMs": 1589,
+        "endMs": 2114
       },
       {
         "text": "what",
-        "startMs": 1000,
-        "endMs": 1125
+        "startMs": 2126,
+        "endMs": 2290
       },
       {
         "text": "you",
-        "startMs": 1125,
-        "endMs": 1212
+        "startMs": 2301,
+        "endMs": 2383
       },
       {
         "text": "want",
-        "startMs": 1225,
-        "endMs": 1325
+        "startMs": 2395,
+        "endMs": 2558
       },
       {
         "text": "to",
-        "startMs": 1325,
-        "endMs": 1362
+        "startMs": 2570,
+        "endMs": 2617
       },
       {
         "text": "say",
-        "startMs": 1375,
-        "endMs": 1862
+        "startMs": 2628,
+        "endMs": 3014
       },
       {
         "text": "until",
-        "startMs": 2475,
-        "endMs": 2700
+        "startMs": 3668,
+        "endMs": 3984
       },
       {
         "text": "the",
-        "startMs": 2712,
-        "endMs": 2788
+        "startMs": 3995,
+        "endMs": 4089
       },
       {
         "text": "camera",
-        "startMs": 2800,
-        "endMs": 3150
+        "startMs": 4100,
+        "endMs": 4486
       },
       {
         "text": "turns",
-        "startMs": 3150,
-        "endMs": 3425
+        "startMs": 4498,
+        "endMs": 4825
       },
       {
         "text": "on",
-        "startMs": 3438,
-        "endMs": 3700
+        "startMs": 4836,
+        "endMs": 5140
       }
     ]
   },
   {
     "id": "problem",
-    "text": "Read from a second window, and your eyes drift away from the lens. Worse, your notes end up in your screen recording.",
-    "durationMs": 7200,
+    "text": "Read from another window, and your eyes drift right off the lens. Worse, your notes end up in your screen recording. Oops.",
+    "durationMs": 7776,
     "words": [
       {
         "text": "Read",
-        "startMs": 88,
-        "endMs": 350
+        "startMs": 58,
+        "endMs": 315
       },
       {
         "text": "from",
-        "startMs": 362,
-        "endMs": 475
+        "startMs": 327,
+        "endMs": 491
       },
       {
-        "text": "a",
-        "startMs": 475,
-        "endMs": 512
-      },
-      {
-        "text": "second",
-        "startMs": 512,
-        "endMs": 888
+        "text": "another",
+        "startMs": 502,
+        "endMs": 794
       },
       {
         "text": "window",
-        "startMs": 888,
-        "endMs": 1425
+        "startMs": 806,
+        "endMs": 1285
       },
       {
         "text": "and",
-        "startMs": 1638,
-        "endMs": 1712
+        "startMs": 1565,
+        "endMs": 1729
       },
       {
         "text": "your",
-        "startMs": 1712,
-        "endMs": 1875
+        "startMs": 1741,
+        "endMs": 1939
       },
       {
         "text": "eyes",
-        "startMs": 1888,
-        "endMs": 2288
+        "startMs": 1951,
+        "endMs": 2220
       },
       {
         "text": "drift",
-        "startMs": 2288,
-        "endMs": 2650
+        "startMs": 2231,
+        "endMs": 2605
       },
       {
-        "text": "away",
-        "startMs": 2662,
-        "endMs": 3075
+        "text": "right",
+        "startMs": 2617,
+        "endMs": 2850
       },
       {
-        "text": "from",
-        "startMs": 3075,
-        "endMs": 3212
+        "text": "off",
+        "startMs": 2862,
+        "endMs": 3049
       },
       {
         "text": "the",
-        "startMs": 3212,
-        "endMs": 3288
+        "startMs": 3061,
+        "endMs": 3154
       },
       {
         "text": "lens",
-        "startMs": 3288,
-        "endMs": 3875
+        "startMs": 3166,
+        "endMs": 3633
       },
       {
         "text": "Worse",
-        "startMs": 4275,
-        "endMs": 4812
+        "startMs": 4019,
+        "endMs": 4428
       },
       {
         "text": "your",
-        "startMs": 5025,
-        "endMs": 5125
+        "startMs": 4451,
+        "endMs": 4614
       },
       {
         "text": "notes",
-        "startMs": 5125,
-        "endMs": 5462
+        "startMs": 4626,
+        "endMs": 4988
       },
       {
         "text": "end",
-        "startMs": 5625,
-        "endMs": 5775
+        "startMs": 5012,
+        "endMs": 5234
       },
       {
         "text": "up",
-        "startMs": 5788,
-        "endMs": 5925
+        "startMs": 5245,
+        "endMs": 5444
       },
       {
         "text": "in",
-        "startMs": 5925,
-        "endMs": 6000
+        "startMs": 5467,
+        "endMs": 5584
       },
       {
         "text": "your",
-        "startMs": 6000,
-        "endMs": 6100
+        "startMs": 5596,
+        "endMs": 5724
       },
       {
         "text": "screen",
-        "startMs": 6100,
-        "endMs": 6362
+        "startMs": 5736,
+        "endMs": 6122
       },
       {
         "text": "recording",
-        "startMs": 6362,
-        "endMs": 6825
+        "startMs": 6133,
+        "endMs": 6682
+      },
+      {
+        "text": "Oops",
+        "startMs": 7033,
+        "endMs": 7418
       }
     ]
   },
   {
     "id": "origin",
-    "text": "I ran into this when a job application asked me to walk them through my AI agent workflow. There was a lot to cover, and I didn't want to ramble. So I built a tool.",
-    "durationMs": 10368,
+    "text": "So here's how this started. A job application asked me to walk them through my AI agent workflow. There was a lot to cover, and I really didn't want to ramble. So I built a tool!",
+    "durationMs": 10536,
     "words": [
       {
-        "text": "I",
-        "startMs": 100,
-        "endMs": 162
+        "text": "So",
+        "startMs": 48,
+        "endMs": 189
       },
       {
-        "text": "ran",
-        "startMs": 175,
-        "endMs": 488
+        "text": "here's",
+        "startMs": 200,
+        "endMs": 504
       },
       {
-        "text": "into",
-        "startMs": 488,
-        "endMs": 688
+        "text": "how",
+        "startMs": 516,
+        "endMs": 714
       },
       {
         "text": "this",
-        "startMs": 688,
-        "endMs": 1075
+        "startMs": 726,
+        "endMs": 866
       },
       {
-        "text": "when",
-        "startMs": 1088,
-        "endMs": 1200
+        "text": "started",
+        "startMs": 878,
+        "endMs": 1427
       },
       {
-        "text": "a",
-        "startMs": 1200,
-        "endMs": 1250
+        "text": "A",
+        "startMs": 1799,
+        "endMs": 1881
       },
       {
         "text": "job",
-        "startMs": 1250,
-        "endMs": 1550
+        "startMs": 1893,
+        "endMs": 2185
       },
       {
         "text": "application",
-        "startMs": 1562,
-        "endMs": 2275
+        "startMs": 2196,
+        "endMs": 2815
       },
       {
         "text": "asked",
-        "startMs": 2438,
-        "endMs": 2725
+        "startMs": 2827,
+        "endMs": 3131
       },
       {
         "text": "me",
-        "startMs": 2725,
-        "endMs": 2850
+        "startMs": 3143,
+        "endMs": 3283
       },
       {
         "text": "to",
-        "startMs": 2862,
-        "endMs": 2938
+        "startMs": 3294,
+        "endMs": 3411
       },
       {
         "text": "walk",
-        "startMs": 2938,
-        "endMs": 3388
+        "startMs": 3423,
+        "endMs": 3727
       },
       {
         "text": "them",
-        "startMs": 3388,
-        "endMs": 3675
+        "startMs": 3738,
+        "endMs": 3949
       },
       {
         "text": "through",
-        "startMs": 3900,
-        "endMs": 4088
+        "startMs": 3960,
+        "endMs": 4159
       },
       {
         "text": "my",
-        "startMs": 4088,
-        "endMs": 4312
+        "startMs": 4171,
+        "endMs": 4381
       },
       {
         "text": "AI",
-        "startMs": 4412,
-        "endMs": 4950
+        "startMs": 4393,
+        "endMs": 4731
       },
       {
         "text": "agent",
-        "startMs": 5062,
-        "endMs": 5400
+        "startMs": 4743,
+        "endMs": 5012
       },
       {
         "text": "workflow",
-        "startMs": 5400,
-        "endMs": 6088
+        "startMs": 5023,
+        "endMs": 5549
       },
       {
         "text": "There",
-        "startMs": 6488,
-        "endMs": 6538
+        "startMs": 5911,
+        "endMs": 5981
       },
       {
         "text": "was",
-        "startMs": 6550,
-        "endMs": 6625
+        "startMs": 5993,
+        "endMs": 6098
       },
       {
         "text": "a",
-        "startMs": 6625,
-        "endMs": 6662
+        "startMs": 6110,
+        "endMs": 6168
       },
       {
         "text": "lot",
-        "startMs": 6662,
-        "endMs": 7025
+        "startMs": 6180,
+        "endMs": 6425
       },
       {
         "text": "to",
-        "startMs": 7025,
-        "endMs": 7100
+        "startMs": 6437,
+        "endMs": 6519
       },
       {
         "text": "cover",
-        "startMs": 7112,
-        "endMs": 7512
+        "startMs": 6530,
+        "endMs": 7021
       },
       {
         "text": "and",
-        "startMs": 7775,
-        "endMs": 7825
+        "startMs": 7185,
+        "endMs": 7395
       },
       {
         "text": "I",
-        "startMs": 7838,
-        "endMs": 7900
+        "startMs": 7407,
+        "endMs": 7512
+      },
+      {
+        "text": "really",
+        "startMs": 7523,
+        "endMs": 7815
       },
       {
         "text": "didn't",
-        "startMs": 7912,
-        "endMs": 8125
+        "startMs": 7827,
+        "endMs": 8037
       },
       {
         "text": "want",
-        "startMs": 8125,
-        "endMs": 8212
+        "startMs": 8049,
+        "endMs": 8189
       },
       {
         "text": "to",
-        "startMs": 8225,
-        "endMs": 8262
+        "startMs": 8201,
+        "endMs": 8248
       },
       {
         "text": "ramble",
-        "startMs": 8275,
-        "endMs": 8850
+        "startMs": 8259,
+        "endMs": 8762
       },
       {
         "text": "So",
-        "startMs": 9262,
-        "endMs": 9350
+        "startMs": 9100,
+        "endMs": 9264
       },
       {
         "text": "I",
-        "startMs": 9350,
-        "endMs": 9400
+        "startMs": 9276,
+        "endMs": 9381
       },
       {
         "text": "built",
-        "startMs": 9400,
-        "endMs": 9575
+        "startMs": 9393,
+        "endMs": 9638
       },
       {
         "text": "a",
-        "startMs": 9575,
-        "endMs": 9625
+        "startMs": 9650,
+        "endMs": 9720
       },
       {
         "text": "tool",
-        "startMs": 9625,
-        "endMs": 10000
+        "startMs": 9731,
+        "endMs": 10187
       }
     ]
   },
   {
     "id": "reveal",
-    "text": "Meet Unseencue. A teleprompter that sits right under your webcam, so your eyes stay on the lens.",
-    "durationMs": 6120,
+    "text": "Say hi to Unseencue! A teleprompter that sits right under your webcam, so your eyes stay on the lens.",
+    "durationMs": 6360,
     "words": [
       {
-        "text": "Meet",
-        "startMs": 100,
-        "endMs": 325
+        "text": "Say",
+        "startMs": 70,
+        "endMs": 257
+      },
+      {
+        "text": "hi",
+        "startMs": 269,
+        "endMs": 502
+      },
+      {
+        "text": "to",
+        "startMs": 514,
+        "endMs": 678
       },
       {
         "text": "Unseencue",
-        "startMs": 438,
-        "endMs": 1262
+        "startMs": 689,
+        "endMs": 1565
       },
       {
         "text": "A",
-        "startMs": 1650,
-        "endMs": 1700
+        "startMs": 1907,
+        "endMs": 2001
       },
       {
         "text": "teleprompter",
-        "startMs": 1700,
-        "endMs": 2388
+        "startMs": 2013,
+        "endMs": 2678
       },
       {
         "text": "that",
-        "startMs": 2388,
-        "endMs": 2512
+        "startMs": 2690,
+        "endMs": 2854
       },
       {
         "text": "sits",
-        "startMs": 2512,
-        "endMs": 2775
+        "startMs": 2865,
+        "endMs": 3146
       },
       {
         "text": "right",
-        "startMs": 2788,
-        "endMs": 3075
+        "startMs": 3157,
+        "endMs": 3485
       },
       {
         "text": "under",
-        "startMs": 3075,
-        "endMs": 3212
+        "startMs": 3508,
+        "endMs": 3730
       },
       {
         "text": "your",
-        "startMs": 3225,
-        "endMs": 3375
+        "startMs": 3742,
+        "endMs": 3858
       },
       {
         "text": "webcam",
-        "startMs": 3375,
-        "endMs": 3950
+        "startMs": 3870,
+        "endMs": 4372
       },
       {
         "text": "so",
-        "startMs": 4300,
-        "endMs": 4400
+        "startMs": 4396,
+        "endMs": 4559
       },
       {
         "text": "your",
-        "startMs": 4400,
-        "endMs": 4525
+        "startMs": 4571,
+        "endMs": 4781
       },
       {
         "text": "eyes",
-        "startMs": 4525,
-        "endMs": 4825
+        "startMs": 4793,
+        "endMs": 5003
       },
       {
         "text": "stay",
-        "startMs": 4838,
-        "endMs": 5062
+        "startMs": 5015,
+        "endMs": 5330
       },
       {
         "text": "on",
-        "startMs": 5062,
-        "endMs": 5138
+        "startMs": 5342,
+        "endMs": 5471
       },
       {
         "text": "the",
-        "startMs": 5150,
-        "endMs": 5200
+        "startMs": 5482,
+        "endMs": 5552
       },
       {
         "text": "lens",
-        "startMs": 5200,
-        "endMs": 5750
+        "startMs": 5564,
+        "endMs": 6008
       }
     ]
   },
   {
     "id": "hidden",
-    "text": "And it stays out of your recordings. OBS, Loom, and screen sharing in Zoom, Meet and Teams see right through it. You see your script. Your video doesn't.",
+    "text": "And here's the magic: it stays out of your recordings. OBS, Loom, and screen sharing in Zoom, Meet and Teams see right through it. You see your script. Your video doesn't.",
     "durationMs": 10776,
     "words": [
       {
         "text": "And",
-        "startMs": 88,
-        "endMs": 150
+        "startMs": 82,
+        "endMs": 164
+      },
+      {
+        "text": "here's",
+        "startMs": 175,
+        "endMs": 479
+      },
+      {
+        "text": "the",
+        "startMs": 491,
+        "endMs": 561
+      },
+      {
+        "text": "magic",
+        "startMs": 572,
+        "endMs": 1051
       },
       {
         "text": "it",
-        "startMs": 150,
-        "endMs": 225
+        "startMs": 1717,
+        "endMs": 1787
       },
       {
         "text": "stays",
-        "startMs": 225,
-        "endMs": 675
+        "startMs": 1799,
+        "endMs": 2266
       },
       {
         "text": "out",
-        "startMs": 688,
-        "endMs": 800
+        "startMs": 2278,
+        "endMs": 2465
       },
       {
         "text": "of",
-        "startMs": 800,
-        "endMs": 862
+        "startMs": 2477,
+        "endMs": 2547
       },
       {
         "text": "your",
-        "startMs": 862,
-        "endMs": 975
+        "startMs": 2558,
+        "endMs": 2710
       },
       {
         "text": "recordings",
-        "startMs": 988,
-        "endMs": 1738
+        "startMs": 2722,
+        "endMs": 3400
       },
       {
         "text": "OBS",
-        "startMs": 2138,
-        "endMs": 2975
+        "startMs": 3773,
+        "endMs": 4287
       },
       {
         "text": "Loom",
-        "startMs": 3212,
-        "endMs": 3625
+        "startMs": 4311,
+        "endMs": 4708
       },
       {
         "text": "and",
-        "startMs": 4100,
-        "endMs": 4225
+        "startMs": 4731,
+        "endMs": 4836
       },
       {
         "text": "screen",
-        "startMs": 4225,
-        "endMs": 4725
+        "startMs": 4848,
+        "endMs": 5164
       },
       {
         "text": "sharing",
-        "startMs": 4725,
-        "endMs": 5075
+        "startMs": 5175,
+        "endMs": 5526
       },
       {
         "text": "in",
-        "startMs": 5075,
-        "endMs": 5162
+        "startMs": 5537,
+        "endMs": 5631
       },
       {
         "text": "Zoom",
-        "startMs": 5175,
-        "endMs": 5550
+        "startMs": 5643,
+        "endMs": 6040
       },
       {
         "text": "Meet",
-        "startMs": 6062,
-        "endMs": 6400
+        "startMs": 6051,
+        "endMs": 6367
       },
       {
         "text": "and",
-        "startMs": 6550,
-        "endMs": 6650
+        "startMs": 6378,
+        "endMs": 6472
       },
       {
         "text": "Teams",
-        "startMs": 6650,
-        "endMs": 6962
+        "startMs": 6484,
+        "endMs": 6764
       },
       {
         "text": "see",
-        "startMs": 6962,
-        "endMs": 7112
+        "startMs": 6776,
+        "endMs": 6963
       },
       {
         "text": "right",
-        "startMs": 7112,
-        "endMs": 7388
+        "startMs": 6974,
+        "endMs": 7220
       },
       {
         "text": "through",
-        "startMs": 7400,
-        "endMs": 7675
+        "startMs": 7231,
+        "endMs": 7418
       },
       {
         "text": "it",
-        "startMs": 7688,
-        "endMs": 7875
+        "startMs": 7430,
+        "endMs": 7640
       },
       {
         "text": "You",
-        "startMs": 8275,
-        "endMs": 8325
+        "startMs": 7991,
+        "endMs": 8061
       },
       {
         "text": "see",
-        "startMs": 8325,
-        "endMs": 8475
+        "startMs": 8072,
+        "endMs": 8283
       },
       {
         "text": "your",
-        "startMs": 8475,
-        "endMs": 8588
+        "startMs": 8294,
+        "endMs": 8435
       },
       {
         "text": "script",
-        "startMs": 8600,
-        "endMs": 9038
+        "startMs": 8446,
+        "endMs": 8995
       },
       {
         "text": "Your",
-        "startMs": 9438,
-        "endMs": 9550
+        "startMs": 9346,
+        "endMs": 9463
       },
       {
         "text": "video",
-        "startMs": 9562,
-        "endMs": 9925
+        "startMs": 9474,
+        "endMs": 9871
       },
       {
         "text": "doesn't",
-        "startMs": 9938,
-        "endMs": 10400
+        "startMs": 9883,
+        "endMs": 10421
       }
     ]
   },
   {
     "id": "script",
-    "text": "Paste your script, type it, or drop in a file. Headings, colours and cue boxes make every section easy to find.",
-    "durationMs": 7992,
+    "text": "Paste your script, type it, or just drop in a file. Headings, colours and cue boxes make every section super easy to find.",
+    "durationMs": 8232,
     "words": [
       {
         "text": "Paste",
-        "startMs": 112,
-        "endMs": 300
+        "startMs": 82,
+        "endMs": 327
       },
       {
         "text": "your",
-        "startMs": 300,
-        "endMs": 375
+        "startMs": 339,
+        "endMs": 421
       },
       {
         "text": "script",
-        "startMs": 375,
-        "endMs": 875
+        "startMs": 432,
+        "endMs": 876
       },
       {
         "text": "type",
-        "startMs": 1088,
-        "endMs": 1338
+        "startMs": 1367,
+        "endMs": 1624
       },
       {
         "text": "it",
-        "startMs": 1350,
-        "endMs": 1512
+        "startMs": 1636,
+        "endMs": 1776
       },
       {
         "text": "or",
-        "startMs": 1950,
-        "endMs": 2025
+        "startMs": 1799,
+        "endMs": 1893
+      },
+      {
+        "text": "just",
+        "startMs": 1904,
+        "endMs": 2103
       },
       {
         "text": "drop",
-        "startMs": 2025,
-        "endMs": 2338
+        "startMs": 2114,
+        "endMs": 2407
       },
       {
         "text": "in",
-        "startMs": 2338,
-        "endMs": 2388
+        "startMs": 2418,
+        "endMs": 2477
       },
       {
         "text": "a",
-        "startMs": 2388,
-        "endMs": 2425
+        "startMs": 2488,
+        "endMs": 2535
       },
       {
         "text": "file",
-        "startMs": 2425,
-        "endMs": 2888
+        "startMs": 2547,
+        "endMs": 2991
       },
       {
         "text": "Headings",
-        "startMs": 3300,
-        "endMs": 3912
+        "startMs": 3364,
+        "endMs": 3832
       },
       {
         "text": "colours",
-        "startMs": 4138,
-        "endMs": 4575
+        "startMs": 4217,
+        "endMs": 4673
       },
       {
         "text": "and",
-        "startMs": 4575,
-        "endMs": 4675
+        "startMs": 4685,
+        "endMs": 4825
       },
       {
         "text": "cue",
-        "startMs": 4675,
-        "endMs": 4925
+        "startMs": 4836,
+        "endMs": 5035
       },
       {
         "text": "boxes",
-        "startMs": 4925,
-        "endMs": 5438
+        "startMs": 5047,
+        "endMs": 5561
       },
       {
         "text": "make",
-        "startMs": 5438,
-        "endMs": 5662
+        "startMs": 5572,
+        "endMs": 5783
       },
       {
         "text": "every",
-        "startMs": 5850,
-        "endMs": 6138
+        "startMs": 5876,
+        "endMs": 6110
       },
       {
         "text": "section",
-        "startMs": 6138,
-        "endMs": 6638
+        "startMs": 6122,
+        "endMs": 6554
+      },
+      {
+        "text": "super",
+        "startMs": 6565,
+        "endMs": 6916
       },
       {
         "text": "easy",
-        "startMs": 6825,
-        "endMs": 7075
+        "startMs": 6963,
+        "endMs": 7301
       },
       {
         "text": "to",
-        "startMs": 7075,
-        "endMs": 7125
+        "startMs": 7313,
+        "endMs": 7395
       },
       {
         "text": "find",
-        "startMs": 7138,
-        "endMs": 7625
+        "startMs": 7407,
+        "endMs": 7885
       }
     ]
   },
   {
     "id": "follow",
-    "text": "Voice follow scrolls while you talk, and pauses when you stop. Head follow waits whenever you look away.",
-    "durationMs": 6504,
+    "text": "Voice follow scrolls while you talk, and pauses when you stop. Head follow waits whenever you look away. Pretty neat, right?",
+    "durationMs": 7752,
     "words": [
       {
         "text": "Voice",
-        "startMs": 100,
-        "endMs": 400
+        "startMs": 82,
+        "endMs": 386
       },
       {
         "text": "follow",
-        "startMs": 412,
-        "endMs": 738
+        "startMs": 397,
+        "endMs": 666
       },
       {
         "text": "scrolls",
-        "startMs": 738,
-        "endMs": 1225
+        "startMs": 678,
+        "endMs": 1145
       },
       {
         "text": "while",
-        "startMs": 1225,
-        "endMs": 1350
+        "startMs": 1157,
+        "endMs": 1320
       },
       {
         "text": "you",
-        "startMs": 1350,
-        "endMs": 1462
+        "startMs": 1332,
+        "endMs": 1437
       },
       {
         "text": "talk",
-        "startMs": 1462,
-        "endMs": 1950
+        "startMs": 1449,
+        "endMs": 1916
       },
       {
         "text": "and",
-        "startMs": 2338,
-        "endMs": 2425
+        "startMs": 2313,
+        "endMs": 2500
       },
       {
         "text": "pauses",
-        "startMs": 2425,
-        "endMs": 3000
+        "startMs": 2512,
+        "endMs": 3037
       },
       {
         "text": "when",
-        "startMs": 3012,
-        "endMs": 3125
+        "startMs": 3049,
+        "endMs": 3178
       },
       {
         "text": "you",
-        "startMs": 3125,
-        "endMs": 3188
+        "startMs": 3189,
+        "endMs": 3271
       },
       {
         "text": "stop",
-        "startMs": 3188,
-        "endMs": 3650
+        "startMs": 3283,
+        "endMs": 3773
       },
       {
         "text": "Head",
-        "startMs": 4075,
-        "endMs": 4262
+        "startMs": 4147,
+        "endMs": 4346
       },
       {
         "text": "follow",
-        "startMs": 4275,
-        "endMs": 4700
+        "startMs": 4357,
+        "endMs": 4708
       },
       {
         "text": "waits",
-        "startMs": 4712,
-        "endMs": 5162
+        "startMs": 4720,
+        "endMs": 5105
       },
       {
         "text": "whenever",
-        "startMs": 5175,
-        "endMs": 5475
+        "startMs": 5117,
+        "endMs": 5456
       },
       {
         "text": "you",
-        "startMs": 5475,
-        "endMs": 5575
+        "startMs": 5467,
+        "endMs": 5584
       },
       {
         "text": "look",
-        "startMs": 5575,
-        "endMs": 5712
+        "startMs": 5596,
+        "endMs": 5771
       },
       {
         "text": "away",
-        "startMs": 5712,
-        "endMs": 6138
+        "startMs": 5783,
+        "endMs": 6180
+      },
+      {
+        "text": "Pretty",
+        "startMs": 6530,
+        "endMs": 6717
+      },
+      {
+        "text": "neat",
+        "startMs": 6729,
+        "endMs": 7068
+      },
+      {
+        "text": "right",
+        "startMs": 7091,
+        "endMs": 7395
       }
     ]
   },
   {
     "id": "custom",
-    "text": "Choose any font, size, colour and reading marker, and see every change in a live preview.",
-    "durationMs": 6576,
+    "text": "Make it yours! Pick any font, size, colour and reading marker, and watch every change in a live preview.",
+    "durationMs": 7680,
     "words": [
       {
-        "text": "Choose",
-        "startMs": 88,
-        "endMs": 488
+        "text": "Make",
+        "startMs": 70,
+        "endMs": 280
+      },
+      {
+        "text": "it",
+        "startMs": 292,
+        "endMs": 385
+      },
+      {
+        "text": "yours",
+        "startMs": 397,
+        "endMs": 935
+      },
+      {
+        "text": "Pick",
+        "startMs": 1308,
+        "endMs": 1484
       },
       {
         "text": "any",
-        "startMs": 500,
-        "endMs": 675
+        "startMs": 1565,
+        "endMs": 1729
       },
       {
         "text": "font",
-        "startMs": 675,
-        "endMs": 1162
+        "startMs": 1741,
+        "endMs": 2103
       },
       {
         "text": "size",
-        "startMs": 1438,
-        "endMs": 2162
+        "startMs": 2558,
+        "endMs": 3084
       },
       {
         "text": "colour",
-        "startMs": 2362,
-        "endMs": 2812
+        "startMs": 3458,
+        "endMs": 3890
       },
       {
         "text": "and",
-        "startMs": 2825,
-        "endMs": 2975
+        "startMs": 3902,
+        "endMs": 4019
       },
       {
         "text": "reading",
-        "startMs": 2975,
-        "endMs": 3300
+        "startMs": 4030,
+        "endMs": 4287
       },
       {
         "text": "marker",
-        "startMs": 3300,
-        "endMs": 3775
+        "startMs": 4299,
+        "endMs": 4685
       },
       {
         "text": "and",
-        "startMs": 4050,
-        "endMs": 4125
+        "startMs": 5257,
+        "endMs": 5339
       },
       {
-        "text": "see",
-        "startMs": 4125,
-        "endMs": 4375
+        "text": "watch",
+        "startMs": 5350,
+        "endMs": 5619
       },
       {
         "text": "every",
-        "startMs": 4475,
-        "endMs": 4738
+        "startMs": 5701,
+        "endMs": 5923
       },
       {
         "text": "change",
-        "startMs": 4738,
-        "endMs": 5212
+        "startMs": 5935,
+        "endMs": 6355
       },
       {
         "text": "in",
-        "startMs": 5212,
-        "endMs": 5300
+        "startMs": 6367,
+        "endMs": 6472
       },
       {
         "text": "a",
-        "startMs": 5312,
-        "endMs": 5362
+        "startMs": 6484,
+        "endMs": 6530
       },
       {
         "text": "live",
-        "startMs": 5375,
-        "endMs": 5750
+        "startMs": 6542,
+        "endMs": 6857
       },
       {
         "text": "preview",
-        "startMs": 5750,
-        "endMs": 6200
+        "startMs": 6869,
+        "endMs": 7336
       }
     ]
   },
   {
     "id": "responsible",
-    "text": "It's made for creating: videos, demos and presentations. Not for interviews or exams.",
-    "durationMs": 7008,
+    "text": "Quick note: it's made for creating. Videos, demos and presentations. Not for interviews or exams.",
+    "durationMs": 7992,
     "words": [
       {
-        "text": "It's",
-        "startMs": 88,
-        "endMs": 188
+        "text": "Quick",
+        "startMs": 82,
+        "endMs": 292
+      },
+      {
+        "text": "note",
+        "startMs": 304,
+        "endMs": 596
+      },
+      {
+        "text": "it's",
+        "startMs": 1262,
+        "endMs": 1402
       },
       {
         "text": "made",
-        "startMs": 188,
-        "endMs": 412
+        "startMs": 1414,
+        "endMs": 1694
       },
       {
         "text": "for",
-        "startMs": 425,
-        "endMs": 562
+        "startMs": 1706,
+        "endMs": 1846
       },
       {
         "text": "creating",
-        "startMs": 562,
-        "endMs": 1125
+        "startMs": 1857,
+        "endMs": 2395
       },
       {
-        "text": "videos",
-        "startMs": 1512,
-        "endMs": 2238
+        "text": "Videos",
+        "startMs": 2757,
+        "endMs": 3423
       },
       {
         "text": "demos",
-        "startMs": 2425,
-        "endMs": 3088
+        "startMs": 3727,
+        "endMs": 4276
       },
       {
         "text": "and",
-        "startMs": 3200,
-        "endMs": 3312
+        "startMs": 4287,
+        "endMs": 4451
       },
       {
         "text": "presentations",
-        "startMs": 3312,
-        "endMs": 4300
+        "startMs": 4463,
+        "endMs": 5397
       },
       {
         "text": "Not",
-        "startMs": 4712,
-        "endMs": 4862
+        "startMs": 5771,
+        "endMs": 6063
       },
       {
         "text": "for",
-        "startMs": 4862,
-        "endMs": 4988
+        "startMs": 6075,
+        "endMs": 6297
       },
       {
         "text": "interviews",
-        "startMs": 5000,
-        "endMs": 5700
+        "startMs": 6308,
+        "endMs": 6869
       },
       {
         "text": "or",
-        "startMs": 5838,
-        "endMs": 5975
+        "startMs": 6881,
+        "endMs": 7021
       },
       {
         "text": "exams",
-        "startMs": 5975,
-        "endMs": 6650
+        "startMs": 7033,
+        "endMs": 7640
       }
     ]
   },
   {
     "id": "cta",
-    "text": "Unseencue. Free and open source, for Windows. Stay on script. Look at the lens.",
-    "durationMs": 6528,
+    "text": "Unseencue. Free and open source, for Windows. Stay on script, and look at the lens!",
+    "durationMs": 5904,
     "words": [
       {
         "text": "Unseencue",
-        "startMs": 100,
-        "endMs": 875
+        "startMs": 58,
+        "endMs": 841
       },
       {
         "text": "Free",
-        "startMs": 1312,
-        "endMs": 1662
+        "startMs": 1215,
+        "endMs": 1577
       },
       {
         "text": "and",
-        "startMs": 1775,
-        "endMs": 1888
+        "startMs": 1589,
+        "endMs": 1706
       },
       {
         "text": "open",
-        "startMs": 1888,
-        "endMs": 2188
+        "startMs": 1717,
+        "endMs": 1974
       },
       {
         "text": "source",
-        "startMs": 2188,
-        "endMs": 2775
+        "startMs": 1986,
+        "endMs": 2418
       },
       {
         "text": "for",
-        "startMs": 2925,
-        "endMs": 3075
+        "startMs": 2430,
+        "endMs": 2617
       },
       {
         "text": "Windows",
-        "startMs": 3075,
-        "endMs": 3688
+        "startMs": 2628,
+        "endMs": 3178
       },
       {
         "text": "Stay",
-        "startMs": 4088,
-        "endMs": 4288
+        "startMs": 3518,
+        "endMs": 3787
       },
       {
         "text": "on",
-        "startMs": 4300,
-        "endMs": 4425
+        "startMs": 3798,
+        "endMs": 3927
       },
       {
         "text": "script",
-        "startMs": 4425,
-        "endMs": 4912
+        "startMs": 3939,
+        "endMs": 4453
       },
       {
-        "text": "Look",
-        "startMs": 5312,
-        "endMs": 5438
+        "text": "and",
+        "startMs": 4476,
+        "endMs": 4639
+      },
+      {
+        "text": "look",
+        "startMs": 4651,
+        "endMs": 4826
       },
       {
         "text": "at",
-        "startMs": 5438,
-        "endMs": 5488
+        "startMs": 4838,
+        "endMs": 4920
       },
       {
         "text": "the",
-        "startMs": 5488,
-        "endMs": 5562
+        "startMs": 4932,
+        "endMs": 5025
       },
       {
         "text": "lens",
-        "startMs": 5562,
-        "endMs": 6150
+        "startMs": 5037,
+        "endMs": 5562
       }
     ]
   }

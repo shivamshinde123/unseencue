@@ -56,7 +56,7 @@ const musicVolume = (f: number) => {
     const d = interpolate(f, [a - 12, a, b, b + 18], [1, 0.42, 0.42, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
     duck = Math.min(duck, d);
   }
-  return 0.6 * edge * duck;
+  return 0.3 * edge * duck;
 };
 
 const SCENE_COMPONENTS: Record<(typeof SCENES)[number]["id"], React.FC> = {

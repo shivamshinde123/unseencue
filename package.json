@@ -1,7 +1,7 @@
 {
   "name": "unseencue",
   "productName": "Unseencue",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Unseencue: a teleprompter that sits under your webcam and stays hidden from recordings and screen shares",
   "main": "main.js",
   "private": true,
@@ -12,12 +12,15 @@
     "selftest": "electron . --selftest",
     "test": "node --test test/markdown.test.mjs test/voice.test.mjs",
     "fetch-model": "node scripts/fetch-model.mjs",
-    "dist": "electron-builder --win portable"
+    "dist": "electron-builder --win",
+    "icon": "node scripts/make-icon.mjs"
   },
   "build": {
     "appId": "local.unseencue",
+    "productName": "Unseencue",
     "directories": {
-      "output": "release"
+      "output": "release",
+      "buildResources": "build"
     },
     "files": [
       "main.js",
@@ -27,8 +30,28 @@
       "package.json"
     ],
     "win": {
-      "target": "portable",
-      "signAndEditExecutable": false
+      "target": [
+        "nsis",
+        "portable"
+      ],
+      "icon": "build/icon.ico",
+      "signAndEditExecutable": true,
+      "publisherName": "Shivam Shinde"
+    },
+    "nsis": {
+      "oneClick": true,
+      "perMachine": false,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "Unseencue",
+      "runAfterFinish": true,
+      "installerIcon": "build/icon.ico",
+      "uninstallerIcon": "build/icon.ico",
+      "artifactName": "Unseencue-Setup-${version}.${ext}",
+      "deleteAppDataOnUninstall": false
+    },
+    "portable": {
+      "artifactName": "Unseencue-${version}-portable.${ext}"
     }
   },
   "dependencies": {
@@ -39,6 +62,8 @@
   },
   "devDependencies": {
     "electron": "^33.4.11",
-    "electron-builder": "^25.1.8"
+    "electron-builder": "^25.1.8",
+    "png-to-ico": "^2.1.8",
+    "sharp": "^0.34.5"
   }
 }
